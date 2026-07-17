@@ -51,6 +51,23 @@ Use `60-day-war-plan.md` → "The First 10 Calls" section. No excuses.
 
 ---
 
+
+## 🎨 Official Brand Assets
+
+All future documents, apps, websites, and materials MUST use these official assets:
+
+| Asset | File | Use For |
+|---|---|---|
+| **Logo** | `assets/keystone_logo_official.png` | Website, social media, documents, posters, business cards |
+| **Founder Photo** | `assets/ceo_photo_hasibul_munim.png` | About page, company profile, B2B proposals, LinkedIn |
+| **Passport** | `assets/passport_hasibul_munim.jpg` | Adventus/ApplyBoard onboarding, legal verification |
+| **NID** | `assets/nid_hasibul_munim.jpg` | Trade licence, bank account, government filings |
+| **TIN** | `assets/tin_certificate_hasibul_munim.jpg` | Tax compliance, corporate proposals |
+
+**Read the full guide:** `BRAND_ASSET_GUIDE.md`
+
+**🚫 NEVER use unofficial logos, old photos, or post legal documents on social media.**
+
 ## 🎯 The One Rule
 
 > **No coding. No building. No new products. Until 2 students/month is steady.**
