@@ -5,6 +5,8 @@ students/*
 !students/_TEMPLATE/**
 !students/ariful-demo/
 !students/ariful-demo/**
+!students/kuac-demo/
+!students/kuac-demo/**
 
 # secrets and audit output
 deploy/.env
