@@ -1,0 +1,107 @@
+{
+  "name": "Keystone — Document Uploaded → Checklist → WhatsApp Reminder",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "keystone-doc-uploaded",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Doc Uploaded (Webhook)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [240, 300],
+      "webhookId": "keystone-doc-uploaded"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Map an incoming document tag (from Paperless post-consume or NocoDB) to a\n// checklist item id, and decide what still remains. CHANGE_ME: adapt the tag map\n// to your NocoDB column names.\nconst body = $input.first().json.body || $input.first().json;\nconst tag = (body.tag || body.document_type || '').toLowerCase();\nconst tagToItem = {\n  passport: 'passport',\n  'bank statement': 'bank_statement',\n  ielts: 'language_certificate',\n  sop: 'sop',\n  noc: 'noc_affidavit',\n  affidavit: 'financial_affidavit',\n  'tb test': 'tb_test'\n};\nreturn [{ json: {\n  student_id: body.student_id || body.correspondent || 'UNKNOWN',\n  student_name: body.student_name || 'Student',\n  checklist_item: tagToItem[tag] || tag,\n  received: true\n}}];"
+      },
+      "id": "map-tag",
+      "name": "Map Tag → Checklist Item",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "CHANGE_ME_https://nocodb.your-vps/api/v2/tables/CHANGE_ME_TABLE_ID/records",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "xc-token", "value": "CHANGE_ME_NOCODB_API_TOKEN" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "student_id", "value": "={{ $json.student_id }}" },
+            { "name": "={{ $json.checklist_item }}", "value": "received" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "update-nocodb",
+      "name": "Update Checklist (NocoDB)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.missing_docs && $json.missing_docs.length > 0 }}",
+              "rightValue": "true",
+              "operator": { "type": "boolean", "operation": "true", "singleValue": true }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-missing",
+      "name": "Any Required Doc Still Missing?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "CHANGE_ME_https://evolution-api.your-vps/message/sendText/CHANGE_ME_INSTANCE",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            { "name": "apikey", "value": "CHANGE_ME_EVOLUTION_API_KEY" }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "number", "value": "={{ $json.whatsapp_number }}" },
+            { "name": "text", "value": "=আসসালামু আলাইকুম {{ $json.student_name }}! আপনার কিছু ডকুমেন্ট এখনো বাকি আছে: {{ $json.missing_docs }}। অনুগ্রহ করে দ্রুত পাঠান। — কিস্টোন এডুকেশন" }
+          ]
+        },
+        "options": {}
+      },
+      "id": "whatsapp-reminder",
+      "name": "WhatsApp Reminder (Evolution API)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1200, 220]
+    }
+  ],
+  "connections": {
+    "Doc Uploaded (Webhook)": { "main": [[{ "node": "Map Tag → Checklist Item", "type": "main", "index": 0 }]] },
+    "Map Tag → Checklist Item": { "main": [[{ "node": "Update Checklist (NocoDB)", "type": "main", "index": 0 }]] },
+    "Update Checklist (NocoDB)": { "main": [[{ "node": "Any Required Doc Still Missing?", "type": "main", "index": 0 }]] },
+    "Any Required Doc Still Missing?": { "main": [[{ "node": "WhatsApp Reminder (Evolution API)", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

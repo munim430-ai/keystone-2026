@@ -1,0 +1,62 @@
+# Source: korea-student-visa-sop skill ch05 (WeCare fact sheet 2025-26)
+id: assist-masters
+extends: core-korea
+country: South Korea
+university: aSSIST University (Seoul)
+program: Master's — Global Tech / Innovation & Entrepreneurship
+visa_type: D-2 (E-VISA)
+source: korea-student-visa-sop ch05
+verified_date: "2026-07-18"
+notes: >
+  Application fee WAIVED. Tuition ~5,000,000 KRW (September intake).
+  Scholarship: IELTS 5.5+ = flat 50% for THREE semesters (unique in pack).
+  Bank requirement is STRICT.
+
+documents:
+  - id: cv
+    name: CV
+    required: true
+    stage: university
+    processing: none
+
+  - id: bachelor_certificate
+    name: Bachelor certificate & transcript (plus SSC/HSC)
+    required: true
+    stage: both
+    processing: attestation_mygovbd
+
+  - id: language_certificate
+    name: IELTS 5.5+
+    required: true
+    stage: both
+    processing: notarize
+    checks:
+      - type: min_score
+        value: 5.5
+        field: ielts_score
+
+  - id: bank_statement
+    name: Bank statement, USD 20,000+ (6 months) — STRICT
+    required: true
+    stage: both
+    processing: none
+    checks:
+      - type: min_amount_usd
+        value: 20000
+        field: bank_balance_usd
+      - type: min_history_months
+        value: 6
+        field: bank_history_months
+      - type: max_age_days
+        value: 30
+        field: bank_statement_date
+
+  - id: tb_test
+    name: TB test report (required at application stage)
+    required: true
+    stage: both
+    processing: none
+    checks:
+      - type: max_age_days
+        value: 90
+        field: tb_test_date

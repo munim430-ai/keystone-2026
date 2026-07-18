@@ -1,0 +1,70 @@
+# Source: korea-student-visa-sop skill ch03 (WeCare fact sheet 2025-26)
+id: kyungsung-bachelor
+extends: core-korea
+country: South Korea
+university: Kyungsung University (Busan)
+program: Bachelor / Bachelor Regional
+visa_type: D-2 (regional visa for designated engineering/business majors)
+source: korea-student-visa-sop ch03
+verified_date: "2026-07-18"
+notes: >
+  App fee 80,000 KRW. Dorm ~900,000 KRW/4mo. Regional-visa-only majors: Global
+  Mechanical Design Eng, Global Business Admin, Global Hospitality Mgmt, Global
+  IT Eng. Scholarship 1st sem by IELTS: 5.5-6.5=30%, 7.0=40%, 7.5=50%.
+
+documents:
+  - id: language_certificate
+    name: IELTS 5.5+ (or TOEFL 530/CBT197/iBT71, CEFR B2, TEPS 600+)
+    required: true
+    stage: both
+    processing: notarize
+    checks:
+      - type: min_score
+        value: 5.5
+        field: ielts_score
+
+  - id: academic_certificates
+    name: SSC + HSC certificates & transcripts (MyGovBD online attestation)
+    required: true
+    stage: both
+    processing: attestation_mygovbd
+    checks:
+      - type: min_gpa
+        value: 3.5
+        field: ssc_gpa
+        description: SSC 3.50+ hard floor
+      - type: min_gpa
+        value: 3.5
+        field: hsc_gpa
+        description: HSC 3.50+ hard floor
+
+  - id: bank_statement
+    name: Bank statement, min USD 20,000, 6-month history
+    required: true
+    stage: both
+    processing: none
+    checks:
+      - type: min_amount_usd
+        value: 20000
+        field: bank_balance_usd
+      - type: min_history_months
+        value: 6
+        field: bank_history_months
+      - type: max_age_days
+        value: 30
+        field: bank_statement_date
+
+  - id: sponsor_income_docs
+    name: TIN/TAX/Trade documents — NOT mandatory at Kyungsung (optional, for safety)
+    required: false
+    stage: both
+    processing: translate_then_notarize
+
+  - id: major_selection
+    name: Applicant's selected subject/major (regional-visa check)
+    required: true
+    stage: university
+    processing: none
+    checks:
+      - type: human_verify
+        description: If major is engineering/regional-only, confirm family understands the regional visa restriction

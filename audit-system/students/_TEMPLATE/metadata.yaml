@@ -1,0 +1,61 @@
+# Per-student known/extracted facts. Fill what you know; blanks become ⚠️ FLAGGED
+# (never silently passed). Dates are ISO YYYY-MM-DD. Populate from OCR extraction
+# (EasyOCR/Docling sidecar) or manual data entry.
+student_name: ""            # exactly as on passport
+
+# --- passport ---
+passport_expiry: ""         # e.g. 2029-05-01
+# --- photo ---
+photo_dimensions: ""        # "35x45"
+photo_taken_date: ""
+# --- language ---
+ielts_score:                # e.g. 6.0
+# --- academics ---
+ssc_gpa:
+hsc_gpa:
+bachelor_cgpa:
+graduation_year:            # bachelor graduation year (int)
+# --- bank ---
+bank_balance_usd:
+bank_history_months:
+bank_statement_date: ""     # time this LAST — must be within 30 days of submission
+# --- sponsor / income ---
+sponsor_annual_income_bdt:
+# --- affidavit / NOC field-present flags (true once confirmed in the document) ---
+noc_both_parents:           # true/false
+noc_return_clause:
+affidavit_usd_conversion:
+affidavit_return_clause:
+
+# --- processing-chain confirmations (set true once the chain is actually done) ---
+passport_processing_done:
+applicant_nid_bc_processing_done:
+parents_nid_processing_done:
+frc_processing_done:
+academic_certificates_processing_done:
+language_certificate_processing_done:
+sponsor_income_docs_processing_done:
+noc_affidavit_processing_done:
+financial_affidavit_processing_done:
+gap_certificate_processing_done:
+
+# --- conditional-document flags ---
+alien_card_holder: false
+study_gap: false
+sponsor_is_parent: true
+
+# --- consistency fields (enter the value AS IT APPEARS on each document) ---
+student_name_passport: ""
+student_name_nid: ""
+student_name_academic: ""
+student_name_sop: ""
+sponsor_name_bank: ""
+sponsor_name_affidavit: ""
+sponsor_name_tin: ""
+sponsor_name_cover_letter: ""
+gap_story_sop: ""
+gap_story_cover_letter: ""
+
+# --- human sign-offs: add a document id here ONLY after a person has verified
+#     its human_verify check. This is the gate that lets a ⚠️ become ✅. ---
+human_signoffs: []

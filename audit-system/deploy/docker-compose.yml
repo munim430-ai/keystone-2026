@@ -1,0 +1,167 @@
+# Keystone operational stack — phased via Docker Compose profiles.
+#   Phase 1 (audit core):   docker compose --profile phase1 up -d
+#   Phase 2 (operations):   docker compose --profile phase2 up -d
+# Runs CPU-only on one 4–8 GB VPS. Copy .env.example -> .env and fill it first.
+# All images pinned to a major tag; check the project's registry before bumping.
+
+name: keystone
+
+networks:
+  keystone:
+    driver: bridge
+
+volumes:
+  paperless_data: {}
+  paperless_media: {}
+  paperless_pgdata: {}
+  paperless_redis: {}
+  nocodb_data: {}
+  nocodb_pgdata: {}
+  n8n_data: {}
+  bigcapital_pgdata: {}
+  bigcapital_mongo: {}
+  bigcapital_redis: {}
+  docuseal_data: {}
+
+services:
+  # ---------------- PHASE 1 : document vault + system of record ----------------
+  paperless-redis:                      # ~50 MB RAM
+    image: docker.io/library/redis:7
+    profiles: ["phase1"]
+    restart: unless-stopped
+    volumes: ["paperless_redis:/data"]
+    networks: ["keystone"]
+
+  paperless-db:                         # ~150 MB RAM
+    image: docker.io/library/postgres:16
+    profiles: ["phase1"]
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: paperless
+      POSTGRES_USER: paperless
+      POSTGRES_PASSWORD: ${PAPERLESS_DB_PASSWORD}
+    volumes: ["paperless_pgdata:/var/lib/postgresql/data"]
+    networks: ["keystone"]
+
+  paperless:                            # ~500–800 MB RAM (OCR spikes higher)
+    image: ghcr.io/paperless-ngx/paperless-ngx:2
+    profiles: ["phase1"]
+    restart: unless-stopped
+    depends_on: ["paperless-db", "paperless-redis"]
+    ports: ["${PAPERLESS_PORT:-8000}:8000"]
+    environment:
+      PAPERLESS_REDIS: redis://paperless-redis:6379
+      PAPERLESS_DBHOST: paperless-db
+      PAPERLESS_DBNAME: paperless
+      PAPERLESS_DBUSER: paperless
+      PAPERLESS_DBPASS: ${PAPERLESS_DB_PASSWORD}
+      PAPERLESS_SECRET_KEY: ${PAPERLESS_SECRET_KEY}
+      PAPERLESS_URL: ${PAPERLESS_URL}
+      PAPERLESS_ADMIN_USER: ${PAPERLESS_ADMIN_USER}
+      PAPERLESS_ADMIN_PASSWORD: ${PAPERLESS_ADMIN_PASSWORD}
+      PAPERLESS_TIME_ZONE: Asia/Dhaka
+      # ---- Bengali + English OCR (the whole reason this stack exists) ----
+      PAPERLESS_OCR_LANGUAGE: ben+eng     # active recognition languages
+      PAPERLESS_OCR_LANGUAGES: ben eng    # Debian tesseract packs to install at build
+    volumes:
+      - "paperless_data:/usr/src/paperless/data"
+      - "paperless_media:/usr/src/paperless/media"
+    networks: ["keystone"]
+
+  nocodb-db:                            # ~150 MB RAM
+    image: docker.io/library/postgres:16
+    profiles: ["phase1"]
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nocodb
+      POSTGRES_USER: nocodb
+      POSTGRES_PASSWORD: ${NOCODB_DB_PASSWORD}
+    volumes: ["nocodb_pgdata:/var/lib/postgresql/data"]
+    networks: ["keystone"]
+
+  nocodb:                               # ~250 MB RAM
+    image: docker.io/nocodb/nocodb:0.263.6
+    profiles: ["phase1"]
+    restart: unless-stopped
+    depends_on: ["nocodb-db"]
+    ports: ["${NOCODB_PORT:-8080}:8080"]
+    environment:
+      NC_DB: "pg://nocodb-db:5432?u=nocodb&p=${NOCODB_DB_PASSWORD}&d=nocodb"
+      NC_AUTH_JWT_SECRET: ${NOCODB_JWT_SECRET}
+    volumes: ["nocodb_data:/usr/app/data"]
+    networks: ["keystone"]
+
+  # ---------------- PHASE 2 : automation, accounting, e-signature ----------------
+  n8n:                                  # ~250 MB RAM
+    image: docker.io/n8nio/n8n:1
+    profiles: ["phase2"]
+    restart: unless-stopped
+    ports: ["${N8N_PORT:-5678}:5678"]
+    environment:
+      N8N_HOST: ${N8N_HOST}
+      N8N_PORT: 5678
+      N8N_PROTOCOL: ${N8N_PROTOCOL:-http}
+      WEBHOOK_URL: ${N8N_WEBHOOK_URL}
+      GENERIC_TIMEZONE: Asia/Dhaka
+      N8N_ENCRYPTION_KEY: ${N8N_ENCRYPTION_KEY}
+    volumes: ["n8n_data:/home/node/.n8n"]
+    networks: ["keystone"]
+
+  docuseal:                             # ~200 MB RAM — single container, sqlite
+    image: docker.io/docuseal/docuseal:1
+    profiles: ["phase2"]
+    restart: unless-stopped
+    ports: ["${DOCUSEAL_PORT:-3000}:3000"]
+    environment:
+      HOST: ${DOCUSEAL_HOST}
+      SECRET_KEY_BASE: ${DOCUSEAL_SECRET_KEY_BASE}
+    volumes: ["docuseal_data:/data"]
+    networks: ["keystone"]
+
+  # Bigcapital ships several services; these mirror its official compose.
+  bigcapital-db:                        # ~200 MB RAM
+    image: docker.io/library/mariadb:10.11
+    profiles: ["phase2"]
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: bigcapital
+      MYSQL_ROOT_PASSWORD: ${BIGCAPITAL_DB_ROOT_PASSWORD}
+      MYSQL_USER: bigcapital
+      MYSQL_PASSWORD: ${BIGCAPITAL_DB_PASSWORD}
+    volumes: ["bigcapital_pgdata:/var/lib/mysql"]
+    networks: ["keystone"]
+
+  bigcapital-mongo:                     # ~200 MB RAM
+    image: docker.io/library/mongo:6
+    profiles: ["phase2"]
+    restart: unless-stopped
+    volumes: ["bigcapital_mongo:/data/db"]
+    networks: ["keystone"]
+
+  bigcapital-redis:                     # ~50 MB RAM
+    image: docker.io/library/redis:7
+    profiles: ["phase2"]
+    restart: unless-stopped
+    volumes: ["bigcapital_redis:/data"]
+    networks: ["keystone"]
+
+  bigcapital:                           # ~400 MB RAM (server + webapp bundle)
+    image: docker.io/bigcapital/bigcapital:latest
+    profiles: ["phase2"]
+    restart: unless-stopped
+    depends_on: ["bigcapital-db", "bigcapital-mongo", "bigcapital-redis"]
+    ports: ["${BIGCAPITAL_PORT:-4000}:4000"]
+    environment:
+      DB_HOST: bigcapital-db
+      DB_USER: bigcapital
+      DB_PASSWORD: ${BIGCAPITAL_DB_PASSWORD}
+      SYSTEM_DB_NAME: bigcapital_system
+      TENANT_DB_NAME_PREFIX: bigcapital_tenant_
+      MONGODB_DATABASE_URL: mongodb://bigcapital-mongo/bigcapital
+      REDIS_HOST: bigcapital-redis
+      JWT_SECRET: ${BIGCAPITAL_JWT_SECRET}
+      BASE_CURRENCY: ${BIGCAPITAL_BASE_CURRENCY:-BDT}
+    networks: ["keystone"]
+    # NOTE: Bigcapital's exact service topology changes between releases. Before
+    # first deploy, diff this against the current official compose at
+    # https://github.com/bigcapitalhq/bigcapital (docker/) and reconcile.

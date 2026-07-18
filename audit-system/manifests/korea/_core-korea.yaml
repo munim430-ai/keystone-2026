@@ -1,0 +1,180 @@
+# Shared Korean core — every Korea manifest extends this.
+# Source: korea-student-visa-sop skill ch02 (online + DHL sets), ch08 (affidavits), ch01 (pipeline).
+id: core-korea
+country: South Korea
+university: (base)
+program: (base)
+visa_type: (base)
+source: korea-student-visa-sop skill ch01/ch02/ch08 (WeCare checklists + real notarized samples, 2025-26)
+verified_date: "2026-07-18"
+notes: >
+  Base document set shared by all Korean university applications. University
+  manifests extend this and add/override program-specific items. Figures must be
+  re-verified per intake before quoting families.
+
+documents:
+  - id: passport
+    name: Passport (color copy; notarized copy for DHL set)
+    required: true
+    stage: both
+    processing: notarize
+    checks:
+      - type: min_validity_months
+        value: 6
+        field: passport_expiry
+        description: Valid 6+ months beyond intended travel
+
+  - id: photo_korean
+    name: Korean-size photo 35x45mm
+    required: true
+    stage: both
+    processing: none
+    copies: 5
+    checks:
+      - type: exact_dimensions_mm
+        value: "35x45"
+        field: photo_dimensions
+      - type: max_age_days
+        value: 180
+        field: photo_taken_date
+        description: Under 6 months old
+
+  - id: applicant_nid_bc
+    name: Applicant's NID + Birth Certificate (color copy + translated copy)
+    required: true
+    stage: both
+    processing: translate_then_notarize
+
+  - id: parents_nid
+    name: Parents' NID / Birth Certificate (color copy + translated copy)
+    required: true
+    stage: both
+    processing: translate_then_notarize
+
+  - id: frc
+    name: Family Relation Certificate (FRC)
+    required: true
+    stage: both
+    processing: notarize
+
+  - id: academic_certificates
+    name: All academic certificates & transcripts (SSC, HSC/Diploma, Bachelor if applicable)
+    required: true
+    stage: both
+    processing: attestation_mygovbd
+    notes: Sejong overrides this to e_apostille — attestation chain is university-specific
+
+  - id: language_certificate
+    name: Language certificate (IELTS/TOEFL/TOPIK) — notarized color copy for DHL
+    required: true
+    stage: both
+    processing: notarize
+    checks:
+      - type: min_score
+        field: ielts_score
+        description: Threshold set per university manifest
+
+  - id: sop
+    name: Statement of Purpose (SOP)
+    required: true
+    stage: both
+    processing: none
+    notes: NEVER notarize. Must be consistent with affidavits and cover letter (one-story-three-places).
+    checks:
+      - type: human_verify
+        description: 9-paragraph arc present; weakness-reframe used; return-home paragraph with family anchor; 2-3 real course names cited
+
+  - id: bank_statement
+    name: Bank statement + solvency certificate
+    required: true
+    stage: both
+    processing: none
+    notes: NEVER notarize. Threshold and history set per university manifest.
+    checks:
+      - type: min_history_months
+        value: 6
+        field: bank_history_months
+      - type: max_age_days
+        value: 30
+        field: bank_statement_date
+        description: Issued within 30 days of submission — time this LAST
+
+  - id: sponsor_income_docs
+    name: Employment certificate / Trade licence + e-TIN & TAX certificates (translated then notarized)
+    required: true
+    stage: both
+    processing: translate_then_notarize
+    notes: Kyungsung manifests override required to false (explicitly not mandatory there)
+
+  - id: noc_affidavit
+    name: Affidavit of No Objection (both parents, stamp paper, notarized)
+    required: true
+    stage: embassy
+    processing: stamp_paper_notary
+    checks:
+      - type: field_present
+        field: noc_both_parents
+        description: BOTH parents as deponents (single-parent NOC is conspicuous)
+      - type: field_present
+        field: noc_return_clause
+        description: Return-to-Bangladesh clause present
+
+  - id: financial_affidavit
+    name: Sponsorship & Financial Declaration and Property Valuation (3-in-1, notarized)
+    required: true
+    stage: embassy
+    processing: stamp_paper_notary
+    checks:
+      - type: field_present
+        field: affidavit_usd_conversion
+        description: Every BDT figure paired with USD at dated bb.org.bd rate
+      - type: field_present
+        field: affidavit_return_clause
+        description: Return undertaking (clause 7) present
+
+  - id: cover_letter
+    name: Embassy cover letter (5-section, to Visa Officer, Embassy of Korea Dhaka)
+    required: true
+    stage: embassy
+    processing: none
+    checks:
+      - type: human_verify
+        description: 5 sections present; sponsor named in conclusion matches financial documents
+
+  - id: tb_test
+    name: TB test report from embassy-approved Dhaka clinic
+    required: true
+    stage: embassy
+    processing: none
+    checks:
+      - type: max_age_days
+        value: 90
+        field: tb_test_date
+
+  - id: email_address
+    name: Dedicated application email address
+    required: true
+    stage: university
+    processing: none
+
+  - id: alien_card
+    name: Alien Registration Card
+    required: "if:alien_card_holder"
+    stage: university
+    processing: none
+
+consistency_rules:
+  - id: sponsor_name_match
+    fields: [sponsor_name_bank, sponsor_name_affidavit, sponsor_name_tin, sponsor_name_cover_letter]
+    match: exact
+    description: >
+      Sponsor name character-identical across bank statement, financial affidavit,
+      TIN, and cover letter. Gachon explicitly rejects on spelling mismatch; apply everywhere.
+  - id: student_name_match
+    fields: [student_name_passport, student_name_nid, student_name_academic, student_name_sop]
+    match: exact
+    description: Student name identical to passport spelling on every document.
+  - id: gap_story_match
+    fields: [gap_story_sop, gap_story_cover_letter]
+    match: exact_case_insensitive
+    description: Gap-year explanation identical in SOP and cover letter (and backed by gap certificate where required).

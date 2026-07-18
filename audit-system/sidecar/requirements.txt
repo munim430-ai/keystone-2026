@@ -1,0 +1,5 @@
+# EasyOCR sidecar — install on the VPS, not in the audit repo (torch is ~2 GB).
+# Pin versions: EasyOCR's last release is 2024, so lock it to avoid surprise breaks.
+easyocr==1.7.2
+pdf2image==1.17.0
+# System dependency (not pip): poppler-utils  ->  sudo apt install poppler-utils

@@ -1,0 +1,102 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "keystone-audit-manifest.schema.json",
+  "title": "Keystone Document Audit Manifest",
+  "description": "Defines the required-document manifest for one destination program (country + university + program + visa type). The audit engine refuses to run against a manifest that fails this schema, so rule typos fail loudly instead of silently passing students.",
+  "type": "object",
+  "required": ["id", "country", "university", "program", "visa_type", "source", "verified_date", "documents"],
+  "additionalProperties": false,
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "country": { "type": "string" },
+    "university": { "type": "string" },
+    "program": { "type": "string" },
+    "visa_type": { "type": "string" },
+    "intake": { "type": "string" },
+    "source": { "type": "string", "description": "Where this manifest's rules came from (document/URL)" },
+    "verified_date": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+    "notes": { "type": "string" },
+    "extends": {
+      "type": "string",
+      "description": "Optional id of a base manifest (e.g. shared core) whose documents are merged in before this one's"
+    },
+    "documents": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/document" }
+    },
+    "consistency_rules": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/consistency_rule" }
+    }
+  },
+  "definitions": {
+    "document": {
+      "type": "object",
+      "required": ["id", "name", "required", "stage"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+        "name": { "type": "string" },
+        "required": {
+          "type": ["boolean", "string"],
+          "description": "true, false, or a condition string like 'if:alien_card_holder', 'if:study_gap', 'if:sponsor_is_parent'"
+        },
+        "stage": { "type": "string", "enum": ["university", "embassy", "both"] },
+        "processing": {
+          "type": "string",
+          "enum": ["none", "notarize", "translate_then_notarize", "attestation_mygovbd", "e_apostille", "stamp_paper_notary"],
+          "description": "The preparation chain this document must have completed"
+        },
+        "copies": { "type": "integer", "minimum": 1 },
+        "notes": { "type": "string" },
+        "checks": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/check" }
+        }
+      }
+    },
+    "check": {
+      "type": "object",
+      "required": ["type"],
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "min_validity_months",
+            "max_age_days",
+            "min_amount_usd",
+            "min_history_months",
+            "min_score",
+            "exact_dimensions_mm",
+            "min_gpa",
+            "max_years_since_graduation",
+            "min_annual_income_bdt",
+            "field_present",
+            "human_verify"
+          ]
+        },
+        "value": { "type": ["number", "string"] },
+        "field": { "type": "string", "description": "Which extracted metadata field this check reads (from student metadata.yaml or OCR extraction)" },
+        "description": { "type": "string" }
+      }
+    },
+    "consistency_rule": {
+      "type": "object",
+      "required": ["id", "fields", "description"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "fields": {
+          "type": "array",
+          "minItems": 2,
+          "items": { "type": "string" },
+          "description": "Metadata fields that must be exactly identical across documents, e.g. sponsor_name on bank_statement vs financial_affidavit"
+        },
+        "match": { "type": "string", "enum": ["exact", "exact_case_insensitive"], "default": "exact" },
+        "description": { "type": "string" }
+      }
+    }
+  }
+}

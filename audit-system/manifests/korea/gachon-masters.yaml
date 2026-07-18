@@ -1,0 +1,88 @@
+# Source: korea-student-visa-sop skill ch05 (WeCare fact sheet 2025-26)
+id: gachon-masters
+extends: core-korea
+country: South Korea
+university: Gachon University (Seongnam)
+program: Graduate — Business Administration (English track)
+visa_type: D-2 (E-VISA)
+source: korea-student-visa-sop ch05
+verified_date: "2026-07-18"
+notes: >
+  App fee 120,000 KRW. Tuition 4,993,000 KRW/sem; 50% scholarship first semester.
+  STRICTEST paperwork discipline in the pack: name-spelling match and study-gap
+  verification are explicit rejection grounds.
+
+documents:
+  - id: application_form
+    name: Application form (single copy)
+    required: true
+    stage: university
+    processing: none
+
+  - id: bachelor_certificate
+    name: Undergraduate certificate & transcript (plus SSC/HSC)
+    required: true
+    stage: both
+    processing: attestation_mygovbd
+    checks:
+      - type: min_gpa
+        value: 3.0
+        field: bachelor_cgpa
+        description: CGPA 3.00+ eligibility floor
+      - type: max_years_since_graduation
+        value: 5
+        field: graduation_year
+        description: Must have graduated within last 5 years (since 2020-21) — hard eligibility gate
+
+  - id: language_certificate
+    name: IELTS 5.5+ (or TOEFL PBT530/CBT197/iBT71, CEFR B2)
+    required: true
+    stage: both
+    processing: notarize
+    checks:
+      - type: min_score
+        value: 5.5
+        field: ielts_score
+
+  - id: study_plan
+    name: Study plan
+    required: true
+    stage: university
+    processing: none
+
+  - id: gap_certificate
+    name: Study-gap validation (job experience certificate)
+    required: "if:study_gap"
+    stage: both
+    processing: translate_then_notarize
+    notes: Immigration WILL verify this document — prepare before applying
+    checks:
+      - type: human_verify
+        description: Gap story matches SOP and cover letter exactly
+
+  - id: bank_statement
+    name: Bank statement, USD 20,000+
+    required: true
+    stage: both
+    processing: none
+    checks:
+      - type: min_amount_usd
+        value: 20000
+        field: bank_balance_usd
+      - type: min_history_months
+        value: 6
+        field: bank_history_months
+      - type: max_age_days
+        value: 30
+        field: bank_statement_date
+
+  - id: sponsor_income_docs
+    name: Parents' income certificate (Trade, TIN & TAX, acknowledgement or employment cert)
+    required: true
+    stage: both
+    processing: translate_then_notarize
+    checks:
+      - type: min_annual_income_bdt
+        value: 2000000
+        field: sponsor_annual_income_bdt
+        description: Annual income 20,00,000 BDT floor

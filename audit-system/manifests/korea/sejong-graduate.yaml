@@ -1,0 +1,63 @@
+# Source: korea-student-visa-sop skill ch04 (WeCare fact sheet 2025-26)
+id: sejong-graduate
+extends: core-korea
+country: South Korea
+university: Sejong University (Seoul)
+program: Graduate (Public Administration / Hospitality & Tourism Management)
+visa_type: D-2
+source: korea-student-visa-sop ch04
+verified_date: "2026-07-18"
+notes: >
+  App fee 170,000 KRW. Tuition 7,159,000-7,660,000 KRW/sem (highest in pack).
+  Scholarship 1st sem IELTS 5.5+ = 30%.
+
+documents:
+  - id: cv
+    name: CV
+    required: true
+    stage: university
+    processing: none
+
+  - id: bachelor_certificate
+    name: Bachelor certificate & transcript — E-APOSTILLED
+    required: true
+    stage: both
+    processing: e_apostille
+
+  - id: language_certificate
+    name: IELTS 5.5+ (or TOEFL iBT 71+, New TEPS 327+)
+    required: true
+    stage: both
+    processing: notarize
+    checks:
+      - type: min_score
+        value: 5.5
+        field: ielts_score
+
+  - id: academic_certificates
+    name: HSC & SSC certificates & transcripts — E-APOSTILLED (not MyGovBD)
+    required: true
+    stage: both
+    processing: e_apostille
+
+  - id: bank_statement
+    name: Bank statement & solvency, min USD 20,000, 6-month history
+    required: true
+    stage: both
+    processing: none
+    checks:
+      - type: min_amount_usd
+        value: 20000
+        field: bank_balance_usd
+      - type: min_history_months
+        value: 6
+        field: bank_history_months
+      - type: max_age_days
+        value: 30
+        field: bank_statement_date
+
+  - id: application_email_credentials
+    name: Email address WITH password (Sejong requirement)
+    required: true
+    stage: university
+    processing: none
