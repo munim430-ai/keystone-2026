@@ -143,6 +143,10 @@ def run_check(check, meta):
     val = meta.get(field) if field else None
     if field and val in (None, ""):
         return FLAGGED, f"field '{field}' not provided in metadata — cannot verify {ctype}"
+    # A threshold check with no 'value' is an under-specified manifest (e.g. a base
+    # rule whose threshold is meant to be set per-university). Never pass silently.
+    if ctype not in ("field_present",) and check.get("value") in (None, ""):
+        return FLAGGED, f"{ctype}: no threshold configured in manifest — set 'value' or override per-university"
     today = dt.date.today()
 
     def as_date(v):
@@ -188,8 +192,27 @@ def worst(states):
 
 
 # ------------------------------------------------------------------ audit
+def _name_mismatch(manifest, meta):
+    """True if any 'name'-matching consistency rule has divergent provided values.
+    KUAC's hard rule: a name-spelling divergence makes the Same-Name Affidavit
+    mandatory, so we auto-activate that document rather than trust a manual flag."""
+    for rule in manifest.get("consistency_rules", []):
+        if "name" not in rule["id"].lower():
+            continue
+        provided = [meta.get(f) for f in rule["fields"] if meta.get(f) not in (None, "")]
+        if len(provided) >= 2:
+            norm = (lambda s: str(s).lower()) if rule.get("match") == "exact_case_insensitive" else str
+            if len({norm(v) for v in provided}) > 1:
+                return True
+    return False
+
+
 def audit(manifest, meta, present_files):
     signoffs = set(meta.get("human_signoffs", []))
+    # Derive name_mismatch so 'required: if:name_mismatch' documents (the
+    # Affidavit of Same Name Declaration) auto-activate when names diverge.
+    meta = dict(meta)
+    meta.setdefault("name_mismatch", _name_mismatch(manifest, meta))
     results = []
     for doc in manifest["documents"]:
         req, cond = _required(doc, meta)

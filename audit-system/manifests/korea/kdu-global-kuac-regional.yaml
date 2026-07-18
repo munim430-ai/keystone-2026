@@ -1,0 +1,39 @@
+# KDU Global via KUAC — REGIONAL VISA variant.
+# The regional visa is selected by KUAC after review; it adds a mandatory
+# Regional Visa Pledge Statement and (in the real thread) triggered a second
+# round of DHL originals (updated bank cert, corrected translated NID, TB original).
+id: kdu-global-kuac-regional
+extends: kdu-global-kuac
+country: South Korea
+university: Kyungdong University Global (KDU Global) — applied via KUAC
+program: EAP + Bachelor pathway (Regional Visa track)
+visa_type: D-4-7 (Regional Visa)
+source: KDU Global Required Documents list + Pledge Statement (Regional Visa) 2026.07.10 + KUAC thread
+verified_date: "2026-07-18"
+notes: >
+  Regional-visa students must fill and return the Regional Visa Pledge Statement.
+  In the real case, regional selection required re-sending by DHL: (1) an updated
+  bank certificate & statement (the first was almost expired), (2) the father's
+  translated NID corrected (ID numbers did not match — a typo), and (3) the TB
+  report ORIGINAL (copies not accepted). Medical/bank freshness matters most here.
+
+documents:
+  - id: regional_visa_pledge
+    name: Pledge Statement (Regional Visa) — signed and returned to KUAC
+    required: true
+    stage: embassy
+    processing: none
+
+  - id: tb_test
+    name: Certificate of TB — ORIGINAL for regional visa (copies not accepted)
+    required: true
+    stage: both
+    processing: none
+    notes: KUAC explicitly rejected a TB copy for a regional-visa student — send the original.
+    checks:
+      - type: max_age_days
+        value: 90
+        field: tb_test_date
+      - type: field_present
+        field: tb_test_is_original
+        description: Original TB report, not a copy (regional-visa requirement)

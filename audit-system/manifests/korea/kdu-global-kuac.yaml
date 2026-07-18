@@ -1,0 +1,191 @@
+# KDU Global (Kyungdong University) via KUAC — Bangladesh applications.
+# Source: real "KDU Global Required Documents list" + the Skylentra↔KUAC WhatsApp
+# thread (interview → offer → SWIFT → DHL → corrections → regional visa → VIN →
+# embassy). Encodes the exact rules KUAC hand-catches so files clear on first send.
+id: kdu-global-kuac
+extends: core-korea
+country: South Korea
+university: Kyungdong University Global (KDU Global) — applied via KUAC
+program: EAP + Bachelor pathway (IELTS 5.0–6.0)
+visa_type: D-4-7 (Normal Visa)
+source: KDU Global Required Documents list + KUAC WhatsApp thread 2026
+verified_date: "2026-07-18"
+notes: >
+  KUAC = Korean Universities Admission Center (receives originals by DHL at
+  Bucheon-si). ~95% D-4-7 visa success claimed. HARD PROCESS RULES: (1) email
+  documents SEPARATELY, never as one combined PDF; (2) students must carry the
+  KDU-KUAC Confirmation Letter to the bank or tuition payment may be refused;
+  (3) USD 250 of the application fee is non-refundable if the visa is denied.
+
+documents:
+  # ---- core-Korea baseline items NOT on KUAC's specific checklist: switch off,
+  #      so the audit reflects KUAC's real required list, not the generic union. ----
+  - id: photo_korean            # replaced by KUAC's own id_photo below
+    name: (superseded by KUAC id_photo)
+    required: false
+    stage: university
+    processing: none
+  - id: applicant_nid_bc        # not itemized on KUAC list (birth cert + parents' NID used)
+    name: Applicant NID (not separately required by KUAC; keep on file)
+    required: false
+    stage: both
+    processing: none
+  - id: sponsor_income_docs     # not on KUAC's KDU list (optional, for safety only)
+    name: Sponsor income docs (optional for KDU/KUAC)
+    required: false
+    stage: both
+    processing: none
+  - id: financial_affidavit     # KUAC uses bank cert + NOC, not the 3-in-1 affidavit
+    name: (not required by KUAC — bank certificate + NOC cover finances)
+    required: false
+    stage: embassy
+    processing: none
+  - id: cover_letter            # embassy-stage; not part of KUAC's document set
+    name: (embassy cover letter — handled at embassy stage, not by KUAC)
+    required: false
+    stage: embassy
+    processing: none
+  - id: email_address           # captured inside the KUAC application form
+    name: (email captured in KUAC application form)
+    required: false
+    stage: university
+    processing: none
+
+  - id: id_photo
+    name: ID photo (3.5cm x 4.5cm, white background) — copy
+    required: true
+    stage: university
+    processing: none
+    checks:
+      - type: exact_dimensions_mm
+        value: "35x45"
+        field: photo_dimensions
+
+  - id: kuac_application_form
+    name: "[Form1] 2026 KDU Application Form (use the NEW form) — pdf"
+    required: true
+    stage: university
+    processing: none
+    notes: KUAC rejects the old form; confirm it is the current-year version.
+
+  - id: academic_certificates
+    name: Apostille Academic Transcript & Certificate — ORIGINAL
+    required: true
+    stage: both
+    processing: e_apostille
+    notes: e-Apostille via MoFA Dhaka (mofa-servicedirectory.apostille.mygov.bd). Originals to KUAC by DHL.
+
+  - id: frc
+    name: Family relationship certificate — copy
+    required: true
+    stage: both
+    processing: none
+    notes: >
+      KUAC rule (red text on the checklist): if the English spelling of the name
+      differs across documents, an 'Affidavit of Same Name Declaration' MUST be
+      submitted. See same_name_affidavit below + the sponsor/student name rules.
+
+  - id: bank_statement
+    name: 6-month Bank Statement + Bank Balance Certificate (over USD 16,000) — ORIGINAL
+    required: true
+    stage: both
+    processing: none
+    notes: Bank stamp AND the authorized officer's signature are mandatory. Issued in the applicant's or a parent's name.
+    checks:
+      - type: min_amount_usd
+        value: 16000
+        field: bank_balance_usd
+      - type: min_history_months
+        value: 6
+        field: bank_history_months
+      - type: max_age_days
+        value: 30
+        field: bank_statement_date
+        description: KUAC rejected a real file for an "almost expired" statement — time this LAST
+      - type: field_present
+        field: bank_stamp_and_signature
+        description: Bank stamp + authorized officer signature both present
+
+  - id: tb_test
+    name: Certificate of TB — copy (Korean-Embassy-nominated hospital)
+    required: true
+    stage: both
+    processing: none
+    notes: "Nominated clinic on the checklist: PRAAVA HEALTH, Plot 9, Road 17, Block C, Banani, Dhaka-1213."
+    checks:
+      - type: max_age_days
+        value: 90
+        field: tb_test_date
+
+  # ---- Additional documents for the visa application stage ----
+  - id: police_clearance
+    name: Police Clearance Certificate (valid only 3 months)
+    required: true
+    stage: embassy
+    processing: none
+    checks:
+      - type: max_age_days
+        value: 90
+        field: police_clearance_date
+        description: Valid only 3 months — must be fresh at embassy submission
+
+  - id: noc_affidavit
+    name: Parents' No Objection Letter (NOC) re. application & residence abroad for study
+    required: true
+    stage: embassy
+    processing: stamp_paper_notary
+    checks:
+      - type: field_present
+        field: noc_both_parents
+      - type: field_present
+        field: noc_return_clause
+
+  - id: birth_certificate
+    name: Birth Certificate (original AND copy; English translation)
+    required: true
+    stage: both
+    processing: translate_then_notarize
+
+  - id: same_name_affidavit
+    name: Affidavit of Same Name Declaration
+    required: "if:name_mismatch"
+    stage: both
+    processing: stamp_paper_notary
+    notes: >
+      REQUIRED whenever the English spelling of any name differs across documents
+      (KUAC hard rule). The auditor auto-activates this when a name-match
+      consistency rule fails.
+
+  - id: eap_pledge
+    name: "[Form 6] EAP Pledge Statement"
+    required: true
+    stage: university
+    processing: none
+
+  - id: language_certificate
+    name: IELTS (EAP pathway accepts 5.0–6.0)
+    required: true
+    stage: both
+    processing: notarize
+    checks:
+      - type: min_score
+        value: 5.0
+        field: ielts_score
+        description: KDU Global EAP pathway floor is IELTS 5.0
+
+consistency_rules:
+  - id: father_name_match
+    fields: [father_name_nid, father_name_birthcert, father_name_academic, father_name_bank, father_name_tin]
+    match: exact
+    description: >
+      Father/sponsor English name identical across NID, birth certificate,
+      academic docs, bank certificate, and TIN. A divergence (e.g. "Rago Ahamad
+      Shamim" vs "Raju Ahmed Shamim") triggers the Affidavit of Same Name Declaration.
+  - id: student_name_match_kuac
+    fields: [student_name_passport, student_name_nid, student_name_birthcert, student_name_academic, student_name_ielts]
+    match: exact
+    description: Student English name identical to passport spelling across NID, birth certificate, academics, and IELTS.
+  - id: mother_name_match
+    fields: [mother_name_nid, mother_name_birthcert, mother_name_academic]
+    match: exact
+    description: Mother's English name consistent across NID, birth certificate, and academic documents.
