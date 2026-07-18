@@ -1,0 +1,65 @@
+# Source: korea-student-visa-sop skill ch05 (WeCare fact sheet 2025-26)
+# NOTE: Dongshin's IEQAS certification status is UNCLEAR (on live portal, absent
+# from Feb 2026 press release) — verify with NRF before advising families.
+id: dongshin-masters
+extends: core-korea
+country: South Korea
+university: Dongshin University (Naju)
+program: Master's — Software Convergence / Global Business / TESOL
+visa_type: D-2 (E-VISA)
+source: korea-student-visa-sop ch05
+verified_date: "2026-07-18"
+notes: >
+  App fee 100,000 KRW. Tuition 3,717,000-3,999,000 KRW/sem (cheapest in pack).
+  Scholarship IELTS ladder: 8.0=70%, 7.0=60%, 6.5=50%, 6.0=40%, 5.5=30%.
+  Lowest bank floor in the pack ($16k acceptable).
+
+documents:
+  - id: cv
+    name: CV
+    required: true
+    stage: university
+    processing: none
+
+  - id: bachelor_certificate
+    name: Bachelor certificate & transcript (plus SSC/HSC)
+    required: true
+    stage: both
+    processing: attestation_mygovbd
+
+  - id: language_certificate
+    name: IELTS 5.5+ or TOEFL iBT 80+
+    required: true
+    stage: both
+    processing: notarize
+    checks:
+      - type: min_score
+        value: 5.5
+        field: ielts_score
+
+  - id: bank_statement
+    name: Bank statement, min USD 16,000-20,000, 6-month history
+    required: true
+    stage: both
+    processing: none
+    checks:
+      - type: min_amount_usd
+        value: 16000
+        field: bank_balance_usd
+        description: $16k floor (unique in pack) — but $20k is safer
+      - type: min_history_months
+        value: 6
+        field: bank_history_months
+      - type: max_age_days
+        value: 30
+        field: bank_statement_date
+
+  - id: tb_test
+    name: TB test report (required at application stage here, not just embassy)
+    required: true
+    stage: both
+    processing: none
+    checks:
+      - type: max_age_days
+        value: 90
+        field: tb_test_date

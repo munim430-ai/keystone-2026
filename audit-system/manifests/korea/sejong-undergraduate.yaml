@@ -1,0 +1,54 @@
+# Source: korea-student-visa-sop skill ch04 (WeCare fact sheet 2025-26)
+id: sejong-undergraduate
+extends: core-korea
+country: South Korea
+university: Sejong University (Seoul)
+program: Undergraduate
+visa_type: D-2 (normal visa; regional visa for College of Convergence IT majors)
+source: korea-student-visa-sop ch04
+verified_date: "2026-07-18"
+notes: >
+  App fee 150,000 KRW. Scholarship (Year-1 entrants ONLY, not Year-3 transfers):
+  IELTS 5.5+=30%, 6.5+=50%, 8.0+=80%. E-APOSTILLE chain, not MyGovBD.
+
+documents:
+  - id: language_certificate
+    name: IELTS 6.5+ (or TOEFL iBT 71+, New TEPS 327+)
+    required: true
+    stage: both
+    processing: notarize
+    checks:
+      - type: min_score
+        value: 6.5
+        field: ielts_score
+        description: Sejong UG floor is 6.5 — higher than Kyungsung's 5.5
+
+  - id: academic_certificates
+    name: HSC & SSC certificates & transcripts — E-APOSTILLED (not MyGovBD)
+    required: true
+    stage: both
+    processing: e_apostille
+    notes: Wrong attestation chain = document rejection
+
+  - id: bank_statement
+    name: Bank statement & solvency, min USD 20,000, 6-month history
+    required: true
+    stage: both
+    processing: none
+    checks:
+      - type: min_amount_usd
+        value: 20000
+        field: bank_balance_usd
+      - type: min_history_months
+        value: 6
+        field: bank_history_months
+      - type: max_age_days
+        value: 30
+        field: bank_statement_date
+
+  - id: application_email_credentials
+    name: Email address WITH password (Sejong requirement)
+    required: true
+    stage: university
+    processing: none
+    notes: Set up a DEDICATED application email per student — never surrender a personal one

@@ -1,0 +1,57 @@
+# Source: korea-student-visa-sop skill ch03 (WeCare fact sheet 2025-26)
+id: kyungsung-masters
+extends: core-korea
+country: South Korea
+university: Kyungsung University (Busan)
+program: Master's / PhD
+visa_type: D-2 (E-VISA)
+source: korea-student-visa-sop ch03
+verified_date: "2026-07-18"
+notes: >
+  App fee 80,000 KRW. Scholarship: 1st sem IELTS 5.5+ = 45% (alumni 55%);
+  sem 2-4 = 40-100% by performance, 40% guaranteed at GPA 3.00+.
+
+documents:
+  - id: cv
+    name: CV
+    required: true
+    stage: university
+    processing: none
+
+  - id: bachelor_certificate
+    name: Bachelor certificate & transcript (in addition to HSC/SSC)
+    required: true
+    stage: both
+    processing: attestation_mygovbd
+
+  - id: language_certificate
+    name: IELTS 5.5+ (or TOEFL 530/CBT197/iBT71, CEFR B2, TEPS 600+)
+    required: true
+    stage: both
+    processing: notarize
+    checks:
+      - type: min_score
+        value: 5.5
+        field: ielts_score
+
+  - id: bank_statement
+    name: Bank statement, min USD 20,000, 6-month history
+    required: true
+    stage: both
+    processing: none
+    checks:
+      - type: min_amount_usd
+        value: 20000
+        field: bank_balance_usd
+      - type: min_history_months
+        value: 6
+        field: bank_history_months
+      - type: max_age_days
+        value: 30
+        field: bank_statement_date
+
+  - id: sponsor_income_docs
+    name: TIN/TAX/Trade documents — NOT mandatory at Kyungsung
+    required: false
+    stage: both
+    processing: translate_then_notarize

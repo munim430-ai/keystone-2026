@@ -1,0 +1,13 @@
+# NEVER commit real student data — it contains passports, NIDs, bank statements.
+students/*
+# ...but keep the template and the fabricated demo fixture:
+!students/_TEMPLATE/
+!students/_TEMPLATE/**
+!students/ariful-demo/
+!students/ariful-demo/**
+
+# secrets and audit output
+deploy/.env
+out/
+*.pyc
+__pycache__/

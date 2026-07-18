@@ -1,0 +1,51 @@
+# DEMO student (facts loosely from the SOP sample, anonymized/fabricated for testing).
+# Deliberately contains flaws to prove the auditor catches them:
+#   - IELTS 6.0 vs Kyungsung masters needs 5.5 (PASS) but Sejong UG needs 6.5 (FAIL)
+#   - graduated 2019 -> 6 years -> FAILS Gachon's 5-year rule
+#   - bank statement 45 days old -> FAILS max_age_days 30
+#   - sponsor name mismatch between bank and affidavit
+#   - tb_test file missing entirely
+student_name: Md Ariful Hasan
+
+passport_expiry: 2029-01-01
+photo_dimensions: "35x45"
+photo_taken_date: 2026-06-01
+ielts_score: 6.0
+ssc_gpa: 4.00
+hsc_gpa: 2.92
+bachelor_cgpa: 3.12
+graduation_year: 2019
+bank_balance_usd: 21000
+bank_history_months: 8
+bank_statement_date: 2026-06-03     # ~45 days before an 18-Jul audit -> too old
+sponsor_annual_income_bdt: 2500000
+
+noc_both_parents: true
+noc_return_clause: true
+affidavit_usd_conversion: true
+affidavit_return_clause: true
+
+passport_processing_done: true
+applicant_nid_bc_processing_done: true
+parents_nid_processing_done: true
+frc_processing_done: true
+academic_certificates_processing_done: true
+language_certificate_processing_done: true
+sponsor_income_docs_processing_done: true
+noc_affidavit_processing_done: true
+financial_affidavit_processing_done: true
+
+alien_card_holder: false
+study_gap: false
+sponsor_is_parent: true
+
+student_name_passport: Md Ariful Hasan
+student_name_nid: Md Ariful Hasan
+student_name_academic: Md Ariful Hasan
+student_name_sop: Md Ariful Hasan
+sponsor_name_bank: Md Abdul Hasan
+sponsor_name_affidavit: Mohammad Abdul Hasan   # <-- mismatch vs bank -> caught
+sponsor_name_tin: Md Abdul Hasan
+sponsor_name_cover_letter: Md Abdul Hasan
+
+human_signoffs: []
