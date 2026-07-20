@@ -79,6 +79,62 @@ call — see §§4–6.
 
 ---
 
+## ⭐⭐ CLOSING / WARM-UP MESSAGE — send before the July 22–23 (8 PM Korea) call
+
+**Purpose:** deepen her willingness to partner *before* you're even on the call, by
+showing you follow her company and that Keystone plugs directly into the exact
+chain she just publicly committed to. This is a warmth-and-alignment message —
+**not** the place for pricing questions (those stay for the call, §§4–6).
+
+**Fresh research (Dec 2025 – 2026) this is built on:**
+- WeBring signed **new MOUs with The SC (더에쓰씨) and Elite Korea (엘리트코리아)** to connect
+  *education → field experience → hiring → settlement* into one structure, explicitly
+  to raise the **정착률 (settlement/retention rate)**.
+- Ms. Jo's 2026 thesis (etoday interviews): employment is *"not just hiring — it's the
+  starting point of life in Korea"*; students should prepare for a career **early, while
+  still studying**; universities + local governments + companies must link the whole chain.
+
+**The move:** mirror **her own metric — 정착률.** She raises it at the destination; Keystone
+can raise it at the *source* by pre-selecting career-minded, visa-secured students and
+orienting them toward employability from Bangladesh. That makes Keystone the **missing
+first link** in the exact chain she just built. Then hint at a concrete first pilot cohort.
+
+**Korean (paste-ready):**
+
+> 조미영 대표님, 미팅 전에 짧게 한 가지 더 말씀드리고 싶었습니다.
+>
+> 최근 위브링이 더에쓰씨·엘리트코리아와 맺으신 협약, 그리고 "취업은 단순한 채용이 아니라 한국에서의 생활 시작점"이라는 대표님의 말씀을 인상 깊게 봤습니다. 교육–현장경험–취업–정착을 하나로 잇고 **정착률**을 높이겠다는 방향에 저희가 정확히 들어맞는다고 느꼈습니다.
+>
+> 위브링이 **도착 이후**의 정착률을 끌어올리신다면, 저희 키스톤은 **출발 지점**에서부터 정착률을 높일 수 있습니다 — 비자가 확보되고 이탈 위험이 낮은 학생을, 그것도 방글라데시에서부터 진로·취업을 염두에 두고 선발·안내하기 때문입니다. 즉, 대표님이 만드신 사슬의 **가장 앞 고리**를 저희가 채워드리는 셈입니다.
+>
+> 그래서 이번 미팅에서, 첫 협력으로 **소규모 파일럿 그룹(한 학기 코호트)**을 함께 그려보면 좋겠다는 생각입니다. 서로의 방식이 실제로 맞물리는지 가장 빠르고 안전하게 확인하는 방법이라 생각합니다.
+>
+> 22일(수) 한국시간 저녁 8시, 기대하며 준비하겠습니다. 감사합니다.
+> — 하시불 무님, 키스톤 에듀케이션 대표
+
+**English (reference):**
+
+> Ms. Jo — one more thing before we meet.
+>
+> I was struck by WeBring's recent MOUs with The SC and Elite Korea, and by your line that *employment isn't just hiring — it's the starting point of life in Korea.* Your direction — linking education, field experience, employment and settlement into one chain to raise the **settlement rate (정착률)** — is exactly where Keystone fits.
+>
+> If WeBring lifts the settlement rate **after arrival**, Keystone can lift it **at the source** — because the students we send are visa-secured, low-desertion, and selected and oriented toward employment and career from Bangladesh onward. In effect, we fill the **very first link** of the chain you've built.
+>
+> So for the call, I'd love to sketch a **small pilot group (one semester's cohort)** as our first step together — the fastest, safest way to see our two sides actually interlock.
+>
+> Looking forward to Wed the 22nd, 8 PM Korea time. — Hasibul Munim, CEO, Keystone Education
+
+**Why this closes her (use live if it comes up):**
+- **You referenced her newest MOUs by name** — proof you follow WeBring, not a cold lead. Flattering *and* status-raising.
+- **You adopted her own word, 정착률** — you're not pitching your frame, you're completing hers. Hard to say no to someone who makes your own thesis work better.
+- **"Source vs destination settlement rate"** gives her a clean, memorable way to describe the partnership to her own board.
+- **The pilot cohort** converts abstract goodwill into a concrete, low-risk first action — momentum without commitment.
+- **No ask, no pricing** — pure alignment, so she arrives at the call already wanting it. The sharp questions land better once she's leaning in.
+
+*Reminder: machine-assisted Korean — have a native speaker skim honorifics before sending.*
+
+---
+
 ## 4. The reply to send her (English)
 
 > Dear Ms. Jo, thank you — it's a pleasure to connect, and I'm glad the vision resonated. A call works well; I'm generally free [option A] and [option B] Bangladesh time — please pick whatever suits Seoul.
