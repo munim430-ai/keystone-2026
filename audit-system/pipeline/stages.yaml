@@ -1,0 +1,51 @@
+# The student lifecycle, modeled as ordered pipeline stages.
+# Derived from the real KUAC thread (interview → offer → SWIFT → DHL → VIN →
+# embassy). Each stage is a Kanban column in NocoDB; `gate` marks the point
+# where audit.py must return READY before the student can advance.
+pipeline:
+  - id: lead
+    name: Lead
+    detail: "Inquiry captured (from IELTS-center referral, Facebook, walk-in)."
+  - id: counselling
+    name: Counselling & university match
+    detail: "Pick target university/program from Korea_Master_University_List; assign the manifest."
+  - id: interview
+    name: Interview scheduled
+    detail: "University/KUAC schedules the Zoom interview; run mock first."
+  - id: offer
+    name: Offer letter received
+    detail: "University issues the offer; student decides."
+  - id: fee_paid
+    name: Application fee paid
+    detail: "Student pays; collect the SWIFT receipt. (KUAC: USD 250 non-refundable if visa denied.)"
+  - id: docs_prep
+    name: Documents in preparation
+    detail: "Collect + process documents; run split.py on the combined scan; fill metadata.yaml."
+  - id: audit_gate
+    name: "AUDIT GATE"
+    gate: true
+    detail: "Run audit.py. Advancement blocked until verdict = READY (exit 0). Nothing is sent on a red verdict."
+  - id: submitted
+    name: Submitted to KUAC / university
+    detail: "Email as SEPARATE PDFs (never combined); DHL the originals; record the DHL tracking number."
+  - id: kuac_review
+    name: Under university/KUAC review
+    detail: "They check; corrections handled here (the loop the audit gate is meant to eliminate)."
+  - id: visa_selected
+    name: Visa type confirmed (normal / regional)
+    detail: "Regional selection triggers the regional manifest + a second DHL round + the Regional Pledge."
+  - id: coa
+    name: Certificate of Admission / final admission
+    detail: "Issued after documents + tuition (SWIFT copy sent). Up to ~10 days."
+  - id: vin
+    name: VIN issued
+    detail: "University applies for the VIN; note the VIN application number, then release."
+  - id: embassy
+    name: Embassy visa applied
+    detail: "Apply at the Korean Embassy Dhaka with the VIN + documents; record the application receipt."
+  - id: visa_granted
+    name: Visa granted
+    detail: "Visa in hand."
+  - id: departed
+    name: Departed / arrived in Korea
+    detail: "Hand off to the Korea-side settlement partner (safe landing)."
