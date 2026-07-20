@@ -1,0 +1,7 @@
+# Never commit real secrets or the local follow-up queue
+deploy/.env
+../bots/followups_queue.json
+followups_queue.json
+*.local
+__pycache__/
+*.pyc

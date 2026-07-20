@@ -1,0 +1,29 @@
+{
+  "name": "Keystone — WhatsApp day0/2/5/7 follow-up (Fix B)",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "hours", "hoursInterval": 1 }] } },
+      "id": "cron",
+      "name": "Every hour",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /opt/keystone/bots && EVOLUTION_API_URL=$EVOLUTION_API_URL EVOLUTION_INSTANCE=$EVOLUTION_INSTANCE EVOLUTION_API_KEY=$EVOLUTION_API_KEY node followup_scheduler.js process"
+      },
+      "id": "run",
+      "name": "Drain follow-up queue (Evolution API)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [520, 300],
+      "notes": "Sends every day0/2/5/7 message now due. Enqueue happens in the WA bot on first contact. Set the EVOLUTION_* env vars on the n8n host."
+    }
+  ],
+  "connections": {
+    "Every hour": { "main": [[{ "node": "Drain follow-up queue (Evolution API)", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

@@ -1,0 +1,90 @@
+# Keystone marketing stack — one CPU-only VPS, $0 license.
+# Brings up the in-house replacement for a full-service marketing agency:
+#   NocoDB (CRM) · n8n (automation) · Postiz (social) · Umami (analytics) · Chatwoot (inbox)
+# Evolution API (WhatsApp) is deployed from its own compose per its docs — keep it
+# separate so a marketing redeploy never risks the WhatsApp session.
+#
+# Copy .env.example -> .env and fill it before `docker compose up -d`.
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: keystone
+    volumes: [pg:/var/lib/postgresql/data]
+
+  nocodb:
+    image: nocodb/nocodb:latest
+    restart: unless-stopped
+    depends_on: [db]
+    environment:
+      NC_DB: "pg://db:5432?u=${PG_USER}&p=${PG_PASSWORD}&d=keystone"
+      NC_PUBLIC_URL: ${NOCODB_URL}
+    ports: ["8080:8080"]
+    volumes: [nocodb:/usr/app/data]
+
+  n8n:
+    image: n8nio/n8n:latest
+    restart: unless-stopped
+    environment:
+      N8N_HOST: ${N8N_HOST}
+      WEBHOOK_URL: ${N8N_WEBHOOK_URL}
+      GENERIC_TIMEZONE: Asia/Dhaka
+      # marketing workflows read these:
+      NOCODB_URL: ${NOCODB_URL}
+      NOCODB_TOKEN: ${NOCODB_TOKEN}
+      NOCODB_STUDENTS_TABLE: ${NOCODB_STUDENTS_TABLE}
+      NOCODB_B2B_TABLE: ${NOCODB_B2B_TABLE}
+      EVOLUTION_API_URL: ${EVOLUTION_API_URL}
+      EVOLUTION_INSTANCE: ${EVOLUTION_INSTANCE}
+      EVOLUTION_API_KEY: ${EVOLUTION_API_KEY}
+      STAFF_WHATSAPP: ${STAFF_WHATSAPP}
+    ports: ["5678:5678"]
+    volumes:
+      - n8n:/home/node/.n8n
+      - ../../bots:/opt/keystone/bots          # followup_scheduler.js for the execute-command nodes
+      - ./content-pipeline:/opt/keystone/content-pipeline
+
+  postiz:
+    image: ghcr.io/gitroomhq/postiz-app:latest
+    restart: unless-stopped
+    depends_on: [db]
+    environment:
+      MAIN_URL: ${POSTIZ_URL}
+      FRONTEND_URL: ${POSTIZ_URL}
+      DATABASE_URL: "postgresql://${PG_USER}:${PG_PASSWORD}@db:5432/keystone?schema=postiz"
+      JWT_SECRET: ${POSTIZ_JWT_SECRET}
+    ports: ["4200:4200"]
+    volumes: [postiz:/config]
+
+  umami:
+    image: ghcr.io/umami-software/umami:postgresql-latest
+    restart: unless-stopped
+    depends_on: [db]
+    environment:
+      DATABASE_URL: "postgresql://${PG_USER}:${PG_PASSWORD}@db:5432/keystone?schema=umami"
+      DATABASE_TYPE: postgresql
+      APP_SECRET: ${UMAMI_APP_SECRET}
+    ports: ["3000:3000"]
+
+  chatwoot:
+    image: chatwoot/chatwoot:latest
+    restart: unless-stopped
+    depends_on: [db]
+    environment:
+      SECRET_KEY_BASE: ${CHATWOOT_SECRET}
+      FRONTEND_URL: ${CHATWOOT_URL}
+      POSTGRES_HOST: db
+      POSTGRES_USERNAME: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DATABASE: keystone
+    ports: ["3001:3000"]
+    command: bundle exec rails s -p 3000 -b 0.0.0.0
+
+volumes:
+  pg: {}
+  nocodb: {}
+  n8n: {}
+  postiz: {}
