@@ -1,0 +1,73 @@
+{
+  "name": "Keystone — Run Audit → Sync to NocoDB → Alert if NOT READY",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": { "interval": [{ "field": "hours", "hoursInterval": 6 }] }
+      },
+      "id": "schedule",
+      "name": "Every 6h (or trigger manually)",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /opt/keystone/audit-system && python3 audit.py --manifest manifests/korea/kdu-global-kuac.yaml --student students/{{ $json.student_id }}/ --report-dir /tmp/audit --json; python3 pipeline/nocodb_sync.py --report \"$(ls -t /tmp/audit/*_kdu-global-kuac.json | head -1)\" --student-id {{ $json.student_id }} --base-url CHANGE_ME_NOCODB_URL --table-id CHANGE_ME_TABLE_ID --token CHANGE_ME_TOKEN"
+      },
+      "id": "run-audit",
+      "name": "Run audit.py + nocodb_sync.py (Execute Command)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [520, 300],
+      "notes": "CHANGE_ME: the audit-system path on the host, the student_id source (loop a NocoDB list, or fire per-student), and the NocoDB creds. Exit code 2 from audit.py = NOT READY."
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": { "caseSensitive": true },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.exitCode }}",
+              "rightValue": 2,
+              "operator": { "type": "number", "operation": "equals" }
+            }
+          ],
+          "combinator": "and"
+        }
+      },
+      "id": "if-not-ready",
+      "name": "Verdict = NOT READY?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [820, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "CHANGE_ME_https://evolution-api.your-vps/message/sendText/CHANGE_ME_INSTANCE",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "apikey", "value": "CHANGE_ME_EVOLUTION_API_KEY" }] },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "number", "value": "CHANGE_ME_STAFF_WHATSAPP" },
+            { "name": "text", "value": "=⛔ Audit NOT READY for {{ $json.student_id }} — file has blocking items. Do not submit to KUAC yet. Check the NocoDB audit_blockers column." }
+          ]
+        }
+      },
+      "id": "alert-staff",
+      "name": "Alert staff (Evolution API)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1120, 220]
+    }
+  ],
+  "connections": {
+    "Every 6h (or trigger manually)": { "main": [[{ "node": "Run audit.py + nocodb_sync.py (Execute Command)", "type": "main", "index": 0 }]] },
+    "Run audit.py + nocodb_sync.py (Execute Command)": { "main": [[{ "node": "Verdict = NOT READY?", "type": "main", "index": 0 }]] },
+    "Verdict = NOT READY?": { "main": [[{ "node": "Alert staff (Evolution API)", "type": "main", "index": 0 }], []] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}
