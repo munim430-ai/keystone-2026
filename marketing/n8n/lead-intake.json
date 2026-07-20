@@ -1,0 +1,55 @@
+{
+  "name": "Keystone — Lead intake (form → NocoDB → WhatsApp enqueue)",
+  "nodes": [
+    {
+      "parameters": { "httpMethod": "POST", "path": "keystone-lead", "responseMode": "onReceived" },
+      "id": "hook",
+      "name": "Webhook (HeyForm / Chatwoot / Meta Lead Ads)",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [220, 300],
+      "notes": "Point HeyForm/OpnForm submit, Chatwoot form, or the Meta Lead Ads bridge at this URL. Expected fields: name, phone, source, country, ielts."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.NOCODB_URL }}/api/v2/tables/{{ $env.NOCODB_STUDENTS_TABLE }}/records",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "xc-token", "value": "={{ $env.NOCODB_TOKEN }}" }] },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "Name", "value": "={{ $json.body.name }}" },
+            { "name": "Phone", "value": "={{ $json.body.phone }}" },
+            { "name": "Source", "value": "={{ $json.body.source || 'form' }}" },
+            { "name": "Country", "value": "={{ $json.body.country || 'Korea' }}" },
+            { "name": "IELTS", "value": "={{ $json.body.ielts || '' }}" },
+            { "name": "Stage", "value": "Lead" }
+          ]
+        }
+      },
+      "id": "nocodb",
+      "name": "Create Students record (NocoDB)",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300]
+    },
+    {
+      "parameters": {
+        "command": "cd /opt/keystone/bots && node followup_scheduler.js enqueue \"{{ $json.body.phone }}\" \"{{ $json.body.name }}\""
+      },
+      "id": "enqueue",
+      "name": "Enqueue day0/2/5/7 follow-ups",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [820, 300],
+      "notes": "day0 fires on the next hourly run of whatsapp-followup."
+    }
+  ],
+  "connections": {
+    "Webhook (HeyForm / Chatwoot / Meta Lead Ads)": { "main": [[{ "node": "Create Students record (NocoDB)", "type": "main", "index": 0 }]] },
+    "Create Students record (NocoDB)": { "main": [[{ "node": "Enqueue day0/2/5/7 follow-ups", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

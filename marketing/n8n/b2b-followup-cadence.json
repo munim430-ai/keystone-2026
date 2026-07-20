@@ -1,0 +1,62 @@
+{
+  "name": "Keystone — B2B IELTS-center follow-up reminder (§6)",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "days", "daysInterval": 1 }], "triggerAtHour": 9 } },
+      "id": "cron",
+      "name": "Daily 9 AM",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [220, 300]
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "={{ $env.NOCODB_URL }}/api/v2/tables/{{ $env.NOCODB_B2B_TABLE }}/records",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "xc-token", "value": "={{ $env.NOCODB_TOKEN }}" }] },
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "where", "value": "(Status,in,contacted,interested)~and(Last_contact,isWithin,7,days,false)" },
+            { "name": "limit", "value": "50" },
+            { "name": "sort", "value": "Priority" }
+          ]
+        }
+      },
+      "id": "due",
+      "name": "Find centers gone quiet >7 days",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [520, 300],
+      "notes": "Pulls contacted/interested partners with no touch in 7+ days, highest priority first (home + nearby districts)."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.EVOLUTION_API_URL }}/message/sendText/{{ $env.EVOLUTION_INSTANCE }}",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [{ "name": "apikey", "value": "={{ $env.EVOLUTION_API_KEY }}" }] },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "number", "value": "={{ $env.STAFF_WHATSAPP }}" },
+            { "name": "text", "value": "=📋 আজ ফলো-আপ দরকার এই সেন্টারগুলোতে:\n{{ $json.list.map(c => '• ' + c.Center_Name + ' — ' + c.WhatsApp_Mobile + ' (' + c.District + ')').join('\\n') }}" }
+          ]
+        }
+      },
+      "id": "remind",
+      "name": "WhatsApp the daily call list to staff",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [820, 300],
+      "notes": "A reminder to the human — the actual B2B pitch is a human WhatsApp/call, never a bulk blast."
+    }
+  ],
+  "connections": {
+    "Daily 9 AM": { "main": [[{ "node": "Find centers gone quiet >7 days", "type": "main", "index": 0 }]] },
+    "Find centers gone quiet >7 days": { "main": [[{ "node": "WhatsApp the daily call list to staff", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

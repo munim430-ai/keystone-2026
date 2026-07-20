@@ -270,8 +270,8 @@ flowchart TD
 -   :material-web: Website: `www.keystoneeducations.com`
 -   :material-facebook: An active Facebook page with thousands of followers
 -   :material-whatsapp: Our own WhatsApp bot — talking to students 24/7
--   :material-handshake: Official partner of ApplyBoard — direct access to **1,500+ universities**
--   :material-trophy: A **98% success rate** — something we are genuinely proud of
+-   :material-handshake: A verified **ApplyBoard Recruitment Partner** — independently vetted, not a self-claim
+-   :material-check-decagram: We recommend **only IEQAS-certified universities** — and we show families how to verify each one themselves on `studyinkorea.go.kr`
 
 </div>
 

@@ -1,0 +1,68 @@
+{
+  "name": "Keystone — Content repurpose (1 long video → many posts, §4)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "trigger",
+      "name": "Manual / watch-folder: new long video",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [200, 300],
+      "notes": "Drop the founder's weekly 8-12 min counselling video path in as {{ $json.video }}."
+    },
+    {
+      "parameters": {
+        "command": "cd /opt/keystone/content-pipeline && python3 transcribe_bangla.py --in \"{{ $json.video }}\" --model banglaspeech2text --out /tmp/transcript.json"
+      },
+      "id": "whisper",
+      "name": "faster-whisper (Bangla-tuned) → transcript",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [470, 300],
+      "notes": "Base Whisper Bangla WER ~25%+, so a Bangla-fine-tuned model + the human-QA gate below are mandatory."
+    },
+    {
+      "parameters": {
+        "options": {},
+        "subject": "MANUAL QA: fix Bangla captions before publish",
+        "message": "=Transcript ready at /tmp/transcript.json for {{ $json.video }}. Marina: correct the Bangla, then resume this workflow."
+      },
+      "id": "qa",
+      "name": "Human-QA gate (Marina fixes captions)",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [740, 300],
+      "notes": "HARD RULE: no auto-generated Bangla caption publishes without a human pass."
+    },
+    {
+      "parameters": {
+        "command": "cd /opt/keystone/content-pipeline && python3 make_shorts.py --video \"{{ $json.video }}\" --transcript /tmp/transcript.json --n 3 --outdir /tmp/shorts && python3 make_captions.py --transcript /tmp/transcript.json --out /tmp/captions.json"
+      },
+      "id": "cut",
+      "name": "OpenShorts cut + per-platform captions (LLM)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1010, 300],
+      "notes": "3× 9:16 clips with burned Bangla subtitles + 1 FB caption + 1 WhatsApp status + hashtags."
+    },
+    {
+      "parameters": {
+        "command": "cd /opt/keystone/content-pipeline && python3 postiz_schedule.py --shorts /tmp/shorts --captions /tmp/captions.json --networks facebook,youtube,instagram"
+      },
+      "id": "postiz",
+      "name": "Schedule via Postiz (MCP/API)",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [1280, 300],
+      "notes": "Staggered across FB Page, Reels, YouTube Shorts via official APIs (no ban risk)."
+    }
+  ],
+  "connections": {
+    "Manual / watch-folder: new long video": { "main": [[{ "node": "faster-whisper (Bangla-tuned) → transcript", "type": "main", "index": 0 }]] },
+    "faster-whisper (Bangla-tuned) → transcript": { "main": [[{ "node": "Human-QA gate (Marina fixes captions)", "type": "main", "index": 0 }]] },
+    "Human-QA gate (Marina fixes captions)": { "main": [[{ "node": "OpenShorts cut + per-platform captions (LLM)", "type": "main", "index": 0 }]] },
+    "OpenShorts cut + per-platform captions (LLM)": { "main": [[{ "node": "Schedule via Postiz (MCP/API)", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

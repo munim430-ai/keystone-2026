@@ -162,8 +162,8 @@ And alongside all of it — your own Korea journey keeps moving forward too.
 - Website: www.keystoneeducations.com
 - An active Facebook page with thousands of followers
 - Our own WhatsApp bot — talking to students 24/7
-- Official partner of ApplyBoard — direct access to **1,500+ universities**
-- A **98% success rate** — something we are genuinely proud of
+- A verified **ApplyBoard Recruitment Partner** — independently vetted, not a self-claim
+- We recommend **only IEQAS-certified universities** — and we show families how to verify each one themselves on `studyinkorea.go.kr`
 
 We are growing. And we want that growth to start from Narsingdi. **You are the first step of that journey.**
 

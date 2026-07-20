@@ -105,12 +105,20 @@ const MARINA_FOLLOWUP_SEQUENCE = {
   day7: "[NAME], শেষ চেষ্টা! কোরিয়ার EAP প্রোগ্রামে আসন কমে আসছে। আপনি যদি এখনো আগ্রহী থাকেন, একবার কল করুন।"
 };
 
-// Schedule follow-up (requires cron or manual trigger)
-function scheduleFollowUp(phone, name, day) {
-  const message = MARINA_FOLLOWUP_SEQUENCE[`day${day}`].replace("[NAME]", name);
-  // This would be triggered by a cron job or scheduled task
-  console.log(`📅 Scheduled follow-up Day ${day} to ${phone}: ${message}`);
-  return message;
+// Schedule follow-ups — now REAL (Strategy §8, Fix B).
+// Enqueues the whole day0/2/5/7 sequence into the durable queue that
+// followup_scheduler.js drains hourly over the Evolution API. No more
+// console.log dead-end. Call this once, when a lead first makes contact.
+const { enqueueLead, cancelLead } = require('./followup_scheduler');
+
+function scheduleFollowUp(phone, name) {
+  enqueueLead(phone, name); // day0/2/5/7 persisted to followups_queue.json
+  return true;
+}
+
+// Call when a lead replies / books counselling / opts out, so we stop nudging.
+function stopFollowUp(phone) {
+  return cancelLead(phone);
 }
 
 // Export for use in main bot
@@ -121,5 +129,6 @@ module.exports = {
   MARINA_QUALIFICATION_FLOW,
   saveLeadToSheets,
   MARINA_FOLLOWUP_SEQUENCE,
-  scheduleFollowUp
+  scheduleFollowUp,
+  stopFollowUp
 };
