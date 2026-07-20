@@ -46,6 +46,39 @@ Frame to WeBring: *the students we send you have already cleared the highest-ris
 
 ---
 
+## ⭐ FINAL reply to send (approved) — availability: after 8 PM Korea time
+
+This is the version to send now. It links Keystone's Safe-Landing / 0%-desertion
+model to WeBring's on-the-ground settlement infrastructure, accepts the meeting,
+and gives availability (8 PM Korea = 5 PM Bangladesh). The sharp questions
+(pricing, unique value, channel-partner criteria) are deliberately held for the
+call — see §§4–6.
+
+**Korean (paste-ready):**
+
+> 조미영 대표님, 따뜻한 답장 감사합니다. 저희가 만들고 있는 '안전 정착(Safe-Landing)' 모델이 위브링이 이미 구축하신 현지 정착 인프라와 정확히 맞물린다고 느꼈습니다.
+>
+> 저희 키스톤은 방글라데시에서 **비자가 확보되고 이탈 위험이 낮은 학생**을 보냅니다 — 지역비자 가능 대학으로만 안내하고, 모든 서류를 제출 전에 감사(오딧)해 한 번에 통과되도록 합니다. 도착 후 위브링이 주거·보험·아르바이트·취업과 출석 기반 정착을 맡아 주신다면, 저희가 학부모에게 약속하는 '0% 이탈'이 실제로 작동하게 됩니다. 서로 겹치지 않는 두 조각이라고 생각합니다.
+>
+> 온라인 미팅 좋습니다. 저는 **한국 시간 기준 저녁 8시 이후에는 언제든** 가능하니 (방글라데시 시간 오후 5시 이후), 편하신 요일과 시간으로 정해 주세요. 미팅에서 수익 구조와 파트너십 방식을 구체적으로 논의드리고 싶습니다.
+>
+> 기대하겠습니다. 감사합니다.
+> — 하시불 무님, 키스톤 에듀케이션 대표
+
+**English (reference):**
+
+> Ms. Jo, thank you for the warm reply. The "Safe-Landing" model we're building fits precisely with the settlement infrastructure WeBring has already established.
+>
+> Keystone sends **visa-secured, low-desertion students** from Bangladesh — we steer them only to regional-visa-capable universities and audit every document before submission so it clears on the first pass. If WeBring handles housing, insurance, part-time work, employment and attendance-based settlement after arrival, the "0% desertion" we promise families actually works. Two halves that don't overlap.
+>
+> An online meeting sounds great. I'm **free anytime after 8 PM Korea time** (after 5 PM Bangladesh time) — please pick whatever day and time suits you. On the call I'd like to discuss the commercial model and how a partnership would be structured.
+>
+> Looking forward to it. — Hasibul Munim, CEO, Keystone Education
+
+*Reminders: have a Korean speaker skim the honorifics before sending; and soften "escrow" to "security deposit in a separate business account" in any written pitch (holding student funds in escrow is a regulated structure).*
+
+---
+
 ## 4. The reply to send her (English)
 
 > Dear Ms. Jo, thank you — it's a pleasure to connect, and I'm glad the vision resonated. A call works well; I'm generally free [option A] and [option B] Bangladesh time — please pick whatever suits Seoul.
