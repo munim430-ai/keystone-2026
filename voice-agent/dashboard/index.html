@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keystone Voice Agent — Control Room</title>
+<style>
+  :root{--bg:#0f1720;--card:#1a2532;--line:#263444;--ink:#e7eef6;--mut:#8aa0b4;
+        --accent:#2E7D32;--accent2:#8B1A1A;--warn:#e2b23a;--ok:#38a169;--bad:#e05252;}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);
+       font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Bengali",sans-serif}
+  header{display:flex;align-items:center;gap:14px;padding:14px 20px;
+         background:linear-gradient(90deg,#13202c,#16283a);border-bottom:1px solid var(--line)}
+  header h1{font-size:18px;margin:0;font-weight:650;letter-spacing:.2px}
+  .badge{font-size:12px;padding:3px 9px;border-radius:20px;border:1px solid var(--line);color:var(--mut)}
+  .badge.demo{background:#3a2f10;color:var(--warn);border-color:#6b571a}
+  .badge.live{background:#0d3320;color:var(--ok);border-color:#1c5c38}
+  .spacer{flex:1}
+  button{font:inherit;cursor:pointer;border-radius:8px;border:1px solid var(--line);
+         background:#22303f;color:var(--ink);padding:8px 14px}
+  button:hover{border-color:#3a4d63}
+  button.primary{background:var(--accent);border-color:#256628}
+  button.danger{background:var(--accent2);border-color:#661515}
+  button:disabled{opacity:.45;cursor:not-allowed}
+  main{padding:18px 20px;max-width:1200px;margin:0 auto}
+  .grid{display:grid;gap:14px}
+  .kpis{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .cols{grid-template-columns:1.3fr 1fr;margin-top:14px}
+  @media(max-width:860px){.cols{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card h2{margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.6px;color:var(--mut)}
+  .kpi .n{font-size:30px;font-weight:700}
+  .kpi .l{color:var(--mut);font-size:13px;margin-top:2px}
+  .funnel .row{display:flex;align-items:center;gap:10px;margin:7px 0}
+  .funnel .lab{width:150px;color:var(--mut);font-size:13px}
+  .funnel .bar{height:16px;border-radius:6px;background:linear-gradient(90deg,var(--accent),#43a047);min-width:2px}
+  .funnel .v{font-variant-numeric:tabular-nums}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--mut);font-weight:600}
+  .pill{font-size:11px;padding:2px 8px;border-radius:10px;background:#22303f;color:var(--mut)}
+  .pill.interested,.pill.whatsapp_captured,.pill.meeting_scheduled,.pill.converted{background:#0d3320;color:var(--ok)}
+  .pill.not_interested,.pill.dnc,.pill.wrong_number,.pill.invalid{background:#3a1414;color:#f0a0a0}
+  .gate{font-size:13px;color:var(--mut);margin-top:8px}
+  .gate.ok{color:var(--ok)} .gate.no{color:var(--warn)}
+  .mono{font-variant-numeric:tabular-nums}
+  .live-dot{width:9px;height:9px;border-radius:50%;background:var(--bad);display:inline-block;
+            margin-right:6px;animation:pulse 1.3s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  a{color:#6cb2f0}
+  .foot{color:var(--mut);font-size:12px;margin-top:16px;text-align:center}
+</style>
+</head>
+<body>
+<header>
+  <h1>🎧 Keystone Voice Agent</h1>
+  <span id="mode" class="badge">…</span>
+  <span id="providers" class="badge"></span>
+  <span class="spacer"></span>
+  <button id="callBtn" class="primary" onclick="callNext()">📞 Call next</button>
+  <button id="killBtn" class="danger" onclick="toggleKill()">■ Kill switch</button>
+  <button onclick="refresh()">↻</button>
+</header>
+<main>
+  <div id="gate" class="gate"></div>
+
+  <div class="grid kpis" id="kpis" style="margin-top:14px"></div>
+
+  <div class="grid cols">
+    <div class="card">
+      <h2>Funnel (859-center pipeline)</h2>
+      <div class="funnel" id="funnel"></div>
+    </div>
+    <div class="card">
+      <h2>Pending callbacks</h2>
+      <table><thead><tr><th>Center</th><th>District</th><th>Due (UTC)</th></tr></thead>
+      <tbody id="callbacks"></tbody></table>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:14px">
+    <h2>Recent calls</h2>
+    <table>
+      <thead><tr><th>#</th><th>Center</th><th>District</th><th>Started</th><th>Dur</th>
+      <th>Outcome</th><th>Stage</th><th>Transcript</th><th>Audio</th></tr></thead>
+      <tbody id="calls"></tbody>
+    </table>
+  </div>
+
+  <div class="card" id="transcriptCard" style="margin-top:14px;display:none">
+    <h2>Transcript — call <span id="tcId"></span></h2>
+    <table><tbody id="transcript"></tbody></table>
+  </div>
+
+  <div class="foot">Keystone Education · autonomous B2B outreach · demo-safe until DEMO_MODE=0</div>
+</main>
+<script>
+const $=s=>document.querySelector(s);
+let killed=false;
+
+async function api(path,opts){const r=await fetch(path,opts||{});if(!r.ok&&r.status!==409&&r.status!==404)throw new Error(path);return r.json();}
+function esc(s){return (s??'').toString().replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function dur(s){s=s||0;return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+
+async function refresh(){
+  try{
+    const s=await api('/api/stats');
+    killed=s.kill_switch;
+    const modeEl=$('#mode');
+    modeEl.textContent=s.demo_mode?'DEMO MODE':'LIVE';
+    modeEl.className='badge '+(s.demo_mode?'demo':'live');
+    $('#providers').textContent=`LLM ${s.providers.llm} · STT —· TTS —`.replace('—·','').replace('—','');
+    $('#providers').textContent=`LLM:${s.providers.llm} · active:${s.active_calls}`;
+    const g=$('#gate');
+    g.textContent=(s.can_call_now?'✓ ready to dial — ':'✗ dialing paused — ')+s.call_gate_reason;
+    g.className='gate '+(s.can_call_now?'ok':'no');
+    $('#callBtn').disabled=!s.can_call_now;
+    $('#killBtn').textContent=killed?'▶ Resume calling':'■ Kill switch';
+    $('#killBtn').className=killed?'primary':'danger';
+
+    const f=s.funnel;
+    const kpis=[
+      ['Calls today',s.calls_today],['Answered',s.answered_total],
+      ['Interested',f.interested+f.whatsapp_captured+f.meeting_scheduled],
+      ['WhatsApp captured',f.whatsapp_captured],
+      ['Talk time',dur(s.talk_seconds)],['Active now',s.active_calls],
+    ];
+    $('#kpis').innerHTML=kpis.map(([l,n])=>
+      `<div class="card kpi"><div class="n mono">${n}</div><div class="l">${l}</div></div>`).join('');
+
+    const order=['new','contacted','interested','whatsapp_captured','meeting_scheduled','contracted','converted','not_interested','exhausted','wrong_number','invalid','dnc'];
+    const max=Math.max(1,...order.map(k=>f[k]||0));
+    $('#funnel').innerHTML=order.filter(k=>k in f).map(k=>{
+      const v=f[k]||0;const w=Math.round(v/max*100);
+      return `<div class="row"><span class="lab">${k}</span>
+        <span class="bar" style="width:${w}%"></span><span class="v mono">${v}</span></div>`;}).join('');
+  }catch(e){console.error(e);}
+
+  try{
+    const calls=await api('/api/calls?limit=40');
+    $('#calls').innerHTML=calls.map(c=>{
+      const active=(c.status==='streaming'||c.status==='in_progress');
+      return `<tr>
+        <td class="mono">${c.id}</td>
+        <td>${active?'<span class="live-dot"></span>':''}${esc(c.center_name)}</td>
+        <td>${esc(c.district)}</td>
+        <td class="mono" style="white-space:nowrap">${esc((c.started_at||'').slice(5,16))}</td>
+        <td class="mono">${dur(c.duration_sec)}</td>
+        <td><span class="pill ${esc(c.outcome)}">${esc(c.outcome||c.status)}</span></td>
+        <td>${esc(c.final_stage)}</td>
+        <td><a href="#" onclick="showTranscript(${c.id});return false">view</a></td>
+        <td>${c.recording_url?`<a href="/api/recording/${c.id}" target="_blank">▶</a>`:''}</td>
+      </tr>`;}).join('')||'<tr><td colspan="9" style="color:var(--mut)">No calls yet.</td></tr>';
+  }catch(e){}
+
+  try{
+    const cbs=await api('/api/callbacks');
+    $('#callbacks').innerHTML=cbs.slice(0,12).map(c=>
+      `<tr><td>${esc(c.center_name)}</td><td>${esc(c.district)}</td>
+       <td class="mono" style="white-space:nowrap">${esc((c.due_at||'').slice(5,16))}</td></tr>`).join('')
+      ||'<tr><td colspan="3" style="color:var(--mut)">None scheduled.</td></tr>';
+  }catch(e){}
+}
+
+async function showTranscript(id){
+  const t=await api(`/api/calls/${id}/transcript`);
+  $('#tcId').textContent=id;
+  $('#transcriptCard').style.display='block';
+  $('#transcript').innerHTML=t.filter(r=>r.role!=='meta').map(r=>{
+    const who=r.role==='agent'?'🤖':'🧑';
+    return `<tr><td style="width:32px">${who}</td><td>${esc(r.text)}</td>
+      <td style="color:var(--mut);width:90px">${esc(r.stage)}</td>
+      <td class="mono" style="color:var(--mut);width:60px">${r.latency_ms?r.latency_ms+'ms':''}</td></tr>`;}).join('');
+  $('#transcriptCard').scrollIntoView({behavior:'smooth'});
+}
+
+async function callNext(){
+  $('#callBtn').disabled=true;
+  const r=await api('/api/call-next',{method:'POST'});
+  if(!r.ok)alert('Cannot dial: '+(r.reason||'unknown'));
+  else console.log('dialing',r.center,r.phone);
+  setTimeout(refresh,600);
+}
+async function toggleKill(){
+  await api(killed?'/api/resume':'/api/kill',{method:'POST'});
+  setTimeout(refresh,300);
+}
+refresh();
+setInterval(refresh,3000);
+</script>
+</body>
+</html>

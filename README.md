@@ -24,6 +24,29 @@
 | `scripts/b2b_outreach_templates.md` | Phone scripts, SMS, college seminar pitch (Bangla + English) | Marina |
 | `scripts/marina_first_week_checklist.md` | Day-by-day first week guide for Marina | Marina |
 | `bots/wa_bot_marina.js` | WhatsApp bot enhancement for Marina branch | Fahim |
+| `voice-agent/` | **Autonomous Bangla AI sales caller** — phones the 859-center B2B list, pitches the referral partnership, captures WhatsApp leads. Runs demo-safe with zero keys. | Founder |
+
+---
+
+## 🎧 Voice Agent (the AI sales team)
+
+`voice-agent/` is a self-contained system that solves the "no one is calling"
+bottleneck: a Bangla-speaking AI that calls coaching centers via Twilio,
+handles objections, captures WhatsApp numbers, and logs everything to a
+dashboard — with business-hours limits, a daily cap, a kill switch, and a
+hard rule that it never denies being an AI.
+
+It ships in **demo mode** (mock STT/LLM/TTS, no real calls) so it can be
+rehearsed for free, then flipped live once the 5-phase testing protocol
+passes. Start at `voice-agent/README.md`.
+
+```bash
+cd voice-agent && pip install -r requirements.txt
+cp .env.example .env
+python -m keystone_voice.cli init-db
+python -m keystone_voice.cli import-centers
+python -m keystone_voice.cli console      # rehearse the brain, free
+```
 
 ---
 
