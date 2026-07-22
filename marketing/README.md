@@ -26,7 +26,20 @@ marketing/
     posting-calendar.md         # 7-day WhatsApp rotation + FB weekly plan
   b2b/
     ielts-center-kit.md         # offer one-pager + 3-touch sequence + coverage gap
+  ugc-studio/                   # AI UGC video studio → source Reels for content-repurpose → Postiz
+    README.md · UGC_STRATEGY.md · TOOLS.md · PROMPTS.md · scripts.yaml (20 prompts)
 ```
+
+## AI UGC video (ugc-studio/)
+
+`ugc-studio/` turns short Bangla scripts into publish-ready 9:16 Reels. The CPU
+path runs today ($0, no GPU, no keys): brand chrome + Ken-Burns + burned-in Bangla
+captions + the No-Visa-No-Fee footer + a verifiable `studyinkorea.go.kr` line, plus
+a ready-to-post caption for Postiz. Optional GPU adapters add a cloned Bangla voice
+(AI4Bharat IndicF5), a **labelled** AI presenter (SadTalker/Wav2Lip), and rented
+b-roll. Ships 20 ready prompts across all four buyer personas. Compliance guardrails
+block fake testimonials, "100% visa"/"98%" claims, and unlocked taka grant figures.
+Start at `ugc-studio/README.md`.
 Plus, at repo root:
 - `bots/followup_scheduler.js` — **Fix B**, the real day0/2/5/7 sender (Evolution API). Verified end-to-end.
 - `bots/wa_bot_marina.js` — now enqueues follow-ups instead of the old `console.log` stub.

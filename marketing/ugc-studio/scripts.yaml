@@ -1,0 +1,327 @@
+# 20 ready-to-render 10-second Bangla UGC scripts for Keystone Education.
+#
+# Each maps to: a buyer persona (student/father/mother/uncle), a content angle,
+# and a visual engine (stills = CPU now; avatar/broll = GPU box). Scenes total
+# ~10s. The renderer burns the No-Visa-No-Fee footer + verify line onto every
+# clip; `caption_post_bn` is the ready-to-post caption for Postiz.
+#
+# Guardrails (ugc_studio/guardrails.py) enforce: no "100% visa"/guarantee, no
+# fabricated named testimonials, and no specific taka grant amounts until the
+# P&L is locked. `ugc-studio lint` must pass before publishing.
+
+scripts:
+  # ─────────────── STUDENT persona (Facebook/Reels; adventure + no-IELTS) ───────────────
+  - id: s01-without-ielts
+    title: "IELTS ছাড়াই কোরিয়া"
+    persona: student
+    angle: "no-IELTS hook (highest-intent) — faceless text-motion Reel"
+    visuals: stills
+    voice: maya
+    hook_bn: "IELTS নাই? কোরিয়া তবুও সম্ভব।"
+    scenes:
+      - {caption_bn: "IELTS নাই বলে থেমে আছেন?", seconds: 2.2, background: brand_blue, emphasis: true}
+      - {caption_bn: "কোরিয়ার EAP প্রোগ্রামে IELTS ছাড়াই ভর্তি হওয়া যায়।", seconds: 3.0, background: brand_blue}
+      - {caption_bn: "IELTS থাকলে টিউশন মওকুফের সুযোগও আছে।", seconds: 2.6, background: brand_red}
+      - {caption_bn: "প্রোফাইল পাঠান — কোন পথটা আপনার, বলে দিই।", seconds: 2.2, background: brand_blue}
+    cta_bn: "WhatsApp করুন ০১৩২৮-২২৪৬০০"
+    caption_post_bn: "IELTS ছাড়াই কোরিয়ায় পড়া যায় — EAP প্রোগ্রামে। আপনার HSC রেজাল্ট আর পাশের সাল কমেন্টে লিখুন, আমরা বলে দেব কোন ইউনিভার্সিটিতে চান্স আছে।"
+    hashtags: ["#StudyInKorea", "#IELTS", "#কোরিয়া", "#Bangladesh", "#EAP"]
+
+  - id: s02-day-in-life
+    title: "কোরিয়ায় স্টুডেন্ট লাইফ"
+    persona: student
+    angle: "day-in-the-life B-roll montage (aspirational)"
+    visuals: broll
+    voice: maya
+    hook_bn: "সকাল ৭টা, সিউল।"
+    scenes:
+      - {caption_bn: "সকাল: ক্লাস।", seconds: 2.2, background: brand_blue, emphasis: true}
+      - {caption_bn: "বিকেল: পার্ট-টাইম কাজ, সপ্তাহে ২০ ঘণ্টা বৈধ।", seconds: 3.0, background: brand_red}
+      - {caption_bn: "রাত: বন্ধুদের সাথে, নিজের খরচ নিজে।", seconds: 2.6, background: brand_blue}
+      - {caption_bn: "এটা স্বপ্ন না — একটা প্ল্যান।", seconds: 2.2, background: gold}
+    cta_bn: "শুরু করতে চান? নক দিন।"
+    caption_post_bn: "কোরিয়ায় একজন স্টুডেন্টের দিন কেমন কাটে? ক্লাস, বৈধ পার্ট-টাইম কাজ, আর নিজের পায়ে দাঁড়ানো। আপনি কোন শহরে পড়তে চান?"
+    hashtags: ["#StudyInKorea", "#StudentLife", "#Seoul", "#কোরিয়া"]
+
+  - id: s03-myth-vs-fact
+    title: "মিথ বনাম সত্য"
+    persona: student
+    angle: "myth-busting — 'before vs after' belief flip"
+    visuals: stills
+    voice: maya
+    hook_bn: "কোরিয়া নিয়ে সবচেয়ে বড় ভুল ধারণা।"
+    scenes:
+      - {caption_bn: "মিথ: কোরিয়া মানে শুধু বড়লোকের ছেলেমেয়ে।", seconds: 2.8, background: brand_red, emphasis: true}
+      - {caption_bn: "সত্য: টিয়ার-২ শহরের HSC পাশ স্টুডেন্টরাই বেশি যাচ্ছে।", seconds: 3.2, background: brand_blue}
+      - {caption_bn: "দরকার সঠিক গাইডলাইন — আর সৎ একটা এজেন্সি।", seconds: 2.4, background: brand_blue}
+    cta_bn: "যাচাই করুন studyinkorea.go.kr"
+    caption_post_bn: "কোরিয়া শুধু বড়লোকের জন্য — এই ধারণাটাই ভুল। নরসিংদি, গাজীপুরের সাধারণ পরিবারের ছেলেমেয়েরাই যাচ্ছে। কীভাবে? কমেন্টে জিজ্ঞেস করুন।"
+    hashtags: ["#StudyInKorea", "#MythVsFact", "#কোরিয়া", "#Narsingdi"]
+
+  - id: s04-checklist
+    title: "ডকুমেন্ট চেকলিস্ট"
+    persona: student
+    angle: "educational checklist (save-worthy, faceless)"
+    visuals: stills
+    voice: narrator
+    hook_bn: "কোরিয়া D-2 ভিসার ডকুমেন্ট চেকলিস্ট।"
+    scenes:
+      - {caption_bn: "৫টি জিনিস আজই গোছান 👇", seconds: 2.0, background: brand_blue, emphasis: true}
+      - {caption_bn: "পাসপোর্ট · সার্টিফিকেট · ব্যাংক স্টেটমেন্ট", seconds: 3.0, background: brand_blue}
+      - {caption_bn: "SOP · স্পনসরের কাগজ", seconds: 2.4, background: brand_red}
+      - {caption_bn: "একটাও ভুল হলে ৬ মাস পিছিয়ে যাবেন।", seconds: 2.6, background: brand_blue}
+    cta_bn: "ফ্রি চেকলিস্ট চাইলে কমেন্টে 'চেকলিস্ট' লিখুন।"
+    caption_post_bn: "কোরিয়া D-2 ভিসার জন্য সবচেয়ে জরুরি ৫টি ডকুমেন্ট। একটা ভুল মানে ৬ মাস দেরি। ফুল চেকলিস্ট চাইলে কমেন্টে 'চেকলিস্ট' লিখুন।"
+    hashtags: ["#StudyInKorea", "#Checklist", "#D2Visa", "#কোরিয়া"]
+
+  - id: s05-before-after
+    title: "এক বছর আগে বনাম এখন"
+    persona: student
+    angle: "before vs after transformation (aspirational, faceless)"
+    visuals: stills
+    voice: maya
+    hook_bn: "এক বছরে জীবনটা বদলে যেতে পারে।"
+    scenes:
+      - {caption_bn: "আগে: HSC পাশ, কী করবো জানি না।", seconds: 2.8, background: brand_red, emphasis: true}
+      - {caption_bn: "এখন: কোরিয়ার ইউনিভার্সিটিতে, নিজের খরচ নিজে।", seconds: 3.2, background: brand_blue}
+      - {caption_bn: "পার্থক্য শুধু একটা সিদ্ধান্ত — আর সঠিক গাইড।", seconds: 2.6, background: gold}
+    cta_bn: "আপনার শুরুটা আজই হোক।"
+    caption_post_bn: "এক বছর আগে: HSC পাশ, দিকভ্রান্ত। এখন: কোরিয়ায়, নিজের পায়ে দাঁড়ানো। পার্থক্য একটা সিদ্ধান্ত আর সঠিক গাইডলাইন। আপনার শুরুটা কবে?"
+    hashtags: ["#StudyInKorea", "#BeforeAfter", "#কোরিয়া", "#Transformation"]
+
+  # ─────────────── FATHER persona (price, ROI, transparency) ───────────────
+  - id: f01-price-transparency
+    title: "খরচ কত — সোজা কথা"
+    persona: father
+    angle: "radical price transparency (the transparency kill)"
+    visuals: stills
+    voice: narrator
+    hook_bn: "মোট খরচ কত? সোজা উত্তর দিই।"
+    scenes:
+      - {caption_bn: "অন্যরা বলে 'পরে জানাবো'।", seconds: 2.4, background: brand_red, emphasis: true}
+      - {caption_bn: "আমরা বলি: এক ফি, কোনো লুকানো খরচ নেই।", seconds: 3.0, background: brand_blue}
+      - {caption_bn: "আর পুরো ফি — ভিসা হওয়ার পরে।", seconds: 2.4, background: brand_blue}
+      - {caption_bn: "কারণ আমরা লুকাই না — আমরা শেখাই।", seconds: 2.2, background: gold}
+    cta_bn: "অফিসে আসুন, চা খান, হিসাব দেখুন।"
+    caption_post_bn: "একজন বাবা হিসেবে আপনি জানতে চান — মোট কত? আমরা সোজা বলি: এক ফি, কোনো লুকানো খরচ নেই, আর টাকা ভিসার পরে। হিসাবটা দেখতে অফিসে আসুন।"
+    hashtags: ["#StudyInKorea", "#Transparency", "#কোরিয়া", "#NoHiddenFee"]
+
+  - id: f02-why-cheaper
+    title: "সস্তা কেন — প্রতারণা নয়"
+    persona: father
+    angle: "'why cheaper, not a scam' reframe"
+    visuals: stills
+    voice: narrator
+    hook_bn: "এত কম কেন? সন্দেহ হচ্ছে?"
+    scenes:
+      - {caption_bn: "ঢাকার দামি অফিসের ভাড়া নেই — আমরা আপনার শহরে।", seconds: 3.0, background: brand_blue, emphasis: true}
+      - {caption_bn: "ডকুমেন্ট চেকিং অটোমেশনে — তাই খরচ কম।", seconds: 3.0, background: brand_blue}
+      - {caption_bn: "সস্তা মানে দুর্বল নয় — সস্তা মানে দক্ষ।", seconds: 3.0, background: brand_red}
+    cta_bn: "নিজে যাচাই করুন।"
+    caption_post_bn: "'এত কম কেন?' — বাবারা প্রায়ই জিজ্ঞেস করেন। উত্তর সহজ: ঢাকার অফিস ভাড়া নেই, কাজটা অটোমেশনে হয়। সস্তা মানে দুর্বল নয়, সস্তা মানে দক্ষ।"
+    hashtags: ["#StudyInKorea", "#কোরিয়া", "#Value", "#Narsingdi"]
+
+  - id: f03-5-questions
+    title: "৫টি প্রশ্ন এজেন্সিকে"
+    persona: father
+    angle: "5-questions whistleblower (Pillar 1) — carousel-as-Reel"
+    visuals: stills
+    voice: narrator
+    hook_bn: "টাকা দেওয়ার আগে এই ৫টা প্রশ্ন করুন।"
+    scenes:
+      - {caption_bn: "১. সরকারিভাবে নিবন্ধিত?", seconds: 2.0, background: brand_blue, emphasis: true}
+      - {caption_bn: "২. ইউনিভার্সিটি চুক্তি দেখাতে পারবেন?", seconds: 2.2, background: brand_blue}
+      - {caption_bn: "৩. মোট খরচ কত — লুকানো ফি সহ?", seconds: 2.2, background: brand_red}
+      - {caption_bn: "৪. ভিসা রিজেক্ট হলে? ৫. আগের স্টুডেন্টের সাথে কথা?", seconds: 3.0, background: brand_blue}
+    cta_bn: "কিস্টোনে? পাঁচটিরই উত্তর 'হ্যাঁ'।"
+    caption_post_bn: "টাকা দেওয়ার আগে যেকোনো এজেন্সিকে এই ৫টা প্রশ্ন করুন। বেশিরভাগ পারবে না। কিস্টোনে পাঁচটিরই উত্তর 'হ্যাঁ' — কারণ আমরা লুকাই না, আমরা শেখাই। (সূত্র: Financial Express, মে ২০২৬)"
+    hashtags: ["#StudyInKorea", "#5Questions", "#কোরিয়া", "#StudentSafety"]
+
+  - id: f04-roi
+    title: "খরচ না বিনিয়োগ?"
+    persona: father
+    angle: "ROI framing for the paying father"
+    visuals: stills
+    voice: narrator
+    hook_bn: "এটা খরচ না — বিনিয়োগ।"
+    scenes:
+      - {caption_bn: "কোরিয়ায় বৈধ পার্ট-টাইম: সপ্তাহে ২০ ঘণ্টা।", seconds: 3.0, background: brand_blue, emphasis: true}
+      - {caption_bn: "ছেলে-মেয়ে নিজের খরচ নিজে চালাতে পারে।", seconds: 3.0, background: brand_blue}
+      - {caption_bn: "সঠিক ইউনিভার্সিটি বাছাই — সেটাই আসল কাজ।", seconds: 3.0, background: brand_red}
+    cta_bn: "প্রোফাইল দেখে সৎ পরামর্শ দিই।"
+    caption_post_bn: "সন্তানের কোরিয়া যাত্রা খরচ নয়, বিনিয়োগ — যদি ইউনিভার্সিটিটা সঠিক হয়। আমরা কমিশনের জন্য নয়, প্রোফাইল দেখে মানানসই ইউনিভার্সিটি বাছাই করি।"
+    hashtags: ["#StudyInKorea", "#ROI", "#কোরিয়া", "#Investment"]
+
+  # ─────────────── MOTHER persona (safety, care, contact) ───────────────
+  - id: m01-safety
+    title: "মায়ের চিন্তা"
+    persona: mother
+    angle: "safety + soft-landing reassurance (no taka figures)"
+    visuals: stills
+    voice: maya
+    hook_bn: "সন্তান বিদেশে — নিরাপদ থাকবে তো?"
+    scenes:
+      - {caption_bn: "মায়ের প্রথম চিন্তা: ও ঠিক থাকবে তো?", seconds: 2.6, background: brand_blue, emphasis: true}
+      - {caption_bn: "পৌঁছানোর দিন সফট-ল্যান্ডিং সাপোর্ট।", seconds: 3.0, background: brand_blue}
+      - {caption_bn: "প্রথম মাসগুলোতে পাশে থাকি।", seconds: 2.4, background: brand_red}
+      - {caption_bn: "টাকা ফেরতও আসে — বিস্তারিত অফিসে।", seconds: 2.0, background: gold}
+    cta_bn: "মায়ের সব প্রশ্নের উত্তর দিই।"
+    caption_post_bn: "মায়ের প্রথম চিন্তা টাকা নয় — সন্তান নিরাপদ থাকবে তো? পৌঁছানোর দিন থেকে সফট-ল্যান্ডিং সাপোর্ট, প্রথম মাসগুলোতে পাশে থাকা। বিস্তারিত জানতে নক দিন।"
+    hashtags: ["#StudyInKorea", "#StudentSafety", "#কোরিয়া", "#SoftLanding"]
+
+  - id: m02-local-face
+    title: "আপনার নারসিংদিতেই"
+    persona: mother
+    angle: "local trust — Marina, local face (consented)"
+    visuals: stills
+    voice: maya
+    needs_consent: true
+    hook_bn: "ঢাকা নয় — আপনার নারসিংদিতেই।"
+    scenes:
+      - {caption_bn: "দূরের অচেনা অফিস নয়।", seconds: 2.4, background: marina_photo, emphasis: true}
+      - {caption_bn: "নারসিংদি বাজারে আমাদের অফিস — গিয়ে দেখুন।", seconds: 3.2, background: marina_photo}
+      - {caption_bn: "লোকাল মানুষ, লোকাল নাম্বার, সামনাসামনি কথা।", seconds: 2.6, background: brand_blue}
+    cta_bn: "চা খেতে চলে আসুন।"
+    caption_post_bn: "ঢাকার অচেনা অফিসে টাকা পাঠানোর দরকার নেই। আমরা নারসিংদি বাজারেই — লোকাল মানুষ, লোকাল নাম্বার। সামনাসামনি বসে কথা বলুন, চা খান।"
+    hashtags: ["#Narsingdi", "#StudyInKorea", "#কোরিয়া", "#LocalTrust"]
+
+  - id: m03-contact
+    title: "যোগাযোগ থাকবে"
+    persona: mother
+    angle: "'someone in Korea to look after my child' reassurance"
+    visuals: stills
+    voice: maya
+    hook_bn: "কোরিয়ায় কেউ কি ওকে দেখবে?"
+    scenes:
+      - {caption_bn: "পৌঁছেই একা হয়ে যাবে না।", seconds: 2.6, background: brand_blue, emphasis: true}
+      - {caption_bn: "সিম, ট্রান্সপোর্ট কার্ড, থাকার ব্যবস্থা — গোছানো।", seconds: 3.2, background: brand_red}
+      - {caption_bn: "প্রশ্ন থাকলে যেকোনো সময় WhatsApp।", seconds: 2.4, background: brand_blue}
+    cta_bn: "মায়ের মনে শান্তি — সেটাই আমাদের কাজ।"
+    caption_post_bn: "সন্তান কোরিয়ায় পৌঁছে একা হয়ে যাবে না — সিম, ট্রান্সপোর্ট কার্ড, থাকার ব্যবস্থা আগেই গোছানো। মায়ের মনে শান্তি, সেটাই আমাদের আসল কাজ।"
+    hashtags: ["#StudyInKorea", "#কোরিয়া", "#StudentCare"]
+
+  # ─────────────── UNCLE / financier persona (legitimacy, proof) ───────────────
+  - id: u01-verify-yourself
+    title: "আমাদের বিশ্বাস করবেন না"
+    persona: uncle
+    angle: "verifiable-proof flex — screen-record studyinkorea.go.kr"
+    visuals: stills
+    voice: narrator
+    hook_bn: "আমাদের কথা বিশ্বাস করবেন না।"
+    scenes:
+      - {caption_bn: "আমাদের কথা বিশ্বাস করবেন না।", seconds: 2.4, background: brand_red, emphasis: true}
+      - {caption_bn: "সরকারি সাইটে নিজে যাচাই করুন।", seconds: 2.8, background: brand_blue}
+      - {caption_bn: "ইউনিভার্সিটি IEQAS সার্টিফায়েড কিনা — studyinkorea.go.kr", seconds: 3.4, background: brand_blue}
+    cta_bn: "যাচাই করে তারপর সিদ্ধান্ত নিন।"
+    caption_post_bn: "যিনি টাকা পাঠাচ্ছেন, তিনি প্রমাণ চান — ঠিক কথা। তাই বলি: আমাদের বিশ্বাস করবেন না, সরকারি সাইটে নিজে যাচাই করুন। studyinkorea.go.kr-এ ইউনিভার্সিটির IEQAS স্ট্যাটাস দেখুন।"
+    hashtags: ["#StudyInKorea", "#VerifyYourself", "#IEQAS", "#কোরিয়া"]
+
+  - id: u02-fee-after-visa
+    title: "টাকা ভিসার পরে"
+    persona: uncle
+    angle: "'no visa no fee' amplification (Tactic 7)"
+    visuals: stills
+    voice: narrator
+    hook_bn: "আগে টাকা চাইলে — সাবধান।"
+    scenes:
+      - {caption_bn: "অনেকে আগে ১ লাখ নেয়, তারপর উধাও।", seconds: 3.0, background: brand_red, emphasis: true}
+      - {caption_bn: "আমরা পুরো ফি নিই ভিসার পরে।", seconds: 2.8, background: brand_blue}
+      - {caption_bn: "ভিসা না হলে এক টাকাও নয়।", seconds: 2.6, background: gold}
+    cta_bn: "ঝুঁকি আমাদের, স্বস্তি আপনার।"
+    caption_post_bn: "যিনি টাকা পাঠান, তার সবচেয়ে বড় ভয় — আগে টাকা নিয়ে উধাও হওয়া। আমরা পুরো ফি নিই ভিসার পরে। ভিসা না হলে এক টাকাও নয়। ঝুঁকিটা আমরা নিই।"
+    hashtags: ["#NoVisaNoFee", "#StudyInKorea", "#কোরিয়া", "#TrustFirst"]
+
+  - id: u03-fraud-recovery
+    title: "প্রতারিত হয়েছেন?"
+    persona: uncle
+    angle: "fraud-victim recovery (Vector 4) — recover stranded trust"
+    visuals: stills
+    voice: narrator
+    hook_bn: "আগের এজেন্সি টাকা নিয়ে কিছু করেনি?"
+    scenes:
+      - {caption_bn: "লাখ টাকা দিয়ে ফাইল আটকে আছে?", seconds: 2.8, background: brand_red, emphasis: true}
+      - {caption_bn: "আপনার ফাইল আমরা ফ্রি অডিট করে দেব।", seconds: 3.0, background: brand_blue}
+      - {caption_bn: "বাঁচানো গেলে বাঁচাই — না গেলে সৎ কথা বলি।", seconds: 3.0, background: brand_blue}
+    cta_bn: "ফাইলটা একবার দেখান।"
+    caption_post_bn: "আগের এজেন্সি লাখ টাকা নিয়ে ফাইল আটকে রেখেছে? যেকোনো এজেন্সির ফাইল আমরা ফ্রি অডিট করে দেব। বাঁচানো গেলে বাঁচাই, না গেলে সৎভাবে বলি। কমেন্টে নক দিন।"
+    hashtags: ["#FraudRecovery", "#StudyInKorea", "#কোরিয়া", "#FileAudit"]
+
+  - id: u04-proof-post
+    title: "আরেকজনের ভিসা নিশ্চিত"
+    persona: uncle
+    angle: "per-enrolment proof (Pillar 4) — admit letter + IEQAS (consent)"
+    visuals: stills
+    voice: narrator
+    needs_consent: true
+    hook_bn: "আরেকজন স্টুডেন্টের অ্যাডমিশন নিশ্চিত।"
+    scenes:
+      - {caption_bn: "আরেকজন কোরিয়ার ইউনিভার্সিটিতে ভর্তি নিশ্চিত।", seconds: 3.0, background: brand_blue, emphasis: true}
+      - {caption_bn: "নিচে অ্যাডমিট লেটার + IEQAS স্ক্রিনশট।", seconds: 3.0, background: brand_blue}
+      - {caption_bn: "নাম শুধু অনুমতি নিয়ে — প্রমাণ সবসময়।", seconds: 2.6, background: brand_red}
+    cta_bn: "আপনিও পরের জন হতে পারেন।"
+    caption_post_bn: "আরেকজন স্টুডেন্টের কোরিয়া অ্যাডমিশন নিশ্চিত হলো (তার অনুমতিতে শেয়ার করা)। সাথে অ্যাডমিট লেটার আর ইউনিভার্সিটির IEQAS স্ক্রিনশট — যাতে আপনি নিজে মিলিয়ে দেখতে পারেন।"
+    hashtags: ["#StudyInKorea", "#Proof", "#IEQAS", "#কোরিয়া"]
+
+  # ─────────────── AI-presenter format (clearly labelled, honest UGC) ───────────────
+  - id: p01-ai-explainer
+    title: "AI উপস্থাপক — কোরিয়া ৩ ধাপ"
+    persona: student
+    angle: "AI presenter explainer (labelled) — talking head on GPU box"
+    visuals: avatar
+    voice: maya
+    ai_presenter: true
+    hook_bn: "কোরিয়া যাওয়ার পুরো প্রসেস — ৩ ধাপে।"
+    scenes:
+      - {caption_bn: "ধাপ ১: প্রোফাইল + ইউনিভার্সিটি বাছাই।", seconds: 3.0, background: founder_photo, emphasis: true}
+      - {caption_bn: "ধাপ ২: ডকুমেন্ট + অ্যাডমিশন।", seconds: 3.0, background: founder_photo}
+      - {caption_bn: "ধাপ ৩: ভিসা — তারপরই আমাদের ফি।", seconds: 3.2, background: founder_photo}
+    cta_bn: "কোন ধাপে আটকে আছেন? বলুন।"
+    caption_post_bn: "কোরিয়া যাওয়ার পুরো প্রসেস মাত্র ৩ ধাপে (উপস্থাপনায় আমাদের AI অ্যাসিস্ট্যান্ট — তথ্য আসল ও যাচাইযোগ্য)। আপনি কোন ধাপে আটকে আছেন, কমেন্টে লিখুন।"
+    hashtags: ["#StudyInKorea", "#কোরিয়া", "#HowTo", "#AITutor"]
+
+  - id: p02-ai-faq
+    title: "AI উপস্থাপক — কমন প্রশ্ন"
+    persona: father
+    angle: "AI presenter FAQ (labelled) — rapid myth answers"
+    visuals: avatar
+    voice: narrator
+    ai_presenter: true
+    hook_bn: "সবচেয়ে বেশি যে ৩টা প্রশ্ন পাই।"
+    scenes:
+      - {caption_bn: "IELTS লাগবেই? — না, EAP আছে।", seconds: 3.0, background: founder_photo, emphasis: true}
+      - {caption_bn: "টাকা কখন? — ভিসার পরে।", seconds: 3.0, background: founder_photo}
+      - {caption_bn: "ভিসা শিওর বলে দেন? — কেউ পারে না, সৎভাবে বলি।", seconds: 3.2, background: founder_photo}
+    cta_bn: "আপনার প্রশ্নটা কমেন্টে করুন।"
+    caption_post_bn: "সবচেয়ে বেশি পাওয়া ৩টা প্রশ্নের সৎ উত্তর (উপস্থাপনায় আমাদের AI অ্যাসিস্ট্যান্ট)। কেউ ভিসা শিওর বলে দিতে পারে না — যে বলে, তাকে নিয়ে সাবধান। আপনার প্রশ্ন কমেন্টে লিখুন।"
+    hashtags: ["#StudyInKorea", "#FAQ", "#কোরিয়া", "#NoGuarantee"]
+
+  # ─────────────── B2B persona (IELTS-center owners) ───────────────
+  - id: b01-ielts-partner
+    title: "IELTS সেন্টার পার্টনারশিপ"
+    persona: uncle
+    angle: "B2B recruiting — commission offer to center owners"
+    visuals: stills
+    voice: narrator
+    hook_bn: "IELTS সেন্টার চালান? এক্সট্রা ইনকাম।"
+    scenes:
+      - {caption_bn: "আপনার স্টুডেন্টরা বিদেশমুখী।", seconds: 2.4, background: brand_blue, emphasis: true}
+      - {caption_bn: "প্রতি এনরোল হওয়া স্টুডেন্টে কমিশন।", seconds: 2.8, background: brand_red}
+      - {caption_bn: "কোনো আপফ্রন্ট ফি নেই — পেমেন্ট এনরোলমেন্টের পরে।", seconds: 3.0, background: brand_blue}
+    cta_bn: "পার্টনার হতে কল দিন।"
+    caption_post_bn: "IELTS/ভাষা সেন্টার চালান? আপনার স্টুডেন্টরা এমনিতেই বিদেশে যেতে চায়। রেফার করুন, প্রতি এনরোলমেন্টে কমিশন নিন — কোনো আপফ্রন্ট ফি ছাড়াই। পার্টনারশিপে কল দিন।"
+    hashtags: ["#IELTS", "#Partnership", "#StudyInKorea", "#B2B"]
+
+  - id: b02-seminar
+    title: "কলেজ সেমিনার অফার"
+    persona: uncle
+    angle: "B2B — free college seminar hook"
+    visuals: stills
+    voice: narrator
+    hook_bn: "কলেজে ফ্রি সেমিনার — 'IELTS ছাড়াই কোরিয়া'।"
+    scenes:
+      - {caption_bn: "আপনার কলেজে ফ্রি ৩০ মিনিটের সেমিনার।", seconds: 3.0, background: brand_blue, emphasis: true}
+      - {caption_bn: "কোনো বিক্রি নয় — শুধু গাইডলাইন।", seconds: 2.8, background: brand_blue}
+      - {caption_bn: "আমরা সব ম্যাটেরিয়াল নিয়ে আসি।", seconds: 2.4, background: brand_red}
+    cta_bn: "ক্যারিয়ার ক্লাব? নক দিন।"
+    caption_post_bn: "কলেজের ক্যারিয়ার/ইংলিশ ক্লাবের জন্য: ফ্রি ৩০ মিনিটের সেমিনার — 'IELTS ছাড়াই কোরিয়া'। কোনো বিক্রি নয়, শুধু গাইডলাইন। আমরা সব নিয়ে আসি। আয়োজন করতে নক দিন।"
+    hashtags: ["#Seminar", "#StudyInKorea", "#Narsingdi", "#Career"]
