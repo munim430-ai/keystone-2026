@@ -46,6 +46,95 @@ Frame to WeBring: *the students we send you have already cleared the highest-ris
 
 ---
 
+## ⭐ FINAL reply to send (approved) — availability: after 8 PM Korea time
+
+This is the version to send now. It links Keystone's Safe-Landing / 0%-desertion
+model to WeBring's on-the-ground settlement infrastructure, accepts the meeting,
+and gives availability (8 PM Korea = 5 PM Bangladesh). The sharp questions
+(pricing, unique value, channel-partner criteria) are deliberately held for the
+call — see §§4–6.
+
+**Korean (paste-ready):**
+
+> 조미영 대표님, 따뜻한 답장 감사합니다. 저희가 만들고 있는 '안전 정착(Safe-Landing)' 모델이 위브링이 이미 구축하신 현지 정착 인프라와 정확히 맞물린다고 느꼈습니다.
+>
+> 저희 키스톤은 방글라데시에서 **비자가 확보되고 이탈 위험이 낮은 학생**을 보냅니다 — 지역비자 가능 대학으로만 안내하고, 모든 서류를 제출 전에 감사(오딧)해 한 번에 통과되도록 합니다. 도착 후 위브링이 주거·보험·아르바이트·취업과 출석 기반 정착을 맡아 주신다면, 저희가 학부모에게 약속하는 '0% 이탈'이 실제로 작동하게 됩니다. 서로 겹치지 않는 두 조각이라고 생각합니다.
+>
+> 온라인 미팅 좋습니다. 저는 **한국 시간 기준 저녁 8시 이후에는 언제든** 가능하니 (방글라데시 시간 오후 5시 이후), 편하신 요일과 시간으로 정해 주세요. 미팅에서 수익 구조와 파트너십 방식을 구체적으로 논의드리고 싶습니다.
+>
+> 기대하겠습니다. 감사합니다.
+> — 하시불 무님, 키스톤 에듀케이션 대표
+
+**English (reference):**
+
+> Ms. Jo, thank you for the warm reply. The "Safe-Landing" model we're building fits precisely with the settlement infrastructure WeBring has already established.
+>
+> Keystone sends **visa-secured, low-desertion students** from Bangladesh — we steer them only to regional-visa-capable universities and audit every document before submission so it clears on the first pass. If WeBring handles housing, insurance, part-time work, employment and attendance-based settlement after arrival, the "0% desertion" we promise families actually works. Two halves that don't overlap.
+>
+> An online meeting sounds great. I'm **free anytime after 8 PM Korea time** (after 5 PM Bangladesh time) — please pick whatever day and time suits you. On the call I'd like to discuss the commercial model and how a partnership would be structured.
+>
+> Looking forward to it. — Hasibul Munim, CEO, Keystone Education
+
+*Reminders: have a Korean speaker skim the honorifics before sending; and soften "escrow" to "security deposit in a separate business account" in any written pitch (holding student funds in escrow is a regulated structure).*
+
+---
+
+## ⭐⭐ CLOSING / WARM-UP MESSAGE — send before the July 22–23 (8 PM Korea) call
+
+**Purpose:** deepen her willingness to partner *before* you're even on the call, by
+showing you follow her company and that Keystone plugs directly into the exact
+chain she just publicly committed to. This is a warmth-and-alignment message —
+**not** the place for pricing questions (those stay for the call, §§4–6).
+
+**Fresh research (Dec 2025 – 2026) this is built on:**
+- WeBring signed **new MOUs with The SC (더에쓰씨) and Elite Korea (엘리트코리아)** to connect
+  *education → field experience → hiring → settlement* into one structure, explicitly
+  to raise the **정착률 (settlement/retention rate)**.
+- Ms. Jo's 2026 thesis (etoday interviews): employment is *"not just hiring — it's the
+  starting point of life in Korea"*; students should prepare for a career **early, while
+  still studying**; universities + local governments + companies must link the whole chain.
+
+**The move:** mirror **her own metric — 정착률.** She raises it at the destination; Keystone
+can raise it at the *source* by pre-selecting career-minded, visa-secured students and
+orienting them toward employability from Bangladesh. That makes Keystone the **missing
+first link** in the exact chain she just built. Then hint at a concrete first pilot cohort.
+
+**Korean (paste-ready):**
+
+> 조미영 대표님, 미팅 전에 짧게 한 가지 더 말씀드리고 싶었습니다.
+>
+> 최근 위브링이 더에쓰씨·엘리트코리아와 맺으신 협약, 그리고 "취업은 단순한 채용이 아니라 한국에서의 생활 시작점"이라는 대표님의 말씀을 인상 깊게 봤습니다. 교육–현장경험–취업–정착을 하나로 잇고 **정착률**을 높이겠다는 방향에 저희가 정확히 들어맞는다고 느꼈습니다.
+>
+> 위브링이 **도착 이후**의 정착률을 끌어올리신다면, 저희 키스톤은 **출발 지점**에서부터 정착률을 높일 수 있습니다 — 비자가 확보되고 이탈 위험이 낮은 학생을, 그것도 방글라데시에서부터 진로·취업을 염두에 두고 선발·안내하기 때문입니다. 즉, 대표님이 만드신 사슬의 **가장 앞 고리**를 저희가 채워드리는 셈입니다.
+>
+> 그래서 이번 미팅에서, 첫 협력으로 **소규모 파일럿 그룹(한 학기 코호트)**을 함께 그려보면 좋겠다는 생각입니다. 서로의 방식이 실제로 맞물리는지 가장 빠르고 안전하게 확인하는 방법이라 생각합니다.
+>
+> 22일(수) 한국시간 저녁 8시, 기대하며 준비하겠습니다. 감사합니다.
+> — 하시불 무님, 키스톤 에듀케이션 대표
+
+**English (reference):**
+
+> Ms. Jo — one more thing before we meet.
+>
+> I was struck by WeBring's recent MOUs with The SC and Elite Korea, and by your line that *employment isn't just hiring — it's the starting point of life in Korea.* Your direction — linking education, field experience, employment and settlement into one chain to raise the **settlement rate (정착률)** — is exactly where Keystone fits.
+>
+> If WeBring lifts the settlement rate **after arrival**, Keystone can lift it **at the source** — because the students we send are visa-secured, low-desertion, and selected and oriented toward employment and career from Bangladesh onward. In effect, we fill the **very first link** of the chain you've built.
+>
+> So for the call, I'd love to sketch a **small pilot group (one semester's cohort)** as our first step together — the fastest, safest way to see our two sides actually interlock.
+>
+> Looking forward to Wed the 22nd, 8 PM Korea time. — Hasibul Munim, CEO, Keystone Education
+
+**Why this closes her (use live if it comes up):**
+- **You referenced her newest MOUs by name** — proof you follow WeBring, not a cold lead. Flattering *and* status-raising.
+- **You adopted her own word, 정착률** — you're not pitching your frame, you're completing hers. Hard to say no to someone who makes your own thesis work better.
+- **"Source vs destination settlement rate"** gives her a clean, memorable way to describe the partnership to her own board.
+- **The pilot cohort** converts abstract goodwill into a concrete, low-risk first action — momentum without commitment.
+- **No ask, no pricing** — pure alignment, so she arrives at the call already wanting it. The sharp questions land better once she's leaning in.
+
+*Reminder: machine-assisted Korean — have a native speaker skim honorifics before sending.*
+
+---
+
 ## 4. The reply to send her (English)
 
 > Dear Ms. Jo, thank you — it's a pleasure to connect, and I'm glad the vision resonated. A call works well; I'm generally free [option A] and [option B] Bangladesh time — please pick whatever suits Seoul.
