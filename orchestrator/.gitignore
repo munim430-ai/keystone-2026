@@ -1,0 +1,9 @@
+# runtime
+.local_board/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+
+# Note: ephemeral demo/test students are created under audit-system/students/
+# and are already ignored by audit-system/.gitignore (students/* whitelist).

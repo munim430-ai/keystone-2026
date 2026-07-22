@@ -25,6 +25,21 @@
 | `scripts/marina_first_week_checklist.md` | Day-by-day first week guide for Marina | Marina |
 | `bots/wa_bot_marina.js` | WhatsApp bot enhancement for Marina branch | Fahim |
 | `voice-agent/` | **Autonomous Bangla AI sales caller** — phones the 859-center B2B list, pitches the referral partnership, captures WhatsApp leads. Runs demo-safe with zero keys. | Founder |
+| `orchestrator/` | **CEO orchestrator** — one draft-first dispatcher that turns a messy student upload into a folder, audit verdict, university match, and a Bangla missing-doc draft awaiting your approval. Wires the existing audit-system, scraper, and bots. $0, no keys. | Founder |
+
+---
+
+## 🧭 CEO Orchestrator (the one place it all connects)
+
+`orchestrator/` is the thin dispatcher that wires the finished pieces —
+`audit-system/`, the manifests, the IELTS scraper, the bots — into a single
+**draft-first, Bangla-first** pipeline. A messy upload becomes a student folder,
+a 3-state audit verdict, a ranked university match, and a warm Bangla
+missing-document message **held for your approval**. It coordinates ephemeral
+sub-agents (audit, matcher, instruct, scraper, content) but **never sends, posts,
+or spends** — the only outbound paths are human-approved queues. Runs $0 and
+offline with no API keys. A survival-clock banner shows enrolled-vs-kill-date on
+every run. Start at `orchestrator/README.md` (`make demo`).
 
 ---
 
