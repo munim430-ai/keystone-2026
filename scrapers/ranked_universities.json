@@ -1,0 +1,202 @@
+[
+  {
+    "rank": 1,
+    "university_en": "Kyungsung University",
+    "university_ko": "경성대학교",
+    "tier": "Excellent",
+    "bd_agency_signal": "PranBin Education (agency-claimed only, no university corroboration)",
+    "mention_score": 95,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 2,
+    "university_en": "Sejong University",
+    "university_ko": "세종대학교",
+    "tier": "Excellent",
+    "bd_agency_signal": "PranBin Education (agency-claimed only, no university corroboration)",
+    "mention_score": 90,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 3,
+    "university_en": "Kyung Hee University",
+    "university_ko": "경희대학교",
+    "tier": "Excellent",
+    "bd_agency_signal": "PranBin Education (agency-claimed only, no university corroboration)",
+    "mention_score": 85,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 4,
+    "university_en": "Kyungdong University",
+    "university_ko": "경동대학교",
+    "tier": "Standard-4yr",
+    "bd_agency_signal": "KUAC (Korean Universities Admission Center) — CORROBORATED on Kyungdong's own 'Official Agents' page (global.kduniv.ac.kr)",
+    "mention_score": 85,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 5,
+    "university_en": "Dongshin University",
+    "university_ko": "",
+    "tier": "Unknown",
+    "bd_agency_signal": "",
+    "mention_score": 80,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 6,
+    "university_en": "Kangwon National University",
+    "university_ko": "강원대학교",
+    "tier": "Standard-4yr",
+    "bd_agency_signal": "unconfirmed / no agency mapping found",
+    "mention_score": 78,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 7,
+    "university_en": "Dong-A University",
+    "university_ko": "동아대학교",
+    "tier": "Standard-4yr",
+    "bd_agency_signal": "PranBin Education (agency-claimed only, no university corroboration)",
+    "mention_score": 75,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 8,
+    "university_en": "Tongmyong University",
+    "university_ko": "동명대학교",
+    "tier": "Standard-4yr",
+    "bd_agency_signal": "BOESL govt circular (unconfirmed) — EAP D-4-7 & Master's D-2-3",
+    "mention_score": 72,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 9,
+    "university_en": "Gachon University",
+    "university_ko": "가천대학교",
+    "tier": "Standard-4yr",
+    "bd_agency_signal": "unconfirmed / no agency mapping found",
+    "mention_score": 70,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 10,
+    "university_en": "Silla University",
+    "university_ko": "신라대학교",
+    "tier": "Standard-4yr",
+    "bd_agency_signal": "unconfirmed / no agency mapping found",
+    "mention_score": 68,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 11,
+    "university_en": "Hanyang University",
+    "university_ko": "한양대학교",
+    "tier": "Excellent",
+    "bd_agency_signal": "PranBin Education (agency-claimed only, no university corroboration)",
+    "mention_score": 65,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 12,
+    "university_en": "Inha University",
+    "university_ko": "인하대학교",
+    "tier": "Excellent",
+    "bd_agency_signal": "unconfirmed / no agency mapping found",
+    "mention_score": 62,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 13,
+    "university_en": "Sun Moon University",
+    "university_ko": "선문대학교",
+    "tier": "Excellent",
+    "bd_agency_signal": "unconfirmed / no agency mapping found",
+    "mention_score": 60,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 14,
+    "university_en": "SolBridge International School",
+    "university_ko": "",
+    "tier": "Unknown",
+    "bd_agency_signal": "",
+    "mention_score": 58,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 15,
+    "university_en": "Woosong University",
+    "university_ko": "우송대학교",
+    "tier": "Standard-4yr",
+    "bd_agency_signal": "PranBin Education (agency-claimed only, no university corroboration)",
+    "mention_score": 55,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 16,
+    "university_en": "Konkuk University",
+    "university_ko": "건국대학교",
+    "tier": "Excellent",
+    "bd_agency_signal": "unconfirmed / no agency mapping found",
+    "mention_score": 52,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 17,
+    "university_en": "Konyang University",
+    "university_ko": "건양대학교",
+    "tier": "Excellent",
+    "bd_agency_signal": "unconfirmed / no agency mapping found",
+    "mention_score": 50,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 18,
+    "university_en": "Dong-Eui University",
+    "university_ko": "",
+    "tier": "Unknown",
+    "bd_agency_signal": "",
+    "mention_score": 48,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 19,
+    "university_en": "Chungnam National University",
+    "university_ko": "충남대학교",
+    "tier": "Excellent",
+    "bd_agency_signal": "unconfirmed / no agency mapping found",
+    "mention_score": 45,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  },
+  {
+    "rank": 20,
+    "university_en": "Hanseo University",
+    "university_ko": "한서대학교",
+    "tier": "Standard-4yr",
+    "bd_agency_signal": "unconfirmed / no agency mapping found",
+    "mention_score": 42,
+    "scrape_method": "signals_only",
+    "scraped_at": "2026-07-26T20:48:10.481749"
+  }
+]
