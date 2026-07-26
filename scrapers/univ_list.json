@@ -1,0 +1,1028 @@
+[
+  {
+    "korean": "건국대학교",
+    "english": "Konkuk University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "건양대학교",
+    "english": "Konyang University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "경북대학교",
+    "english": "Kyungpook National University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "경성대학교",
+    "english": "Kyungsung University",
+    "tier": "Excellent",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "경희대학교",
+    "english": "Kyung Hee University",
+    "tier": "Excellent",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "계명대학교",
+    "english": "Keimyung University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "고려대학교",
+    "english": "Korea University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "덕성여자대학교",
+    "english": "Duksung Women's University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "동국대학교",
+    "english": "Dongguk University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "부산대학교",
+    "english": "Pusan National University",
+    "tier": "Excellent",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "부산외국어대학교",
+    "english": "Busan University of Foreign Studies",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "서울시립대학교",
+    "english": "University of Seoul",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "서울신학대학교",
+    "english": "Seoul Theological University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "선문대학교",
+    "english": "Sun Moon University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "성결대학교",
+    "english": "Sungkyul University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "성균관대학교",
+    "english": "Sungkyunkwan University (SKKU)",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "성신여자대학교",
+    "english": "Sungshin Women's University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "세종대학교",
+    "english": "Sejong University",
+    "tier": "Excellent",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "숙명여자대학교",
+    "english": "Sookmyung Women's University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "아주대학교",
+    "english": "Ajou University",
+    "tier": "Excellent",
+    "bd_agency": "BOESL govt circular (unconfirmed vs primary source) — KLP/D-4-1"
+  },
+  {
+    "korean": "울산과학기술원",
+    "english": "Ulsan National Institute of Science and Technology (UNIST)",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "이화여자대학교",
+    "english": "Ewha Womans University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "인하대학교",
+    "english": "Inha University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "제주대학교",
+    "english": "Jeju National University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "중부대학교",
+    "english": "Joongbu University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "중앙대학교",
+    "english": "Chung-Ang University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "충남대학교",
+    "english": "Chungnam National University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "포항공과대학교",
+    "english": "POSTECH (Pohang University of Science and Technology)",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한국항공대학교",
+    "english": "Korea Aerospace University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한성대학교",
+    "english": "Hansung University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한양대학교",
+    "english": "Hanyang University",
+    "tier": "Excellent",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "홍익대학교",
+    "english": "Hongik University",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "울산과학대학교",
+    "english": "Ulsan College (distinct from University of Ulsan AND from UNIST — 3 separate 'Ulsan' institutions, do not confuse)",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "인하공업전문대학",
+    "english": "Inha Technical College (distinct from Inha University)",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "개신대학원대학교",
+    "english": "Kaeshin University Graduate School (theological, verify English name)",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립암센터국제암대학원대학교",
+    "english": "National Cancer Center Graduate School of Cancer Science & Policy",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한국전력국제원자력대학원대학교",
+    "english": "KEPCO International Nuclear Graduate School",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "과학기술연합대학원대학교",
+    "english": "University of Science & Technology (UST)",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한국개발연구원국제정책대학원대학교",
+    "english": "KDI School of Public Policy and Management",
+    "tier": "Excellent",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "가천대학교",
+    "english": "Gachon University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "가톨릭대학교",
+    "english": "Catholic University of Korea",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "강남대학교",
+    "english": "Kangnam University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "강서대학교",
+    "english": "Kangseo University (verify)",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "강원대학교",
+    "english": "Kangwon National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "건국대학교",
+    "english": "Konkuk University [ALSO listed in Excellent tier — source overlap, see README]",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "건국대학교(글로컬)",
+    "english": "Konkuk University (Glocal/Chungju campus)",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "건양대학교",
+    "english": "Konyang University [ALSO listed in Excellent tier — source overlap, see README]",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "경기대학교",
+    "english": "Kyonggi University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "경남대학교",
+    "english": "Kyungnam University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "경동대학교",
+    "english": "Kyungdong University",
+    "tier": "Standard-4yr",
+    "bd_agency": "KUAC (Korean Universities Admission Center) — CORROBORATED on Kyungdong's own 'Official Agents' page (global.kduniv.ac.kr)"
+  },
+  {
+    "korean": "경북대학교",
+    "english": "Kyungpook National University [ALSO listed in Excellent tier — source overlap, see README]",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "경상국립대학교",
+    "english": "Gyeongsang National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "경성대학교",
+    "english": "Kyungsung University [ALSO listed in Excellent tier — source overlap, see README]",
+    "tier": "Standard-4yr",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "경희대학교",
+    "english": "Kyung Hee University [ALSO listed in Excellent tier — source overlap, see README]",
+    "tier": "Standard-4yr",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "계명대학교",
+    "english": "Keimyung University [ALSO listed in Excellent tier — source overlap, see README]",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "고려대학교",
+    "english": "Korea University [ALSO listed in Excellent tier — source overlap, see README]",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "고려대학교(세종)",
+    "english": "Korea University (Sejong campus)",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "경운대학교",
+    "english": "Kyungwoon University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "경일대학교",
+    "english": "Kyungil University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "고신대학교",
+    "english": "Kosin University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "광운대학교",
+    "english": "Kwangwoon University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "광주과학기술원",
+    "english": "Gwangju Institute of Science and Technology (GIST)",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "광주대학교",
+    "english": "Gwangju University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "광주여자대학교",
+    "english": "Kwangju Women's University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립강릉원주대학교",
+    "english": "Gangneung-Wonju National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립경국대학교",
+    "english": "Kyungkuk National University (verify — possible new/renamed institution)",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립공주대학교",
+    "english": "Kongju National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립군산대학교",
+    "english": "Kunsan National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립금오공과대학교",
+    "english": "Kumoh National Institute of Technology",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립목포대학교",
+    "english": "Mokpo National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립부경대학교",
+    "english": "Pukyong National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립순천대학교",
+    "english": "Sunchon National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립창원대학교",
+    "english": "Changwon National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립한국교통대학교",
+    "english": "Korea National University of Transportation",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립한국해양대학교",
+    "english": "Korea Maritime and Ocean University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국립한밭대학교",
+    "english": "Hanbat National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "국민대학교",
+    "english": "Kookmin University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "김천대학교",
+    "english": "Gimcheon University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "나사렛대학교",
+    "english": "Korea Nazarene University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "남서울대학교",
+    "english": "Namseoul University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "단국대학교",
+    "english": "Dankook University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "대구가톨릭대학교",
+    "english": "Daegu Catholic University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "대구대학교",
+    "english": "Daegu University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "대구한의대학교",
+    "english": "Daegu Haany University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "대신대학교",
+    "english": "Daeshin University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "대전대학교",
+    "english": "Daejeon University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "대진대학교",
+    "english": "Daejin University",
+    "tier": "Standard-4yr",
+    "bd_agency": "BOESL govt circular (unconfirmed) — EAP D-4-7"
+  },
+  {
+    "korean": "덕성여자대학교",
+    "english": "Duksung Women's University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "동국대학교",
+    "english": "Dongguk University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "동국대학교(WISE)",
+    "english": "Dongguk University WISE (Gyeongju campus)",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "동덕여자대학교",
+    "english": "Dongduk Women's University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "동명대학교",
+    "english": "Tongmyong University",
+    "tier": "Standard-4yr",
+    "bd_agency": "BOESL govt circular (unconfirmed) — EAP D-4-7 & Master's D-2-3"
+  },
+  {
+    "korean": "동서대학교",
+    "english": "Dongseo University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "동아대학교",
+    "english": "Dong-A University",
+    "tier": "Standard-4yr",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "동의대학교",
+    "english": "Dongeui University",
+    "tier": "Standard-4yr",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "명지대학교",
+    "english": "Myongji University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "목원대학교",
+    "english": "Mokwon University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "배재대학교",
+    "english": "Pai Chai University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "백석대학교",
+    "english": "Baekseok University",
+    "tier": "Standard-4yr",
+    "bd_agency": "BOESL govt circular (unconfirmed) — Master's D-2-3"
+  },
+  {
+    "korean": "부산대학교",
+    "english": "Pusan National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "부산외국어대학교",
+    "english": "Busan University of Foreign Studies",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "삼육대학교",
+    "english": "Sahmyook University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "상명대학교",
+    "english": "Sangmyung University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "서강대학교",
+    "english": "Sogang University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "서경대학교",
+    "english": "Seokyeong University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "서울과학기술대학교",
+    "english": "Seoul National University of Science and Technology",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "서울기독대학교",
+    "english": "Seoul Christian University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "서울대학교",
+    "english": "Seoul National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "서울시립대학교",
+    "english": "University of Seoul",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "서울신학대학교",
+    "english": "Seoul Theological University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "서울여자대학교",
+    "english": "Seoul Women's University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "선문대학교",
+    "english": "Sun Moon University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "성공회대학교",
+    "english": "Sungkonghoe University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "성결대학교",
+    "english": "Sungkyul University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "성균관대학교",
+    "english": "Sungkyunkwan University (SKKU)",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "성신여자대학교",
+    "english": "Sungshin Women's University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "세명대학교",
+    "english": "Semyung University",
+    "tier": "Standard-4yr",
+    "bd_agency": "BOESL govt circular (unconfirmed) — KLP D-4-1"
+  },
+  {
+    "korean": "세종대학교",
+    "english": "Sejong University",
+    "tier": "Standard-4yr",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "숙명여자대학교",
+    "english": "Sookmyung Women's University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "순천향대학교",
+    "english": "Soonchunhyang University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "숭실대학교",
+    "english": "Soongsil University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "신라대학교",
+    "english": "Silla University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "신한대학교",
+    "english": "Shinhan University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "아주대학교",
+    "english": "Ajou University",
+    "tier": "Standard-4yr",
+    "bd_agency": "BOESL govt circular (unconfirmed vs primary source) — KLP/D-4-1"
+  },
+  {
+    "korean": "안양대학교",
+    "english": "Anyang University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "연세대학교",
+    "english": "Yonsei University",
+    "tier": "Standard-4yr",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "연세대학교(미래)",
+    "english": "Yonsei University (Mirae/Wonju campus)",
+    "tier": "Standard-4yr",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "영남대학교",
+    "english": "Yeungnam University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "영산대학교",
+    "english": "Youngsan University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "우석대학교",
+    "english": "Woosuk University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "우송대학교",
+    "english": "Woosong University",
+    "tier": "Standard-4yr",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "울산과학기술원",
+    "english": "UNIST",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "울산대학교",
+    "english": "University of Ulsan",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "원광대학교",
+    "english": "Wonkwang University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "위덕대학교",
+    "english": "Uiduk University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "을지대학교",
+    "english": "Eulji University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "이화여자대학교",
+    "english": "Ewha Womans University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "인제대학교",
+    "english": "Inje University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "인천대학교",
+    "english": "Incheon National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "인하대학교",
+    "english": "Inha University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "전남대학교",
+    "english": "Chonnam National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "전북대학교",
+    "english": "Jeonbuk National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "전주대학교",
+    "english": "Jeonju University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "제주대학교",
+    "english": "Jeju National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "조선대학교",
+    "english": "Chosun University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "중부대학교",
+    "english": "Joongbu University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "중앙대학교",
+    "english": "Chung-Ang University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "중원대학교",
+    "english": "Jungwon University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "차의과학대학교",
+    "english": "CHA University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "창신대학교",
+    "english": "Changshin University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "청주대학교",
+    "english": "Cheongju University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "충남대학교",
+    "english": "Chungnam National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "충북대학교",
+    "english": "Chungbuk National University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "평택대학교",
+    "english": "Pyeongtaek University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "포항공과대학교",
+    "english": "POSTECH",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한국과학기술원",
+    "english": "KAIST",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한국교원대학교",
+    "english": "Korea National University of Education",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한국기술교육대학교",
+    "english": "Korea University of Technology and Education (Koreatech)",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한국성서대학교",
+    "english": "Korean Bible University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한국외국어대학교",
+    "english": "Hankuk University of Foreign Studies (HUFS)",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한국항공대학교",
+    "english": "Korea Aerospace University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한남대학교",
+    "english": "Hannam University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한동대학교",
+    "english": "Handong Global University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한림대학교",
+    "english": "Hallym University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한서대학교",
+    "english": "Hanseo University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한성대학교",
+    "english": "Hansung University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한세대학교",
+    "english": "Hansei University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "한양대학교",
+    "english": "Hanyang University",
+    "tier": "Standard-4yr",
+    "bd_agency": "PranBin Education (agency-claimed only, no university corroboration)"
+  },
+  {
+    "korean": "한양대학교(ERICA)",
+    "english": "Hanyang University ERICA",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "호서대학교",
+    "english": "Hoseo University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  },
+  {
+    "korean": "홍익대학교",
+    "english": "Hongik University",
+    "tier": "Standard-4yr",
+    "bd_agency": "unconfirmed / no agency mapping found"
+  }
+]
