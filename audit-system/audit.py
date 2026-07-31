@@ -192,6 +192,21 @@ def worst(states):
 
 
 # ------------------------------------------------------------------ audit
+def filter_stage(manifest, stage):
+    """Return a shallow copy of the manifest whose documents are limited to one
+    submission gate: 'university' (the DHL/university-application set) or 'embassy'
+    (the visa-interview set) — each includes 'both'-stage documents too, since those
+    are needed at either gate. stage=None (or 'all') returns the manifest unfiltered."""
+    if not stage or stage == "all":
+        return manifest
+    if stage not in ("university", "embassy"):
+        raise ValueError(f"unknown stage '{stage}' — must be 'university', 'embassy', or 'all'")
+    docs = [d for d in manifest["documents"] if d.get("stage", "both") in (stage, "both")]
+    filtered = dict(manifest)
+    filtered["documents"] = docs
+    return filtered
+
+
 def _name_mismatch(manifest, meta):
     """True if any 'name'-matching consistency rule has divergent provided values.
     KUAC's hard rule: a name-spelling divergence makes the Same-Name Affidavit
@@ -265,7 +280,7 @@ def audit(manifest, meta, present_files):
 
 
 # ------------------------------------------------------------------ report
-def render_report(manifest, results, consistency, meta):
+def render_report(manifest, results, consistency, meta, stage=None):
     counts = {VERIFIED: 0, FLAGGED: 0, MISSING: 0, "SKIPPED": 0}
     for r in results:
         counts[r["state"]] = counts.get(r["state"], 0) + 1
@@ -277,6 +292,10 @@ def render_report(manifest, results, consistency, meta):
     lines.append("")
     lines.append(f"**Target:** {manifest['university']} — {manifest['program']} ({manifest['visa_type']})")
     lines.append(f"**Manifest:** `{manifest['id']}` (source verified {manifest['verified_date']})")
+    stage_label = {"university": "University/DHL submission gate only",
+                   "embassy": "Embassy/visa submission gate only",
+                   None: "All stages (university + embassy)", "all": "All stages (university + embassy)"}[stage]
+    lines.append(f"**Checking:** {stage_label}")
     lines.append(f"**Audited:** {dt.date.today().isoformat()}")
     lines.append("")
     verdict = "✅ **READY TO SUBMIT**" if ready else "⛔ **NOT READY** — resolve every item below first"
@@ -331,25 +350,28 @@ def main():
     ap = argparse.ArgumentParser(description="Keystone zero-silent-error document auditor")
     ap.add_argument("--manifest", required=True)
     ap.add_argument("--student", required=True)
+    ap.add_argument("--stage", choices=["university", "embassy", "all"], default="all",
+                    help="Check only the university/DHL set, only the embassy/visa set, or everything (default)")
     ap.add_argument("--report-dir")
     ap.add_argument("--json", action="store_true", help="also emit a machine-readable JSON report")
     args = ap.parse_args()
 
-    manifest = load_manifest(args.manifest)
+    manifest = filter_stage(load_manifest(args.manifest), args.stage)
     meta, present = load_student(args.student)
     results, consistency = audit(manifest, meta, present)
-    report, ready, counts = render_report(manifest, results, consistency, meta)
+    report, ready, counts = render_report(manifest, results, consistency, meta, stage=args.stage)
 
     print(report)
     if args.report_dir:
         os.makedirs(args.report_dir, exist_ok=True)
-        stem = f"{meta.get('student_name','student').replace(' ','_')}_{manifest['id']}"
+        stem = f"{meta.get('student_name','student').replace(' ','_')}_{manifest['id']}_{args.stage}"
         with open(os.path.join(args.report_dir, stem + ".md"), "w", encoding="utf-8") as fh:
             fh.write(report)
         if args.json:
             with open(os.path.join(args.report_dir, stem + ".json"), "w", encoding="utf-8") as fh:
                 json.dump({"ready": ready, "counts": counts, "documents": results,
-                           "consistency": consistency, "manifest": manifest["id"]}, fh, indent=2, default=str)
+                           "consistency": consistency, "manifest": manifest["id"],
+                           "stage": args.stage}, fh, indent=2, default=str)
     sys.exit(0 if ready else 2)
 
 

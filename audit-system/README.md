@@ -108,6 +108,13 @@ python3 audit.py \
 Exit code `0` = submit-ready, `2` = not ready — so it can gate a pre-submit hook.
 Prints a Markdown report and (with `--report-dir`) writes `.md` + `.json`.
 
+Add `--stage university` or `--stage embassy` to check just ONE of the two real-world
+gates instead of everything at once (default `--stage all`) — e.g. "is this ready to
+send to the university/DHL" vs "is this ready for the embassy visa interview" are
+different questions with different document lists, and asked at different points in
+`pipeline/stages.yaml` (docs_prep vs embassy). A document with `stage: both` in the
+manifest always counts toward either check.
+
 Requirements: `pip install pyyaml jsonschema` (the auditor itself is pure-Python;
 OCR/extraction is the separate sidecar).
 
