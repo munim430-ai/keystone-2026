@@ -1,0 +1,210 @@
+# Keyword signatures used by classify.py to guess which manifest document_id a
+# scanned page belongs to, from its OCR'd text. This is a CLASSIFICATION aid, not
+# a source of truth — it never appears in an audit verdict. Keep it in sync with
+# the document ids used across manifests/korea/*.yaml (classify.py warns, but does
+# not fail, when it sees an id here with no signature or a manifest id with none).
+#
+# Format: doc_id: [keyword, keyword, ...]  (case-insensitive substring match against
+# OCR text; Bangla keywords work the same way as English ones). Order doesn't matter;
+# more/more-specific keywords -> stronger, more reliable score. A page's classification
+# is its highest-scoring doc_id; classify.py FLAGS (never silently guesses) when the
+# top two scores tie, or when nothing scores above the --min-hits floor.
+#
+# Sources for the samples below: an actual applicant document bundle reviewed 2026-07-31
+# (passport, NID x2, birth cert, TIN cert, income tax cert, trade license, HSC/SSC certs
+# + transcripts, IELTS, apostille, family certificate) plus general knowledge of Bangladesh
+# government document headers for the rest. EXPECT GAPS — extend this file as real scans
+# reveal document types/headers it doesn't yet recognize.
+
+passport:
+  - "PASSPORT"
+  - "PEOPLE'S REPUBLIC OF BANGLADESH"
+  - "পাসপোর্ট"
+  - "Personal No"
+  - "P<BGD"
+
+applicant_nid_bc:
+  - "NATIONAL ID CARD"
+  - "জাতীয় পরিচয়পত্র"
+  - "NID No"
+
+parents_nid:
+  - "NATIONAL ID CARD"
+  - "জাতীয় পরিচয়পত্র"
+  - "NID No"
+
+birth_certificate:
+  - "BIRTH REGISTRATION"
+  - "Birth Registration Certificate"
+  - "জন্ম নিবন্ধন"
+  - "জন্ম সনদ"
+  - "জন্ম ও মৃত্যু নিবন্ধকের কার্যালয়"
+
+frc:
+  - "FAMILY CERTIFICATE"
+  - "Family Relation Certificate"
+  - "consists of the following members"
+  - "City Corporation"
+
+# "apostille" keywords are folded in here (not a separate signature) because in every
+# manifest e_apostille is a PROCESSING CHAIN on academic_certificates, not a document of
+# its own — an apostille page is the evidence that chain completed, so it should file
+# under academic_certificates, not become an orphan "apostille.pdf" no manifest recognizes.
+academic_certificates:
+  - "BOARD OF INTERMEDIATE AND SECONDARY EDUCATION"
+  - "HIGHER SECONDARY CERTIFICATE"
+  - "SECONDARY SCHOOL CERTIFICATE"
+  - "ACADEMIC TRANSCRIPT"
+  - "duly passed the"
+  - "Controller of Examinations"
+  - "APOSTILLE"
+  - "Convention de La Haye"
+  - "Issuing Authority"
+
+bachelor_certificate:
+  - "UNIVERSITY"
+  - "DEGREE"
+  - "BACHELOR OF"
+  - "has conferred upon"
+
+language_certificate:
+  - "IELTS"
+  - "TEST REPORT FORM"
+  - "British Council"
+  - "IDP"
+  - "TOEFL"
+  - "TOPIK"
+  - "CEFR"
+
+# NOTE: the manifests fold e-TIN + Income Tax Certificate + Trade License/Employment
+# Certificate into ONE document id, sponsor_income_docs — so all three keyword sets
+# feed that single id here (a real bundle usually has them as separate consecutive
+# pages; classify.py still only needs one doc_id per page, and split.py/audit.py only
+# care that a filename contains "sponsor_income_docs").
+sponsor_income_docs:
+  - "TAXPAYER'S IDENTIFICATION NUMBER"
+  - "NATIONAL BOARD OF REVENUE"
+  - "TIN"
+  - "Income Tax Certificate"
+  - "e-Return"
+  - "Taxes Circle"
+  - "Taxes Zone"
+  - "TRADE LICENSE"
+  - "ট্রেড লাইসেন্স"
+  - "Trade License No"
+
+bank_statement:
+  - "STATEMENT OF ACCOUNT"
+  - "ACCOUNT NO"
+  - "OPENING BALANCE"
+  - "CLOSING BALANCE"
+  - "SOLVENCY"
+  - "BANK"
+
+cheque_book:
+  - "PAY"
+  - "CHEQUE"
+  - "A/C PAYEE"
+
+swift_copy:
+  - "SWIFT"
+  - "WIRE TRANSFER"
+  - "MT103"
+  - "BENEFICIARY"
+
+property_deed:
+  - "DEED NO"
+  - "SUB-REGISTRY"
+  - "MOUZA"
+  - "KHATIAN"
+  - "DAG NO"
+  - "J.L. NO"
+
+noc_affidavit:
+  - "NO OBJECTION"
+  - "AFFIDAVIT"
+  - "DEPONENT"
+  - "we have no objection"
+
+financial_affidavit:
+  - "SPONSORSHIP"
+  - "FINANCIAL DECLARATION"
+  - "PROPERTY VALUATION"
+  - "SOLVENT FOR"
+  - "AFFIDAVIT"
+
+cover_letter:
+  - "VISA OFFICER"
+  - "EMBASSY OF THE REPUBLIC OF KOREA"
+  - "Dear Sir/Madam"
+
+sop:
+  - "STATEMENT OF PURPOSE"
+  - "I am writing to express"
+
+tb_test:
+  - "TUBERCULOSIS"
+  - "CHEST X-RAY"
+  - "TB TEST"
+  - "SPUTUM"
+
+police_clearance:
+  - "POLICE CLEARANCE"
+  - "PCC"
+  - "Bangladesh Police"
+  - "no criminal record"
+
+coa:
+  - "CERTIFICATE OF ADMISSION"
+  - "ADMISSION"
+  - "Letter of Offer"
+  - "Congratulations on your successful"
+
+tuition_fee_invoice:
+  - "INVOICE"
+  - "TUITION FEE"
+  - "PAYMENT CERTIFICATE"
+
+tuition_fee_bank_statement:
+  - "TUITION"
+  - "REMITTANCE"
+  - "TRANSFER TO"
+
+recommendation_letter:
+  - "LETTER OF RECOMMENDATION"
+  - "RECOMMENDATION"
+  - "I recommend"
+  - "It is my pleasure to recommend"
+
+visa_application_form:
+  - "VISA APPLICATION"
+  - "APPLICATION FOR VISA"
+
+# A bare photo page rarely OCRs any text — deliberately left with zero keywords so it
+# can never "win" a match; classify.py flags blank/near-blank pages as UNCERTAIN instead
+# of guessing, and a human assigns these.
+photo_korean: []
+
+email_address:
+  - "gmail.com"
+  - "yahoo.com"
+  - "outlook.com"
+  - "Email Address"
+
+air_ticket_booking:
+  - "BOOKING REFERENCE"
+  - "ITINERARY"
+  - "FLIGHT"
+  - "PNR"
+
+study_plan:
+  - "STUDY PLAN"
+
+university_business_registration:
+  - "BUSINESS REGISTRATION"
+  - "CORPORATE REGISTRATION NUMBER"
+
+cv:
+  - "CURRICULUM VITAE"
+  - "WORK EXPERIENCE"
+  - "EDUCATION"
