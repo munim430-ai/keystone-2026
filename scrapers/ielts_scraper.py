@@ -183,7 +183,7 @@ def manual_fallback():
 
     TARGET: 10 institutes per district
     TIME: 30 minutes per district
-    """")
+    """)
 
 
 def bdjobs_scraper_approach():
