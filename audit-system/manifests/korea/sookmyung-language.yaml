@@ -1,0 +1,64 @@
+# Sookmyung Women's University (Seoul) — Korean Language Program (KLP).
+# Source: Letter of Offer issued to a real applicant (Korean Language Program,
+# 2026.09.01-2026.11.13) plus that applicant's actual document bundle, which used
+# MOFA e-Apostille (not plain MyGovBD attestation) on the academic certificates —
+# same chain Sejong requires. Cross-check with Sookmyung's own published checklist
+# before relying on this for a second student; this manifest is built from one case.
+id: sookmyung-language
+extends: core-korea
+country: South Korea
+university: Sookmyung Women's University (Seoul)
+program: Korean Language Program (KLP)
+visa_type: D-4-1 (language training, not a degree program)
+source: Letter of Offer + document bundle for a real KLP applicant, reviewed 2026-07-31
+verified_date: "2026-07-31"
+notes: >
+  D-4 is a language-training visa, not D-2 (degree) — some D-2-specific assumptions
+  in other manifests (e.g. "study gap" framing aimed at degree admissions) may not
+  apply here. Re-verify tuition/scholarship figures directly with Sookmyung; none
+  were present in the one case this manifest is built from.
+
+documents:
+  - id: recommendation_letter
+    name: Letter of Recommendation (Sookmyung specifically requested this for KLP — unusual for a language program)
+    required: true
+    stage: university
+    processing: none
+    checks:
+      - type: human_verify
+        description: >
+          Confirm who signed it (school principal/teacher for a recent HSC graduate is
+          typical) and that it's on letterhead — Sookmyung did not specify a required signatory.
+
+  - id: academic_certificates
+    name: HSC & SSC certificates & transcripts — E-APOSTILLED (MOFA), not plain MyGovBD attestation
+    required: true
+    stage: both
+    processing: e_apostille
+    notes: >
+      Confirmed from an actual applicant's bundle: both HSC-board certificates carried
+      MOFA e-Apostille pages (Convention de La Haye 1961), verifiable at
+      mofa-servicedirectory.apostille.mygov.bd. Same chain as Sejong — do not substitute
+      plain online MyGovBD attestation for a Sookmyung file.
+
+  - id: language_certificate
+    name: IELTS/TOPIK (KLP is a language program — confirm whether Sookmyung requires it pre-enrollment or accepts it defensively since the program itself teaches Korean)
+    required: true
+    stage: both
+    processing: notarize
+    notes: >
+      Kept required:true (the safe default) because one real applicant submitted an IELTS
+      score (Overall 5.0 / CEFR B1) for this exact program despite it being a KOREAN-language
+      course, not English-medium. FLAG for human confirmation with Sookmyung admissions on
+      whether it's genuinely required for KLP or was submitted defensively — but never silently
+      drop the requirement without that confirmation.
+    checks:
+      - type: min_score
+        field: ielts_score
+        description: No published Sookmyung KLP floor found — confirm with admissions; one real case cleared with Overall 5.0
+      - type: max_age_days
+        value: 730
+        field: language_test_date
+        description: Embassy of Korea Dhaka accepts TOEFL/IELTS only within 2 years of the test date
+      - type: human_verify
+        description: Confirm with Sookmyung admissions whether IELTS/TOPIK is actually mandatory for the Korean Language Program

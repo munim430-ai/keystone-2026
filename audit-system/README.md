@@ -23,7 +23,9 @@ zero real-world error.
 ## The end-to-end flow
 ```
 one combined scan
-      │  split.py  (page-map → separate named PDFs, the format KUAC demands)
+      │  classify.py  (OCR + keyword match → PROPOSED pagemap.yaml, confident pages only)
+      ▼
+      │  split.py     (page-map → separate named PDFs, the format KUAC demands)
       ▼
 students/<name>/files/  +  metadata.yaml  (facts, from OCR + human confirm)
       │  audit.py  (manifest per university → 3-state report, exit 0/2)
@@ -34,20 +36,25 @@ students/<name>/files/  +  metadata.yaml  (facts, from OCR + human confirm)
                     board ──▶ n8n alerts staff / reminds the family (WhatsApp)
 ```
 The **AUDIT GATE** (`pipeline/stages.yaml`) is the rule: nothing is sent while the
-verdict is red.
+verdict is red. `classify.py` inherits the same rule at the page level — it only ever
+writes pages it's CONFIDENT about into the proposed pagemap; anything AMBIGUOUS or
+UNRECOGNIZED is listed for a human to resolve by hand, never guessed.
 
 ## Layout
 ```
 audit-system/
   audit.py                     # the engine (3-state auditor + consistency rules)
+  classify.py                  # Phase 2: OCR each page of a combined scan, propose a pagemap.yaml
   generate.py                  # Phase 2: draft affidavit / NOC / cover letter / SOP
   split.py                     # Phase 2: one combined scan → separate named PDFs
   manifests/
     schema.json                # JSON schema every manifest must pass (typos fail loudly)
+    document_signatures.yaml   # keyword signatures classify.py matches OCR text against
     korea/
       _core-korea.yaml         # shared Korean document set (all others extend it)
       kdu-global-kuac.yaml  kdu-global-kuac-regional.yaml  KUAC-process-playbook.md
       kyungsung-*.yaml  sejong-*.yaml  gachon-masters.yaml  dongshin-masters.yaml  assist-masters.yaml
+      sookmyung-language.yaml  # Korean Language Program (D-4) — built from one real case, re-verify
   templates/                   # document templates the generator fills
   students/
     _TEMPLATE/metadata.yaml    # copy per student; blanks become ⚠️ FLAGGED
@@ -57,7 +64,7 @@ audit-system/
     nocodb_schema.md           # NocoDB tables (Students / Documents / Partners / Payments)
     nocodb_sync.py             # audit JSON → NocoDB Students row (verdict + blockers)
     money_model.md             # Bigcapital chart of accounts + milestone→invoice ladder
-  sidecar/easyocr_extract.py   # Bangla+English OCR sidecar (run on the VPS)
+  sidecar/easyocr_extract.py   # Bangla+English OCR sidecar (heavier, VPS/second-opinion use)
   deploy/                      # docker-compose stack + runbook + n8n workflows
 ```
 
@@ -68,8 +75,18 @@ python3 generate.py --student students/kuac-demo/ --manifest manifests/korea/kdu
 # Missing facts appear as visible [FILL: field] markers; nothing is invented.
 ```
 
-## Split one combined scan (Phase 2)
+## Classify + split one combined scan (Phase 2)
 ```bash
+python3 classify.py --pdf raw_scan.pdf --out students/<name>/pagemap.yaml \
+                    --report students/<name>/classify_report.md
+# OCRs every page (Tesseract ben+eng by default — light, no GPU) and keyword-matches it
+# against manifests/document_signatures.yaml. Only writes pages it's CONFIDENT about;
+# review the report for AMBIGUOUS (e.g. it genuinely cannot tell an applicant's NID from
+# a parent's NID by text alone — that's a real limit, not a bug) and UNRECOGNIZED pages
+# (usually a bare photo, a document type with no signature yet, or a scan too poor for
+# Tesseract) and add those lines to the pagemap by hand before splitting.
+# --engine easyocr swaps in the heavier sidecar OCR for a second opinion on hard scans.
+
 python3 split.py --pdf raw_scan.pdf --map students/<name>/pagemap.yaml --out students/<name>/files/
 # pagemap.yaml: document_id: "page-range"  (ids match the manifests, so output feeds the auditor)
 ```

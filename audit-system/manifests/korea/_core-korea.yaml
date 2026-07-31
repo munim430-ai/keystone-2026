@@ -1,16 +1,28 @@
 # Shared Korean core — every Korea manifest extends this.
-# Source: korea-student-visa-sop skill ch02 (online + DHL sets), ch08 (affidavits), ch01 (pipeline).
+# Source: korea-student-visa-sop skill ch02 (online + DHL sets), ch08 (affidavits), ch01 (pipeline);
+# Keystone Education's own Embassy Documents Checklist (agency doc, 24 items); and the Embassy of the
+# Republic of Korea in Dhaka's official published D-2/D-4 requirements page (verified 2026-07-31):
+# https://bgd.mofa.go.kr/bd-en/brd/m_23302/view.do?seq=2
 id: core-korea
 country: South Korea
 university: (base)
 program: (base)
 visa_type: (base)
-source: korea-student-visa-sop skill ch01/ch02/ch08 (WeCare checklists + real notarized samples, 2025-26)
-verified_date: "2026-07-18"
+source: >
+  korea-student-visa-sop skill ch01/ch02/ch08 (WeCare checklists + real notarized samples, 2025-26);
+  Keystone Education Embassy Documents Checklist (agency doc); Embassy of Korea Dhaka official
+  visa-issuance page (bgd.mofa.go.kr/bd-en/brd/m_23302/view.do?seq=2), fetched 2026-07-31
+verified_date: "2026-07-31"
 notes: >
   Base document set shared by all Korean university applications. University
   manifests extend this and add/override program-specific items. Figures must be
   re-verified per intake before quoting families.
+
+  DISCREPANCY FLAGGED, not auto-resolved: the embassy's own page states the parents'
+  NOC needs "no notarization required," while the WeCare/Keystone chain notarizes it
+  on stamp paper regardless (belt-and-suspenders agency practice). This manifest keeps
+  the stricter stamp_paper_notary processing on noc_affidavit — a notarized NOC is never
+  wrong, only possibly unnecessary work. Revisit if a family pushes back on the cost/time.
 
 documents:
   - id: passport
@@ -56,6 +68,11 @@ documents:
     required: true
     stage: both
     processing: notarize
+    checks:
+      - type: max_age_days
+        value: 90
+        field: frc_issue_date
+        description: Embassy of Korea Dhaka requires FRC issued within 3 months
 
   - id: academic_certificates
     name: All academic certificates & transcripts (SSC, HSC/Diploma, Bachelor if applicable)
@@ -73,6 +90,10 @@ documents:
       - type: min_score
         field: ielts_score
         description: Threshold set per university manifest
+      - type: max_age_days
+        value: 730
+        field: language_test_date
+        description: Embassy of Korea Dhaka accepts TOEFL/IELTS only within 2 years of the test date
 
   - id: sop
     name: Statement of Purpose (SOP)
@@ -100,17 +121,34 @@ documents:
         description: Issued within 30 days of submission — time this LAST
 
   - id: sponsor_income_docs
-    name: Employment certificate / Trade licence + e-TIN & TAX certificates (translated then notarized)
+    name: >
+      Employment certificate / Trade licence + e-TIN certificate + Income Tax certificate(s) +
+      Return Acknowledgement Receipt(s) (translated then notarized)
     required: true
     stage: both
     processing: translate_then_notarize
-    notes: Kyungsung manifests override required to false (explicitly not mandatory there)
+    notes: >
+      Kyungsung manifests override required to false (explicitly not mandatory there).
+      Embassy of Korea Dhaka explicitly asks for "Tax Certificate, Last 2 years Tax Return
+      and Tax-challan copy" — a single assessment year's certificate is NOT sufficient by
+      itself. No mechanical check can count filed years without live NBR portal access, so
+      this is a human_verify: confirm 2 assessment years are on file (or that the TIN is
+      genuinely younger than 2 years, in which case note that as the explanation).
+    checks:
+      - type: human_verify
+        description: >
+          At least 2 assessment years' Income Tax Certificates + Return Acknowledgement
+          Receipts + tax-challan copies present — OR the TIN registration date is itself
+          under 2 years old (acceptable, but call it out in the cover letter/affidavit).
 
   - id: noc_affidavit
     name: Affidavit of No Objection (both parents, stamp paper, notarized)
     required: true
     stage: embassy
     processing: stamp_paper_notary
+    notes: >
+      Embassy of Korea Dhaka's own page states the NOC needs "no notarization required" —
+      kept notarized here anyway per WeCare/agency practice (see manifest-level notes).
     checks:
       - type: field_present
         field: noc_both_parents
@@ -163,17 +201,142 @@ documents:
     stage: university
     processing: none
 
+  # ---- Added 2026-07-31: Keystone Embassy Documents Checklist + Embassy of Korea Dhaka
+  # official page (bgd.mofa.go.kr/bd-en/brd/m_23302/view.do?seq=2) — items neither source
+  # previously had a manifest entry for. See per-doc `notes` for which source(s) named it.
+
+  - id: visa_application_form
+    name: Visa Application Form with bar code, printed from the official e-Form
+    required: true
+    stage: embassy
+    processing: none
+    notes: >
+      Named by both Keystone checklist item 1 and the embassy page. Generated at
+      visa.go.kr/openPage.do?MENU_ID=10204 — not a document the student already has.
+
+  - id: coa
+    name: Certificate of Admission (original or copy) from the university
+    required: true
+    stage: embassy
+    processing: none
+    notes: Also tracked as its own pipeline stage (pipeline/stages.yaml) — the visa trigger.
+
+  - id: tuition_fee_invoice
+    name: University tuition fee invoice / University Payment Certificate
+    required: true
+    stage: embassy
+    processing: none
+    notes: Embassy page calls this "University Payment Certificate," paired with the COA.
+
+  - id: acceptance_letter
+    name: Letter of Acceptance / tuition fee receipt (if any)
+    required: false
+    stage: embassy
+    processing: none
+    notes: Keystone checklist item 24, marked "if any" — supplements, does not replace, the COA.
+
+  - id: university_business_registration
+    name: University's business registration (if the target university's checklist asks for it)
+    required: false
+    stage: embassy
+    processing: none
+    notes: Keystone checklist item 6. Not on the embassy's own published list — agency-added.
+
+  - id: study_plan
+    name: Study plan issued by the university (if any)
+    required: "if:study_plan_provided"
+    stage: university
+    processing: none
+
+  - id: police_clearance
+    name: Police Clearance Certificate (PCC) from Bangladesh Police
+    required: true
+    stage: embassy
+    processing: none
+    notes: >
+      Same id KUAC's own manifest already used (kdu-global-kuac.yaml) — kept identical
+      so it overrides cleanly instead of appearing twice in a KUAC audit.
+    checks:
+      - type: max_age_days
+        value: 90
+        field: police_clearance_date
+        description: Embassy of Korea Dhaka requires PCC issued within 3 months
+
+  - id: cheque_book
+    name: Sponsor's cheque book (evidence of an active bank account)
+    required: true
+    stage: embassy
+    processing: none
+    notes: Keystone checklist item 21. Never notarize — it's a supporting solvency exhibit.
+
+  - id: swift_copy
+    name: SWIFT copy — proof of tuition wire transfer
+    required: true
+    stage: embassy
+    processing: none
+    notes: >
+      Already tracked as a pipeline milestone (fee_paid stage) — formalized here as a
+      checkable document too, since it's on Keystone's own embassy checklist (item 22).
+
+  - id: tuition_fee_bank_statement
+    name: Bank statement showing the tuition fee transfer (distinct from personal solvency statement)
+    required: true
+    stage: embassy
+    processing: none
+
+  - id: property_deed
+    name: Property deed copy (original + photocopy) or an asset valuation certificate/affidavit
+    required: true
+    stage: embassy
+    processing: none
+    notes: >
+      Embassy page item, not on the Keystone checklist. Distinct from the financial
+      affidavit's property VALUATION TABLE — the embassy wants the underlying deed itself.
+
+  - id: air_ticket_booking
+    name: Valid air-ticket booking slip (reservation, not necessarily purchased)
+    required: true
+    stage: embassy
+    processing: none
+    notes: Embassy page item — absent from both the Keystone checklist and the WeCare pack.
+
+  - id: cover_forwarding_letter
+    name: Cover / forwarding letter accompanying the visa application
+    required: true
+    stage: embassy
+    processing: none
+    notes: >
+      Distinct line item on the embassy's own page, separate from the 5-section `cover_letter`
+      to the Visa Officer already in this manifest — confirm with the embassy whether these
+      are the same document under two names or genuinely two artifacts before treating as duplicate.
+
+  - id: recommendation_letter
+    name: Letter of Recommendation
+    required: false
+    stage: university
+    processing: none
+    notes: >
+      Not required by most Korean universities/programs in the source pack (ch02 flags it as
+      typically a Master's-only ask). Override to required:true per-university when the target
+      school specifically asks for it (e.g. Sookmyung's Korean Language Program).
+
 consistency_rules:
   - id: sponsor_name_match
     fields: [sponsor_name_bank, sponsor_name_affidavit, sponsor_name_tin, sponsor_name_cover_letter]
-    match: exact
+    match: exact_case_insensitive
     description: >
-      Sponsor name character-identical across bank statement, financial affidavit,
-      TIN, and cover letter. Gachon explicitly rejects on spelling mismatch; apply everywhere.
+      Sponsor name character-identical (case-insensitive — passports/NIDs are routinely
+      ALL CAPS while other documents aren't; that's not a real spelling mismatch) across
+      bank statement, financial affidavit, TIN, and cover letter. Gachon explicitly rejects
+      on a genuine spelling mismatch; apply everywhere.
   - id: student_name_match
     fields: [student_name_passport, student_name_nid, student_name_academic, student_name_sop]
-    match: exact
-    description: Student name identical to passport spelling on every document.
+    match: exact_case_insensitive
+    description: >
+      Student name identical to passport spelling on every document (case-insensitive,
+      same reasoning as sponsor_name_match — confirmed against a real case 2026-07-31
+      where ALL-CAPS passport/NID vs mixed-case academic certificates was a false positive
+      under case-sensitive matching).
   - id: gap_story_match
     fields: [gap_story_sop, gap_story_cover_letter]
     match: exact_case_insensitive
