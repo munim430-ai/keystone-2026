@@ -1,0 +1,9 @@
+# Python bytecode caches -- regenerated automatically every time a .py file
+# is imported/compiled (including by the session-start hook's own validation
+# and by py_compile-as-linter checks), never useful to commit.
+__pycache__/
+*.pyc
+*.pyo
+
+# OS cruft
+.DS_Store
