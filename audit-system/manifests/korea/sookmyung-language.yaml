@@ -19,6 +19,28 @@ notes: >
   were present in the one case this manifest is built from.
 
 documents:
+  - id: bank_statement
+    name: Bank statement + solvency certificate
+    required: true
+    stage: both
+    processing: none
+    notes: >
+      No published Sookmyung/KLP-specific floor found — core-korea's bank_statement doc
+      has no min_amount_usd check by default (only Sejong/Gachon/etc. override it), which
+      means a $0 balance would otherwise pass silently. Applying the general USD 20,000
+      floor used across comparable Korean-university files as the safe default; override
+      with a confirmed Sookmyung figure if one is published.
+    checks:
+      - type: min_amount_usd
+        value: 20000
+        field: bank_balance_usd
+      - type: min_history_months
+        value: 6
+        field: bank_history_months
+      - type: max_age_days
+        value: 30
+        field: bank_statement_date
+
   - id: recommendation_letter
     name: Letter of Recommendation (Sookmyung specifically requested this for KLP — unusual for a language program)
     required: true
