@@ -1,0 +1,42 @@
+# Keystone brand kit for UGC video. Everything the renderer needs to stay on-brand.
+name: "Keystone Education"
+handle: "@KeystoneNarsingdi"
+website: "keystoneeducations.com"
+
+# Brand spine — the line the whole content strategy hangs on.
+spine_bn: "আমরা লুকাই না — আমরা শেখাই"
+spine_en: "We don't hide — we teach"
+
+# Standard footer burned onto every video (matches marketing/content/whistleblower-pillars.md)
+footer_bn: "কোনো ভিসা, কোনো ফি। ভিসা না হলে এক টাকাও নেই।"
+contact_bn: "📍 নারসিংদি বাজার · গাজীপুর · 📞 ০১৩২৮-২২৪৬০০"
+verify_bn: "নিজে যাচাই করুন: studyinkorea.go.kr"
+
+# Colours (from BRAND_ASSET_GUIDE.md — brand blue/red, plus Korea-study accents)
+colors:
+  ink: "#141b2e"        # near-black text
+  brand_blue: "#1b3a8b"
+  brand_red: "#c0202a"
+  gold: "#e0a92e"
+  paper: "#f6f4ee"
+  panel: "#0f1830"      # dark caption panel
+  panel_text: "#ffffff"
+
+# Fonts (installed system Noto Bengali; renderer falls back gracefully)
+fonts:
+  bengali_regular: "/usr/share/fonts/truetype/noto/NotoSansBengali-Regular.ttf"
+  bengali_bold: "/usr/share/fonts/truetype/noto/NotoSansBengali-Bold.ttf"
+
+# Brand stills available in the repo (../../assets) — used as safe, real backgrounds
+# for faceless / proof-style UGC that needs no AI avatar or generated footage.
+assets:
+  logo: "../../assets/keystone_logo_official.png"
+  founder_photo: "../../assets/ceo_photo_hasibul_munim.png"
+  marina_photo: "../../assets/marina-photo.jpg"
+
+# AI-disclosure & compliance policy (see ugc_studio/guardrails.py)
+disclosure:
+  # Any video that uses a synthetic presenter/voice MUST carry this tag on-screen.
+  ai_presenter_tag_bn: "🤖 এই ভিডিওর উপস্থাপক একটি AI — তথ্য আসল, যাচাইযোগ্য।"
+  # We NEVER present an AI-generated person as a real, named student/customer.
+  allow_fake_testimonial: false

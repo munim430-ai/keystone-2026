@@ -1,0 +1,15 @@
+# CEO orchestrator — all free/open-source. Core runs on the stdlib + these:
+PyYAML>=6.0
+Jinja2>=3.1
+openpyxl>=3.1          # read data/Korea_Master_University_List.xlsx (matcher)
+
+# intake webhook (optional — CLI works without it):
+fastapi>=0.115
+uvicorn[standard]>=0.30
+python-multipart>=0.0.9
+
+# audit engine (already a repo dep): jsonschema for manifest validation
+jsonschema>=4.0
+
+# LLM polish is optional; Groq/Ollama are called over plain HTTP (stdlib urllib).
+# With no key set, everything falls back to deterministic Bangla templates ($0).

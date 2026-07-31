@@ -1,0 +1,18 @@
+# runtime
+.env
+*.db
+*.db-wal
+*.db-shm
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# generated audio (cache is warmed by `pregen`; keep the dir, not the clips)
+assets/audio_cache/*.ulaw
+voice_clone/*.wav
+voice_clone/*.pt
+
+# exports
+exports/
+*.log

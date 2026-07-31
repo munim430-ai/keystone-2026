@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "keystone-voice"
+version = "0.1.0"
+description = "Autonomous Bangla-speaking AI sales caller for Keystone Education B2B outreach"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "httpx>=0.27",
+    "numpy>=1.26",
+    "twilio>=9.3",
+    "python-dotenv>=1.0",
+    "python-multipart>=0.0.9",
+    'tzdata>=2024.1; sys_platform == "win32"',
+]
+
+[project.scripts]
+keystone-voice = "keystone_voice.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["keystone_voice*"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]

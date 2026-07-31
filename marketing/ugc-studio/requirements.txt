@@ -1,0 +1,14 @@
+# CPU render path (works today, no GPU, no keys):
+Pillow>=10.0
+PyYAML>=6.0
+python-dotenv>=1.0
+# ffmpeg must be on PATH (apt install ffmpeg) + a Bengali font (fonts-noto-core / fonts-beng)
+
+# Optional cloud TTS (best Bangla quality):
+httpx>=0.27
+
+# ── Optional, install ONLY on the GPU box for avatar / local TTS ──────────
+# AI4Bharat IndicF5 (Bangla voice cloning):   pip install transformers torch soundfile
+# AI4Bharat Indic Parler-TTS:                 pip install git+https://github.com/huggingface/parler-tts.git
+# Meta MMS-TTS bengali (CPU-ok, lightweight): pip install transformers torch soundfile
+# SadTalker / Wav2Lip: clone their repos and follow their own requirements (see TOOLS.md)
