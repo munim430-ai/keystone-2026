@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Keystone Education — Nationwide B2B & Student Management CRM</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Supabase JS Client for Real-time Cloud DB Sync -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- Top Navigation Header -->
+  <header class="header">
+    <div class="header-container">
+      <div class="brand">
+        <div class="brand-logo">K</div>
+        <div class="brand-text">
+          <h1>Keystone B2B CRM <span class="cloud-badge" id="cloud-badge"><i class="fa-solid fa-cloud"></i> Local Storage</span></h1>
+          <p>Founder & Team B2B Outreach & Student Referral CRM (Real-time Cloud Sync Enabled)</p>
+        </div>
+      </div>
+
+      <!-- Navigation Views Bar -->
+      <div class="nav-tabs">
+        <button class="nav-tab-btn active" id="tab-btn-table" onclick="switchView('table')">
+          <i class="fa-solid fa-building-columns"></i> B2B Centers
+        </button>
+        <button class="nav-tab-btn" id="tab-btn-students" onclick="switchView('students')">
+          <i class="fa-solid fa-user-graduate"></i> Students Directory
+        </button>
+        <button class="nav-tab-btn" id="tab-btn-kanban" onclick="switchView('kanban')">
+          <i class="fa-solid fa-table-columns"></i> Kanban Board
+        </button>
+        <button class="nav-tab-btn" id="tab-btn-ledger" onclick="switchView('ledger')">
+          <i class="fa-solid fa-coins"></i> Commission Ledger
+        </button>
+      </div>
+
+      <div class="header-actions">
+        <button class="btn btn-cloud" id="btn-cloud-sync" onclick="openCloudSyncModal()">
+          <i class="fa-solid fa-cloud-bolt"></i> Cloud Sync
+        </button>
+        <button class="btn btn-emerald" onclick="openAddCenterModal()">
+          <i class="fa-solid fa-plus"></i> Add B2B Center
+        </button>
+        <button class="btn btn-secondary" onclick="exportData('csv')">
+          <i class="fa-solid fa-file-csv"></i> Export CSV
+        </button>
+        <button class="btn btn-secondary" onclick="exportData('json')">
+          <i class="fa-solid fa-download"></i> Export JSON
+        </button>
+        <button class="btn btn-secondary" onclick="resetToInitial()">
+          <i class="fa-solid fa-rotate-left"></i> Reset
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- KPI Summary Metrics Dashboard -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon blue"><i class="fa-solid fa-building-columns"></i></div>
+        <div class="metric-data">
+          <h3 id="stat-total">0</h3>
+          <p>Total BD Centers</p>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon indigo"><i class="fa-solid fa-map-location-dot"></i></div>
+        <div class="metric-data">
+          <h3 id="stat-districts">0</h3>
+          <p>Active Districts</p>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon amber"><i class="fa-solid fa-user-graduate"></i></div>
+        <div class="metric-data">
+          <h3 id="stat-referred">0</h3>
+          <p>Referred Students</p>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon purple"><i class="fa-solid fa-award"></i></div>
+        <div class="metric-data">
+          <h3 id="stat-enrolled">0</h3>
+          <p>Enrolled Students</p>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon emerald"><i class="fa-solid fa-money-bill-wave"></i></div>
+        <div class="metric-data">
+          <h3 id="stat-commission-earned">৳0</h3>
+          <p>Total Commission</p>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon rose"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+        <div class="metric-data">
+          <h3 id="stat-commission-pending">৳0</h3>
+          <p>Commission Pending</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Filter & Control Bar -->
+    <div class="controls-bar">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="search-input" placeholder="Search center, student name, district, primary/alt phone, or remarks..." oninput="renderApp()">
+      </div>
+
+      <div class="filter-group">
+        <!-- District Select Filter -->
+        <select id="filter-district" class="filter-select" onchange="renderApp()">
+          <option value="ALL">All Districts (64)</option>
+        </select>
+
+        <!-- Status Filter -->
+        <select id="filter-status" class="filter-select" onchange="renderApp()">
+          <option value="ALL">All Statuses</option>
+          <option value="New">New</option>
+          <option value="Contacted">Contacted</option>
+          <option value="Interested">Interested</option>
+          <option value="Scheduled">Scheduled Seminar</option>
+          <option value="Partnered">Signed Partner</option>
+          <option value="Rejected">Not Interested</option>
+        </select>
+
+        <!-- Priority Filter -->
+        <select id="filter-priority" class="filter-select" onchange="renderApp()">
+          <option value="ALL">All Priorities</option>
+          <option value="High">High (IELTS Center)</option>
+          <option value="Medium">Medium</option>
+        </select>
+
+        <!-- Commission Payout Filter -->
+        <select id="filter-commission" class="filter-select" onchange="renderApp()">
+          <option value="ALL">All Payout Statuses</option>
+          <option value="PENDING">Has Pending Commission</option>
+          <option value="PAID">Fully Paid</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Main Content Grid Layout -->
+    <div class="content-grid">
+
+      <!-- Left View Switcher (Table / Students / Kanban / Ledger) -->
+      <div id="view-container" style="display: flex; flex-direction: column; gap: 1rem;">
+
+        <!-- 1. B2B CENTERS TABLE VIEW -->
+        <div class="table-card" id="view-table">
+          <div class="table-header">
+            <h2><i class="fa-solid fa-list-check"></i> Coaching Centers List (<span id="filtered-count">0</span>)</h2>
+            <div style="font-size: 0.78rem; color: var(--text-muted);">Click any center to inspect profile, add students, log calls & track commission</div>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Center Name</th>
+                  <th>District</th>
+                  <th>Primary / Alt Phone</th>
+                  <th>Status</th>
+                  <th>Students (Ref / Enr)</th>
+                  <th>Pending Due</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="centers-tbody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 2. STUDENTS DIRECTORY VIEW -->
+        <div class="table-card" id="view-students" style="display: none;">
+          <div class="table-header">
+            <h2><i class="fa-solid fa-user-graduate"></i> All Referred Students Directory (<span id="students-count">0</span>)</h2>
+            <button class="btn btn-emerald btn-sm" onclick="openAddStudentModal()">
+              <i class="fa-solid fa-plus"></i> Add Student Referral
+            </button>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Student Name</th>
+                  <th>Phone</th>
+                  <th>Partner Center</th>
+                  <th>District</th>
+                  <th>Target Country & Major</th>
+                  <th>IELTS Score</th>
+                  <th>Admission / Visa Stage</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="students-tbody">
+                <!-- Rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 3. KANBAN BOARD VIEW -->
+        <div id="view-kanban" style="display: none;" class="kanban-board">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <!-- 4. COMMISSION LEDGER VIEW -->
+        <div id="view-ledger" style="display: none;">
+          <div class="ledger-summary-box">
+            <div class="ledger-box">
+              <h4>Total Enrolled Students Across BD</h4>
+              <div id="ledger-enrolled-count">0</div>
+            </div>
+            <div class="ledger-box">
+              <h4>Total Commission Earned by Partners</h4>
+              <div id="ledger-total-earned" style="color: #34d399;">৳0</div>
+            </div>
+            <div class="ledger-box">
+              <h4>Total Commission Paid Out</h4>
+              <div id="ledger-total-paid" style="color: #60a5fa;">৳0</div>
+            </div>
+            <div class="ledger-box">
+              <h4>Outstanding Commission Payable</h4>
+              <div id="ledger-total-pending" style="color: #f87171;">৳0</div>
+            </div>
+          </div>
+
+          <div class="table-card">
+            <div class="table-header">
+              <h2><i class="fa-solid fa-file-invoice-dollar"></i> Partner Payout Ledger & Financials</h2>
+            </div>
+            <div class="table-responsive">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Center ID</th>
+                    <th>Partner Name</th>
+                    <th>District</th>
+                    <th>Enrolled Students</th>
+                    <th>Commission Rate</th>
+                    <th>Total Earned</th>
+                    <th>Paid BDT</th>
+                    <th>Pending Due</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="ledger-tbody">
+                  <!-- Rendered dynamically -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Side Panel (Lead Profile, Associated Students, Financials, Remarks, Scripts) -->
+      <div class="side-panel">
+
+        <!-- Selected Partner Profile & Management Card -->
+        <div class="panel-card" id="detail-panel">
+          <h3>
+            <span><i class="fa-solid fa-user-gear"></i> Partner Center Details</span>
+            <span id="detail-id-badge" class="badge badge-new">b2b-0001</span>
+          </h3>
+
+          <div id="detail-content">
+            <p style="color: var(--text-muted); font-size: 0.85rem;">Select a coaching center from the list or student directory to edit profile, manage referred students, log calls, and process commission payouts.</p>
+          </div>
+        </div>
+
+        <!-- Founder B2B Cold Call & Outreach Script Engine -->
+        <div class="panel-card">
+          <h3>
+            <span><i class="fa-solid fa-headset"></i> Founder Cold Call Scripts</span>
+          </h3>
+
+          <div class="tab-buttons">
+            <button class="tab-btn active" onclick="switchScript('call')">Founder Call Pitch</button>
+            <button class="tab-btn" onclick="switchScript('wa1')">Touch 1 (WA)</button>
+            <button class="tab-btn" onclick="switchScript('wa2')">Touch 2 (Follow-up)</button>
+            <button class="tab-btn" onclick="switchScript('objection')">Objections</button>
+          </div>
+
+          <div class="script-box" id="script-container">
+            <!-- Script inserted dynamically -->
+          </div>
+
+          <div style="margin-top: 0.65rem;">
+            <button class="btn btn-primary btn-sm" onclick="copyCurrentScript()" style="width: 100%;">
+              <i class="fa-solid fa-copy"></i> Copy Script to Clipboard
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Modal 1: Add New B2B Coaching Center -->
+  <div class="modal-overlay" id="add-center-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-plus-circle"></i> Add New B2B Partner Coaching Center</h3>
+        <button class="close-btn" onclick="closeAddCenterModal()">&times;</button>
+      </div>
+      <form id="add-center-form" onsubmit="handleAddCenter(event)">
+        <div class="form-group">
+          <label>Center Name *</label>
+          <input type="text" id="add-name" class="form-control" required placeholder="e.g. Unique IELTS & English Academy">
+        </div>
+        <div class="form-group">
+          <label>District *</label>
+          <input type="text" id="add-district" class="form-control" required placeholder="e.g. Rajshahi / Cumilla / Mymensingh">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label>Primary Phone / WhatsApp</label>
+            <input type="text" id="add-phone" class="form-control" placeholder="+8801700000000">
+          </div>
+          <div class="form-group">
+            <label>Alternative Phone</label>
+            <input type="text" id="add-alt-phone" class="form-control" placeholder="+8801800000000">
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label>Contact Person / Owner</label>
+            <input type="text" id="add-contact" class="form-control" placeholder="e.g. Mr. Rafiqul Islam">
+          </div>
+          <div class="form-group">
+            <label>Designation</label>
+            <input type="text" id="add-designation" class="form-control" placeholder="e.g. Director / Head Instructor">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Facebook / Maps Link</label>
+          <input type="url" id="add-link" class="form-control" placeholder="https://facebook.com/...">
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label>Priority</label>
+            <select id="add-priority" class="form-control">
+              <option value="High">High (IELTS Center)</option>
+              <option value="Medium">Medium (General Coaching)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Commission Rate per Student (BDT)</label>
+            <input type="number" id="add-commission-rate" class="form-control" value="5000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Initial Remarks / Call Notes</label>
+          <textarea id="add-remarks" class="form-control" placeholder="Initial discussion notes..."></textarea>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeAddCenterModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Partner Center</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Add New Student Referral to Center -->
+  <div class="modal-overlay" id="add-student-modal">
+    <div class="modal">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-user-plus"></i> Add Student Referral to Partner Center</h3>
+        <button class="close-btn" onclick="closeAddStudentModal()">&times;</button>
+      </div>
+      <form id="add-student-form" onsubmit="handleAddStudent(event)">
+        <div class="form-group">
+          <label>Select Partner Coaching Center *</label>
+          <select id="stu-center-id" class="form-control" required>
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label>Student Full Name *</label>
+            <input type="text" id="stu-name" class="form-control" required placeholder="e.g. Tanvir Ahmed">
+          </div>
+          <div class="form-group">
+            <label>Student Mobile / WhatsApp *</label>
+            <input type="text" id="stu-phone" class="form-control" required placeholder="+8801700000000">
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label>Target Country</label>
+            <select id="stu-country" class="form-control">
+              <option value="South Korea">South Korea 🇰🇷</option>
+              <option value="Malaysia">Malaysia 🇲🇾</option>
+              <option value="Canada">Canada 🇨🇦</option>
+              <option value="UK">United Kingdom 🇬🇧</option>
+              <option value="Australia">Australia 🇦🇺</option>
+              <option value="Japan">Japan 🇯🇵</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Program / Major</label>
+            <input type="text" id="stu-program" class="form-control" placeholder="e.g. BSc Computer Science / EAP Language">
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem;">
+          <div class="form-group">
+            <label>IELTS Score / Status</label>
+            <input type="text" id="stu-ielts" class="form-control" placeholder="e.g. 6.5 / 6.0 / No IELTS (EAP)">
+          </div>
+          <div class="form-group">
+            <label>Admission / Visa Stage</label>
+            <select id="stu-stage" class="form-control">
+              <option value="Inquiry">Inquiry / Registered</option>
+              <option value="Counselled">Counselled</option>
+              <option value="Docs Collected">Docs Collected</option>
+              <option value="Applied">Applied to University</option>
+              <option value="Offer Received">Offer Received</option>
+              <option value="Visa Issued">Visa Issued (Commission Due)</option>
+              <option value="Enrolled">Enrolled & Settled</option>
+              <option value="Cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1rem;">
+          <button type="button" class="btn btn-secondary" onclick="closeAddStudentModal()">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Student Referral</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Cloud Sync & Supabase Setup Modal -->
+  <div class="modal-overlay" id="modal-cloud-sync">
+    <div class="modal" style="max-width: 650px;">
+      <div class="modal-header">
+        <h2><i class="fa-solid fa-cloud-bolt"></i> Real-time Cloud Database Settings (Supabase)</h2>
+        <button class="modal-close" onclick="closeCloudSyncModal()">&times;</button>
+      </div>
+      <div style="padding: 1rem 0;">
+        <p style="font-size: 0.9rem; color: #475569; margin-bottom: 1rem;">
+          Connect your free <strong>Supabase</strong> PostgreSQL database to enable <strong>real-time synchronization across all employee devices</strong> (laptops, phones, tablets).
+        </p>
+
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+          <h4 style="margin-bottom: 0.5rem; color: #0f172a;"><i class="fa-solid fa-key"></i> Supabase API Credentials</h4>
+          <div class="form-group" style="margin-bottom: 0.75rem;">
+            <label>Supabase Project URL</label>
+            <input type="text" id="supabase-url" class="form-control" placeholder="https://xyzxyz.supabase.co">
+          </div>
+          <div class="form-group" style="margin-bottom: 0.5rem;">
+            <label>Supabase Anon API Key</label>
+            <input type="text" id="supabase-key" class="form-control" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...">
+          </div>
+          <div style="display: flex; gap: 0.5rem; margin-top: 0.75rem;">
+            <button class="btn btn-emerald" onclick="saveCloudConfig()">
+              <i class="fa-solid fa-check"></i> Connect & Sync Cloud DB
+            </button>
+            <button class="btn btn-secondary" onclick="disconnectCloudConfig()">
+              <i class="fa-solid fa-plug-circle-xmark"></i> Use Local Storage Only
+            </button>
+          </div>
+        </div>
+
+        <div style="background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 8px; padding: 1rem;">
+          <h4 style="margin-bottom: 0.5rem; color: #1e40af;"><i class="fa-solid fa-circle-info"></i> How Employee Access Works</h4>
+          <ul style="font-size: 0.85rem; color: #1e3a8a; padding-left: 1.25rem; line-height: 1.6;">
+            <li>Deploy this web app to <strong>Vercel</strong> or <strong>Netlify</strong> (completely free).</li>
+            <li>Share the live web link (e.g. <code>https://keystone-crm.vercel.app</code>) with your employees.</li>
+            <li>Enter your Supabase URL & Anon Key once, and all employees will automatically read and update the same live database in real time!</li>
+          </ul>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 0.5rem;">
+        <button type="button" class="btn btn-secondary" onclick="closeCloudSyncModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
