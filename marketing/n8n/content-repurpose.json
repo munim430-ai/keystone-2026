@@ -25,10 +25,10 @@
       "parameters": {
         "options": {},
         "subject": "MANUAL QA: fix Bangla captions before publish",
-        "message": "=Transcript ready at /tmp/transcript.json for {{ $json.video }}. Marina: correct the Bangla, then resume this workflow."
+        "message": "=Transcript ready at /tmp/transcript.json for {{ $json.video }}. Founder: correct the Bangla, then resume this workflow."
       },
       "id": "qa",
-      "name": "Human-QA gate (Marina fixes captions)",
+      "name": "Human-QA gate (Founder fixes captions)",
       "type": "n8n-nodes-base.noOp",
       "typeVersion": 1,
       "position": [740, 300],
@@ -59,8 +59,8 @@
   ],
   "connections": {
     "Manual / watch-folder: new long video": { "main": [[{ "node": "faster-whisper (Bangla-tuned) → transcript", "type": "main", "index": 0 }]] },
-    "faster-whisper (Bangla-tuned) → transcript": { "main": [[{ "node": "Human-QA gate (Marina fixes captions)", "type": "main", "index": 0 }]] },
-    "Human-QA gate (Marina fixes captions)": { "main": [[{ "node": "OpenShorts cut + per-platform captions (LLM)", "type": "main", "index": 0 }]] },
+    "faster-whisper (Bangla-tuned) → transcript": { "main": [[{ "node": "Human-QA gate (Founder fixes captions)", "type": "main", "index": 0 }]] },
+    "Human-QA gate (Founder fixes captions)": { "main": [[{ "node": "OpenShorts cut + per-platform captions (LLM)", "type": "main", "index": 0 }]] },
     "OpenShorts cut + per-platform captions (LLM)": { "main": [[{ "node": "Schedule via Postiz (MCP/API)", "type": "main", "index": 0 }]] }
   },
   "settings": { "executionOrder": "v1" },
