@@ -204,7 +204,7 @@ def create_post(post_type="general", custom_caption=None, custom_prompt=None):
 
 def batch_schedule():
     """
-    Recommended posting schedule for Marina:
+    Recommended posting schedule:
 
     Monday:    korea_tip
     Tuesday:   document_guide
