@@ -28,11 +28,11 @@ const EVOLUTION_URL = process.env.EVOLUTION_API_URL || '';        // e.g. https:
 const EVOLUTION_INSTANCE = process.env.EVOLUTION_INSTANCE || '';   // your instance name
 const EVOLUTION_KEY = process.env.EVOLUTION_API_KEY || '';         // apikey header
 
-// The day0/2/5/7 copy (kept in sync with wa_bot_marina.js MARINA_FOLLOWUP_SEQUENCE).
+// The day0/2/5/7 copy (kept in sync with founder outreach).
 const SEQUENCE = {
-  0: 'আসসালামু আলাইকুম [NAME]! কিস্টোন এডুকেশন থেকে মারিনা। আপনি কোরিয়া নিয়ে জানতে চেয়েছিলেন। আর কোনো প্রশ্ন আছে?',
+  0: 'আসসালামু আলাইকুম [NAME]! কিস্টোন এডুকেশন থেকে। আপনি কোরিয়া নিয়ে জানতে চেয়েছিলেন। আর কোনো প্রশ্ন আছে?',
   2: '[NAME], আসসালামু আলাইকুম! আপনার সার্টিফিকেট নিয়ে একবার অফিসে আসুন। ফ্রি কাউন্সেলিং দিচ্ছি। কবে আসতে পারবেন?',
-  5: '[NAME], আপনি কোরিয়া নিয়ে আগ্রহী ছিলেন। আসন সীমিত, তাই দেরি না করে আজই আসুন। আমার WhatsApp: 01328-224600',
+  5: '[NAME], আপনি কোরিয়া নিয়ে আগ্রহী ছিলেন। আসন সীমিত, তাই দেরি না করে আজই আসুন।',
   7: '[NAME], শেষ চেষ্টা! কোরিয়ার EAP প্রোগ্রামে আসন কমে আসছে। আপনি যদি এখনো আগ্রহী থাকেন, একবার কল করুন।',
 };
 const DAYS = [0, 2, 5, 7];
