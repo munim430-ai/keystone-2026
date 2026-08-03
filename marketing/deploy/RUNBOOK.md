@@ -28,7 +28,7 @@ Order matters: the two ~2-hour fixes deliver value on day one, before the full s
 6. **Postiz** (:4200): connect the FB Page (+ YouTube/IG) via official APIs; wire the
    content-repurpose workflow's schedule step to it.
 7. **Umami** (:3000): add the website; drop the tracking snippet on keystoneeducations.com.
-8. **Chatwoot** (:3001): create the shared inbox (Marina + founder); enable the website
+8. **Chatwoot** (:3001): create the shared inbox (Founder access); enable the website
    widget; point its form webhook at the n8n `keystone-lead` URL.
 
 ## Health checks
