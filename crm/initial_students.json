@@ -1,0 +1,47 @@
+[
+  {
+    "id": "stu-001",
+    "centerId": "b2b-0001",
+    "centerName": "British Language Club & IELTS Int'l Test Centre Rajshahi Venue",
+    "district": "Rajshahi",
+    "name": "Tanvir Ahmed",
+    "phone": "+8801712345678",
+    "targetCountry": "South Korea",
+    "program": "Computer Science (BSc)",
+    "ieltsScore": "6.5",
+    "stage": "Visa Issued",
+    "commissionAmount": 5000,
+    "commissionStatus": "Pending",
+    "createdAt": "2026-08-01 10:30"
+  },
+  {
+    "id": "stu-002",
+    "centerId": "b2b-0001",
+    "centerName": "British Language Club & IELTS Int'l Test Centre Rajshahi Venue",
+    "district": "Rajshahi",
+    "name": "Sharmin Sultana",
+    "phone": "+8801812345678",
+    "targetCountry": "South Korea",
+    "program": "EAP Language Program",
+    "ieltsScore": "No IELTS",
+    "stage": "Offer Received",
+    "commissionAmount": 5000,
+    "commissionStatus": "Unearned",
+    "createdAt": "2026-08-02 14:15"
+  },
+  {
+    "id": "stu-003",
+    "centerId": "b2b-0007",
+    "centerName": "IELTS TEST CENTRE IN RAJSHAHI",
+    "district": "Rajshahi",
+    "name": "Rakibul Hasan",
+    "phone": "+8801912345678",
+    "targetCountry": "Malaysia",
+    "program": "Software Engineering",
+    "ieltsScore": "6.0",
+    "stage": "Enrolled",
+    "commissionAmount": 5000,
+    "commissionStatus": "Paid",
+    "createdAt": "2026-07-28 11:00"
+  }
+]
