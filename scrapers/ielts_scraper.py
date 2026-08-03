@@ -155,7 +155,7 @@ def scrape_all(districts=None, api_key=None, output_file="ielts_institutes.csv")
 def manual_fallback():
     """
     Manual fallback: Use Facebook search + Google Maps manual scraping
-    without API key. Marina can run this from her phone.
+    without API key.
     """
     print("""
     📱 MANUAL SCRAPING GUIDE (No API Key Needed)
@@ -183,7 +183,7 @@ def manual_fallback():
 
     TARGET: 10 institutes per district
     TIME: 30 minutes per district
-    """")
+    """)
 
 
 def bdjobs_scraper_approach():
