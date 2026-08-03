@@ -3,7 +3,7 @@
 let centers = [];
 let students = [];
 let selectedId = null; // selected center ID
-let currentView = 'mobile'; // 'mobile' | 'table' | 'students' | 'kanban' | 'ledger'
+let currentView = 'table'; // default to table view on desktop
 let currentScriptTab = 'call';
 
 const STORAGE_KEY_CENTERS = 'keystone_bd_b2b_crm_v3_centers';
@@ -19,9 +19,25 @@ document.addEventListener('DOMContentLoaded', async () => {
   await loadData();
   populateDistrictFilter();
   populateStudentCenterSelect();
-  renderApp();
+  autoDetectView();
   if (centers.length > 0) {
     selectCenter(centers[0].id);
+  }
+});
+
+// Auto-switch View based on Device Screen Width (Mobile Outreach vs Desktop Full Dashboard)
+function autoDetectView() {
+  const isMobile = window.innerWidth <= 768;
+  currentView = isMobile ? 'mobile' : 'table';
+  switchView(currentView);
+}
+
+window.addEventListener('resize', () => {
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile && currentView === 'table') {
+    switchView('mobile');
+  } else if (!isMobile && currentView === 'mobile') {
+    switchView('table');
   }
 });
 
@@ -241,9 +257,13 @@ async function resetToInitial() {
   }
 }
 
-// Populate District Select Dropdown
+// Populate District Select Dropdown & Quick Selection Chips
 function populateDistrictFilter() {
   const select = document.getElementById('filter-district');
+  const chipsBar = document.getElementById('district-chips-bar');
+  if (!select) return;
+
+  const selectedValue = select.value || 'ALL';
   const counts = {};
   
   centers.forEach(c => {
@@ -253,13 +273,47 @@ function populateDistrictFilter() {
 
   const sortedDistricts = Object.keys(counts).sort((a, b) => counts[b] - counts[a]);
 
-  select.innerHTML = `<option value="ALL">All Districts (${Object.keys(counts).length}) — ${centers.length} Centers</option>`;
+  select.innerHTML = `<option value="ALL">📍 All 64 Districts — ${centers.length} Partner Centers</option>`;
   sortedDistricts.forEach(d => {
     const opt = document.createElement('option');
     opt.value = d;
-    opt.textContent = `${d} (${counts[d]} centers)`;
+    opt.textContent = `📍 ${d} District (${counts[d]} centers)`;
     select.appendChild(opt);
   });
+
+  select.value = selectedValue;
+
+  // Render Popular Quick District Chips
+  if (chipsBar) {
+    chipsBar.innerHTML = '';
+    const popularDistricts = ['ALL', 'Rajshahi', 'Dhaka', 'Chittagong', 'Cumilla', 'Sylhet', 'Khulna', 'Bogura', 'Mymensingh', 'Dinajpur', 'Rangpur', 'Barishal'];
+
+    popularDistricts.forEach(d => {
+      const isSelected = d === select.value;
+      const count = d === 'ALL' ? centers.length : (counts[d] || 0);
+
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `btn btn-sm ${isSelected ? 'btn-primary' : 'btn-secondary'}`;
+      btn.style.cssText = `padding: 0.25rem 0.65rem; font-size: 0.78rem; border-radius: 20px; font-weight: ${isSelected ? '700' : '500'};`;
+      btn.innerHTML = d === 'ALL' ? `🌐 All Districts (${count})` : `📍 ${d} (${count})`;
+      btn.onclick = () => {
+        select.value = d;
+        onDistrictSelectChange();
+      };
+      chipsBar.appendChild(btn);
+    });
+  }
+}
+
+function onDistrictSelectChange() {
+  const selVal = document.getElementById('filter-district').value;
+  const badge = document.getElementById('district-active-count');
+  if (badge) {
+    badge.textContent = selVal === 'ALL' ? 'Showing All 64 Districts' : `Active Filter: ${selVal} District`;
+  }
+  populateDistrictFilter(); // re-render chip highlights
+  renderApp();
 }
 
 // Populate Center Dropdown in Add Student Modal
@@ -1050,7 +1104,7 @@ function logQuickTouch(id) {
   if (!Array.isArray(c.notes)) c.notes = [];
   c.notes.unshift({
     date: new Date().toLocaleString(),
-    text: `📞 Founder Outreach Call/Message conducted on ${today}`
+    text: `📞 Outreach Call/Message conducted on ${today}`
   });
 
   saveToStorage();
