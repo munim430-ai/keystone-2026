@@ -24,8 +24,11 @@
 
       <!-- Navigation Views Bar -->
       <div class="nav-tabs">
-        <button class="nav-tab-btn active" id="tab-btn-table" onclick="switchView('table')">
-          <i class="fa-solid fa-building-columns"></i> B2B Centers
+        <button class="nav-tab-btn active" id="tab-btn-mobile" onclick="switchView('mobile')">
+          <i class="fa-solid fa-mobile-screen-button"></i> 📱 Mobile Outreach Mode
+        </button>
+        <button class="nav-tab-btn" id="tab-btn-table" onclick="switchView('table')">
+          <i class="fa-solid fa-building-columns"></i> All B2B Centers
         </button>
         <button class="nav-tab-btn" id="tab-btn-students" onclick="switchView('students')">
           <i class="fa-solid fa-user-graduate"></i> Students Directory
@@ -34,7 +37,7 @@
           <i class="fa-solid fa-table-columns"></i> Kanban Board
         </button>
         <button class="nav-tab-btn" id="tab-btn-ledger" onclick="switchView('ledger')">
-          <i class="fa-solid fa-coins"></i> Commission Ledger
+          <i class="fa-solid fa-coins"></i> Ledger
         </button>
       </div>
 
@@ -155,11 +158,25 @@
     <!-- Main Content Grid Layout -->
     <div class="content-grid">
 
-      <!-- Left View Switcher (Table / Students / Kanban / Ledger) -->
+      <!-- Left View Switcher (Mobile / Table / Students / Kanban / Ledger) -->
       <div id="view-container" style="display: flex; flex-direction: column; gap: 1rem;">
 
+        <!-- 0. ULTRA-SIMPLE MOBILE OUTREACH CARD MODE (For Employees / Phones) -->
+        <div id="view-mobile" style="display: flex; flex-direction: column; gap: 1rem;">
+          <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--primary-glow);">
+            <h3 style="font-size: 1.1rem; color: #38bdf8; margin-bottom: 0.35rem;"><i class="fa-solid fa-mobile-screen"></i> 📱 Employee Quick Outreach Mode</h3>
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Select a district above, then tap <strong>CALL</strong> or <strong>WHATSAPP</strong> on any center card below. After speaking, tap <strong>"Mark Contacted"</strong>.
+            </p>
+          </div>
+
+          <div id="mobile-cards-container" style="display: flex; flex-direction: column; gap: 1rem;">
+            <!-- Rendered dynamically with giant 1-tap buttons -->
+          </div>
+        </div>
+
         <!-- 1. B2B CENTERS TABLE VIEW -->
-        <div class="table-card" id="view-table">
+        <div class="table-card" id="view-table" style="display: none;">
           <div class="table-header">
             <h2><i class="fa-solid fa-list-check"></i> Coaching Centers List (<span id="filtered-count">0</span>)</h2>
             <div style="font-size: 0.78rem; color: var(--text-muted);">Click any center to inspect profile, add students, log calls & track commission</div>
@@ -288,11 +305,11 @@
         <!-- Founder B2B Cold Call & Outreach Script Engine -->
         <div class="panel-card">
           <h3>
-            <span><i class="fa-solid fa-headset"></i> Founder Cold Call Scripts</span>
+            <span><i class="fa-solid fa-headset"></i> Outreach Scripts</span>
           </h3>
 
           <div class="tab-buttons">
-            <button class="tab-btn active" onclick="switchScript('call')">Founder Call Pitch</button>
+            <button class="tab-btn active" onclick="switchScript('call')">Call Pitch</button>
             <button class="tab-btn" onclick="switchScript('wa1')">Touch 1 (WA)</button>
             <button class="tab-btn" onclick="switchScript('wa2')">Touch 2 (Follow-up)</button>
             <button class="tab-btn" onclick="switchScript('objection')">Objections</button>
