@@ -73,18 +73,12 @@ Four pillars:
 
 ---
 
-## 4. Reducing friction — the tooling plan (from GitHub research)
-
-**Honest finding:** no mature open-source "study-abroad agency" product exists — everything in that exact niche is a zero-star portfolio project. The play is a generic tool configured to our pipeline.
+## 4. Reducing friction — the tooling plan
 
 | Stage | Tool | Why |
 |---|---|---|
-| **Now (replace Google Sheets)** | **NocoDB** (github.com/nocodb/nocodb, 64k★, Airtable-style, self-hosted) | Same mental model as Sheets, plus: student self-service intake forms, file-attachment columns for passport/transcripts/bank docs, checkbox columns for the apostille chain, Kanban by pipeline stage, webhooks to the WhatsApp bot. One developer-day (Fahim) to deploy on a small VPS; daily use needs zero technical skill. |
-| **Fallback if only shared hosting** | **EspoCRM** (3.1k★, PHP) | Runs on cheap cPanel hosting with a web installer — no Docker at all. |
-| **WhatsApp (later)** | Keep `bots/wa_bot_marina.js` short-term → **Evolution API + Chatwoot** when volume outgrows it | Shared team inbox (Marina + founder) with the student record attached to every chat. Note: unofficial WhatsApp clients carry account-ban risk — plan for the official Cloud API eventually. |
-| **Do NOT adopt** | Twenty CRM, docassemble, any 0-star "visa CRM" repo | Need a retained developer; overkill for a 3-person team. |
-
-**The pipeline, end to end:** NocoDB intake form (Bangla) shared via Facebook/WhatsApp → auto-creates student record → document checklist with per-item status → WhatsApp bot reminders for missing docs (small webhook script) → application submitted via university portal (tracked in Kanban) → visa stage → arrival. Every step visible to the family on request — which is itself the brand.
+| **System of record** | **Nationwide B2B CRM** | Primary lead & B2B database across all Bangladesh districts with student tracking. |
+| **WhatsApp Layer** | **Evolution API + Chatwoot** | Shared team inbox with the student record attached to every chat. |
 
 ---
 
@@ -92,6 +86,6 @@ Four pillars:
 
 1. Email top-5 Priority-A targets (Chungnam KLEC, Sun Moon, Kyungsung, Changwon, Ulsan College) for current admission guide + terms — mention 3–5 students for next intake.
 2. Register on UWAY + Jinhak + studyinkorea.go.kr; download the IEQAS list from the source.
-3. Fahim: deploy NocoDB, build the student table + intake form (one day).
+3. Fahim: assist with CRM configuration & intake form setup.
 4. Draft the "Check these 5 things" poster + one-page verifiable-fee ladder (Bangla).
 5. Verify the two unconfirmed items before relying on them: Dongshin University's certification status (call NRF), and BOESL's circular universities (boesl.gov.bd was down during research).
