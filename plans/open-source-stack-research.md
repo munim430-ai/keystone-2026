@@ -11,7 +11,7 @@ Keystone Education (2–3 people, one part-time developer — Fahim) wants a ful
 | System of record (Sheets replacement) | nocodb/nocodb | 64k | AGPL-3.0 | ✅ PRIMARY — Airtable-like, forms, attachments, Kanban, webhooks; 1 dev-day to deploy |
 | CRM (cPanel fallback) | espocrm/espocrm | 3.1k | AGPL-3.0 | ✅ Fallback if only shared hosting |
 | WhatsApp shared inbox | chatwoot/chatwoot | 34.5k | MIT core | Later, when volume outgrows the bot |
-| WhatsApp API layer | evolution-foundation/evolution-api | 9k | Apache-2.0 | Later; upgrade path for wa_bot_marina.js |
+| WhatsApp API layer | evolution-foundation/evolution-api | 9k | Apache-2.0 | Later; upgrade path for WhatsApp bot |
 | Existing bot libs | wwebjs/whatsapp-web.js (22k), WhiskeySockets/Baileys (10k) | | Apache/MIT | Keep short-term; ban risk noted |
 | Intake forms | OpnForm/OpnForm | 3.5k | AGPL-3.0 | Optional; NocoDB forms may suffice |
 | Guided doc interviews | jhpyle/docassemble | ~1k | MIT | ❌ Avoid — needs retained developer |
@@ -74,7 +74,7 @@ Keystone Education (2–3 people, one part-time developer — Fahim) wants a ful
 | **Paperless-ngx** (`PAPERLESS_OCR_LANGUAGE=ben+eng`) | Per-student document vault; OCR search; tags = doc types; REST API feeds the auditor |
 | **YAML manifests + ~200-line Python auditor + python-jsonschema** | The zero-silent-error audit engine (3-state: VERIFIED/FLAGGED/MISSING); manifests generated from the korea-student-visa-sop skill |
 | **EasyOCR sidecar** (`['bn','en']`, CPU) | Better Bangla extraction where Tesseract fails (best benchmarked practical accuracy) |
-| **NocoDB** | System of record: students, pipeline kanban, B2B partners table, audit-status columns |
+| **NocoDB / CRM** | System of record: students, pipeline kanban, B2B partners table, audit-status columns |
 
 ### Adopt next (Phase 2 — operations, when Phase 1 sticks)
 | Tool | Role |
