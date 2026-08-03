@@ -214,7 +214,7 @@ keystone-2026/
 │   └── tin_certificate_hasibul_munim.jpg ← Tax, corporate, compliance
 ```
 
-**All team members (Fahim, Marina, future hires) must read this guide before creating any material.**
+**All team members must read this guide before creating any material.**
 
 ---
 
