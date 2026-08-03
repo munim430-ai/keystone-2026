@@ -1,0 +1,13 @@
+{
+  "name": "keystone-b2b-crm",
+  "version": "1.0.0",
+  "description": "Keystone Education Nationwide B2B & Student Management CRM",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
