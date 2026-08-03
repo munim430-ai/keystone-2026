@@ -24,10 +24,10 @@
 
       <!-- Navigation Views Bar -->
       <div class="nav-tabs">
-        <button class="nav-tab-btn active" id="tab-btn-mobile" onclick="switchView('mobile')">
+        <button class="nav-tab-btn" id="tab-btn-mobile" onclick="switchView('mobile')">
           <i class="fa-solid fa-mobile-screen-button"></i> 📱 Mobile Outreach Mode
         </button>
-        <button class="nav-tab-btn" id="tab-btn-table" onclick="switchView('table')">
+        <button class="nav-tab-btn active" id="tab-btn-table" onclick="switchView('table')">
           <i class="fa-solid fa-building-columns"></i> All B2B Centers
         </button>
         <button class="nav-tab-btn" id="tab-btn-students" onclick="switchView('students')">
@@ -117,17 +117,40 @@
 
     <!-- Filter & Control Bar -->
     <div class="controls-bar">
-      <div class="search-box">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="search-input" placeholder="Search center, student name, district, primary/alt phone, or remarks..." oninput="renderApp()">
+      <div class="controls-top-row" style="display: flex; flex-direction: column; gap: 0.65rem; width: 100%;">
+        
+        <!-- PROMINENT DISTRICT SELECTOR & QUICK CHIPS -->
+        <div style="background: rgba(15, 23, 42, 0.8); padding: 0.85rem; border-radius: var(--radius-sm); border: 1px solid var(--border-glow); display: flex; flex-direction: column; gap: 0.65rem;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
+            <label style="font-weight: 700; font-size: 0.95rem; color: #38bdf8; display: flex; align-items: center; gap: 0.4rem;">
+              <i class="fa-solid fa-map-location-dot"></i> 📍 Filter B2B Partners by District Name:
+            </label>
+            <span id="district-active-count" style="font-size: 0.8rem; color: var(--text-muted);">Showing All 64 Districts</span>
+          </div>
+
+          <div style="display: flex; gap: 0.65rem; flex-wrap: wrap; align-items: center;">
+            <!-- District Select Dropdown -->
+            <select id="filter-district" class="filter-select" onchange="onDistrictSelectChange()" style="flex: 1; min-width: 250px; font-size: 0.95rem; font-weight: 600; padding: 0.65rem; background: #0f172a; border-color: var(--primary);">
+              <option value="ALL">All Districts (64)</option>
+            </select>
+
+            <!-- Search Box -->
+            <div class="search-box" style="flex: 1; min-width: 250px;">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" id="search-input" placeholder="Search center name, phone, contact..." oninput="renderApp()">
+            </div>
+          </div>
+
+          <!-- Quick District Selection Chips Bar -->
+          <div id="district-chips-bar" style="display: flex; gap: 0.35rem; flex-wrap: wrap; align-items: center; padding-top: 0.35rem; border-top: 1px solid rgba(255,255,255,0.08);">
+            <!-- Populated dynamically with chips like Rajshahi, Dhaka, Chittagong, etc. -->
+          </div>
+        </div>
+
       </div>
 
-      <div class="filter-group">
-        <!-- District Select Filter -->
-        <select id="filter-district" class="filter-select" onchange="renderApp()">
-          <option value="ALL">All Districts (64)</option>
-        </select>
-
+      <!-- Secondary Filters (Status, Priority, Commission) -->
+      <div class="secondary-filters" id="secondary-filters" style="display: flex; gap: 0.5rem; flex-wrap: wrap; width: 100%; margin-top: 0.35rem;">
         <!-- Status Filter -->
         <select id="filter-status" class="filter-select" onchange="renderApp()">
           <option value="ALL">All Statuses</option>
@@ -161,22 +184,15 @@
       <!-- Left View Switcher (Mobile / Table / Students / Kanban / Ledger) -->
       <div id="view-container" style="display: flex; flex-direction: column; gap: 1rem;">
 
-        <!-- 0. ULTRA-SIMPLE MOBILE OUTREACH CARD MODE (For Employees / Phones) -->
+        <!-- 0. MOBILE OUTREACH CARD MODE (Auto-rendered on Mobile screens) -->
         <div id="view-mobile" style="display: flex; flex-direction: column; gap: 1rem;">
-          <div style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); padding: 1rem; border-radius: var(--radius-md); border: 1px solid var(--primary-glow);">
-            <h3 style="font-size: 1.1rem; color: #38bdf8; margin-bottom: 0.35rem;"><i class="fa-solid fa-mobile-screen"></i> 📱 Employee Quick Outreach Mode</h3>
-            <p style="font-size: 0.85rem; color: var(--text-muted);">
-              Select a district above, then tap <strong>CALL</strong> or <strong>WHATSAPP</strong> on any center card below. After speaking, tap <strong>"Mark Contacted"</strong>.
-            </p>
-          </div>
-
           <div id="mobile-cards-container" style="display: flex; flex-direction: column; gap: 1rem;">
             <!-- Rendered dynamically with giant 1-tap buttons -->
           </div>
         </div>
 
-        <!-- 1. B2B CENTERS TABLE VIEW -->
-        <div class="table-card" id="view-table" style="display: none;">
+        <!-- 1. B2B CENTERS TABLE VIEW (Auto-rendered on Desktop screens) -->
+        <div class="table-card" id="view-table">
           <div class="table-header">
             <h2><i class="fa-solid fa-list-check"></i> Coaching Centers List (<span id="filtered-count">0</span>)</h2>
             <div style="font-size: 0.78rem; color: var(--text-muted);">Click any center to inspect profile, add students, log calls & track commission</div>
