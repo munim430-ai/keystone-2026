@@ -112,8 +112,8 @@
 
 ### Vector 2: The Tier-2/Tier-3 Land Grab
 - **No serious competitor has a Narsingdi office.** WeCare is Dhaka-only. Sangen is Gazipur-only.
-- **Your move:** Marina becomes the Narsingdi face. Local girl. Local number. Local office. "আপনার নারসিংদিতেই" (Right here in Narsingdi).
-- **Why it works:** A student in Narsingdi Government College will trust a Narsingdi girl more than a Dhaka uncle they've never met.
+- **Your move:** Direct founder presence in Narsingdi & Tier-2 centers. Direct local contact. "আপনার নারসিংদিতেই / সরাসরি ফাউন্ডার" (Right here in Narsingdi / Direct Founder Access).
+- **Why it works:** Students and parents trust direct founder expertise over anonymous agency staff.
 
 ### Vector 3: The IELTS Institute B2B Pipeline
 - **Every IELTS center in tier-2/3 cities is a lead factory.** Students who take IELTS are pre-qualified study-abroad candidates.
@@ -157,8 +157,8 @@
 
 ### Tactic 3: The College Campus Infiltration
 - **Narsingdi has 27 colleges.** Every college has a "career club" or "English club."
-- **Your move:** Marina contacts college clubs. Offers a FREE 30-minute seminar: "How to Study in South Korea Without IELTS." No selling. Pure education. At the end: "If you want to know more, WhatsApp me."
-- **Why it works:** Students trust peer seminars, not ads. Marina is a college student herself. Perfect credibility.
+- **Your move:** Founder contacts college clubs. Offers a FREE 30-minute seminar: "How to Study in South Korea Without IELTS." No selling. Pure education. At the end: "If you want to know more, WhatsApp me."
+- **Why it works:** Students trust direct founder seminars, not ads. Perfect credibility.
 
 ### Tactic 4: The Facebook Group Domination
 - **Join every Bangladeshi student Facebook group:** "Study in Korea," "Korean Language Learning Bangladesh," "Narsingdi Students," "Gazipur Students," "HSC Result 2026," etc.
@@ -174,7 +174,7 @@
 - **Why it works:** When parents search "study abroad consultancy near me" from Gazipur/Narsingdi, you appear first. FREE.
 
 ### Tactic 6: The WhatsApp Status Broadcast
-- **Marina's job:** Every morning, post one useful WhatsApp status:
+- **Founder's routine:** Every morning, post one useful WhatsApp status:
   - Monday: "Korea EAP program deadline this week"
   - Tuesday: "Student success story: [Name] got visa to [University]"
   - Wednesday: "Document checklist for Korea D-4 visa"
@@ -197,12 +197,12 @@
 
 ## COMPETITOR MONITORING SYSTEM
 
-**Weekly reconnaissance (Marina's job, 30 min/week):**
+**Weekly reconnaissance (Founder's routine, 30 min/week):**
 1. Check WeCare's Facebook page for new posts, new universities, pricing changes
 2. Check Sangen's website for new services
 3. Check 3 random Dhaka agency Facebook pages for content ideas
 4. Screenshot anything interesting. Save to shared Google Drive folder.
-5. Report to you every Sunday.
+5. Review numbers every Sunday.
 
 **Automated monitoring (your job):**
 - Set up Google Alerts for: "WeCare Education," "Sangen Edu," "study in Korea Bangladesh," "education consultancy fraud Bangladesh"
