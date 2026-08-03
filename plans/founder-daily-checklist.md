@@ -5,7 +5,7 @@ Date: ___________ | Streak Day: ___ / 60 | Accountability Partner: ___________
 
 ### MORNING (08:00–10:00)
 - [ ] 08:00 Wake up. No phone scrolling.
-- [ ] 08:45 Open lead tracker. Plan today's 10 calls.
+- [ ] 08:45 Open lead tracker CRM. Plan today's 10 calls.
 - [ ] 09:00 **FIRST CALL** (dial within 2 minutes of sitting down)
 
 ### THE 10-CALL BLOCK (10:00–14:00)
@@ -27,7 +27,7 @@ Date: ___________ | Streak Day: ___ / 60 | Accountability Partner: ___________
 ### AFTERNOON (15:00–18:00)
 - [ ] 15:00 Follow up on morning calls (WhatsApp, Facebook)
 - [ ] 16:00 College visit / IELTS institute visit / Content creation
-- [ ] 17:00 Marina check-in. Review her calls. Coach.
+- [ ] 17:00 Update CRM records, notes, and next follow-up dates.
 
 ### EVENING (19:00–21:00)
 - [ ] 19:00 Dinner. Family time. No work.
