@@ -1060,7 +1060,7 @@ function logQuickTouch(id) {
   showToast(`Logged outreach for today (${today})`);
 }
 
-// Cold Call Script Generator Engine (Founder / Hasibul)
+// Cold Call Script Generator Engine
 function switchScript(tab) {
   currentScriptTab = tab;
   document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
@@ -1110,7 +1110,7 @@ ${district} জেলার অন্যতম শীর্ষ কোচিং �
 🇰🇷 Special Focus: South Korea (IELTS সহ ও IELTS ছাড়া EAP প্রোগ্রাম)
 🇲🇾 Malaysia | 🇨🇦 Canada | 🇬🇧 UK
 
-📞 সরাসরি কথা বলুন: 01328-224600
+📞 সরাসরি কথা বলুন: 01941646278
 🌐 www.keystoneeducations.com
 📍 কিস্টোন এডুকেশন`;
 
@@ -1127,7 +1127,7 @@ ${district} জেলার অন্যতম শীর্ষ কোচিং �
 
 চলুন এই সপ্তাহে ফোনে ১০ মিনিটের একটি বিটুবি ডিসকাশন করি?
 
-📞 সরাসরি ফোন: 01328-224600`;
+📞 সরাসরি ফোন: 01941646278`;
 
   } else if (currentScriptTab === 'objection') {
     text = `🛡️ OUTREACH OBJECTION HANDLERS:
