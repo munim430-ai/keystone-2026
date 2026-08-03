@@ -19,27 +19,15 @@
           <div class="logo-icon">⚡</div>
           <div class="brand-text">
             <h1>KEYSTONE <span>CRM</span></h1>
-            <p>B2B IELTS & Language Center Outreach</p>
+            <p>B2B IELTS & Coaching Center Outreach</p>
           </div>
         </div>
 
         <div class="nav-actions">
-          <!-- Employee Selector -->
-          <div class="employee-box">
-            <label for="employeeSelect">👤 Calling As:</label>
-            <select id="employeeSelect" class="form-select">
-              <option value="Munim (Founder)">Munim (Founder)</option>
-              <option value="Fahim (Manager)">Fahim (Manager)</option>
-              <option value="Agent 1">Agent 1</option>
-              <option value="Agent 2">Agent 2</option>
-            </select>
-          </div>
-
-          <button id="templatesBtn" class="btn btn-outline" title="Open 1-Click WhatsApp Outreach Scripts">
-            💬 Pitch Scripts
+          <button id="resetBtn" class="btn btn-outline" title="Reset dataset to reload all 859 centers">
+            🔄 Load All 859 Centers
           </button>
-
-          <button id="exportBtn" class="btn btn-outline" title="Export updated data as JSON">
+          <button id="exportBtn" class="btn btn-outline" title="Export updated status & notes as JSON">
             📥 Export Data
           </button>
         </div>
@@ -95,7 +83,7 @@
           <div class="stat-icon icon-teal">🎓</div>
           <div class="stat-info">
             <span class="stat-value" id="statStudents">0</span>
-            <span class="stat-label">Student Referrals</span>
+            <span class="stat-label">Total Students</span>
           </div>
         </div>
       </section>
@@ -146,10 +134,11 @@
           <button class="tab-btn active" data-status="ALL">All (<span id="countAll">0</span>)</button>
           <button class="tab-btn tab-eager" data-status="Eager">🔥 Eager (<span id="countEager">0</span>)</button>
           <button class="tab-btn tab-followup" data-status="FollowUp">📞 Follow Up (<span id="countFollowUp">0</span>)</button>
-          <button class="tab-btn tab-new" data-status="New">🆕 New / Uncontacted (<span id="countNew">0</span>)</button>
+          <button class="tab-btn tab-new" data-status="New">🆕 New Lead (<span id="countNew">0</span>)</button>
           <button class="tab-btn tab-cold" data-status="Cold">❄️ Cold (<span id="countCold">0</span>)</button>
           <button class="tab-btn tab-partnered" data-status="Partnered">🤝 Partnered (<span id="countPartnered">0</span>)</button>
-          <button class="tab-btn tab-today" data-status="TODAY">📅 Today's Calls (<span id="countToday">0</span>)</button>
+          <button class="tab-btn tab-today" data-status="TODAY">📅 Callback Today (<span id="countToday">0</span>)</button>
+          <button class="tab-btn tab-logged" data-status="LOGGED" style="color:var(--primary)">📝 Logged Calls (<span id="countLogged">0</span>)</button>
         </div>
 
         <!-- Pagination Controls -->
@@ -192,148 +181,25 @@
           </div>
 
           <div class="add-note-form">
-            <label for="modalNoteInput" class="form-label">Add Call Log / Conversation Note:</label>
-            <textarea id="modalNoteInput" class="form-textarea" rows="3" placeholder="Enter details of conversation, student count, requirements, etc..."></textarea>
+            <label for="modalNoteInput" class="form-label">✍️ Add Call Log / Agency Response:</label>
+            <textarea id="modalNoteInput" class="form-textarea" rows="3" placeholder="Enter what the agency responded, student availability, fee requirements, etc..."></textarea>
             
             <div class="form-row mt-2">
               <div class="col">
-                <label for="modalFollowUpDate" class="form-label">Set Next Follow-Up Date:</label>
+                <label for="modalFollowUpDate" class="form-label">Set Next Callback Date (Optional):</label>
                 <input type="date" id="modalFollowUpDate" class="form-input">
               </div>
               <div class="col col-auto flex-end">
-                <button id="saveNoteBtn" class="btn btn-primary">💾 Save Log & Status</button>
+                <button id="saveNoteBtn" class="btn btn-primary">💾 Save Call Log</button>
               </div>
             </div>
           </div>
 
           <div class="logs-history mt-4">
-            <h4>📜 Conversation History</h4>
+            <h4>📜 Call History & Notes</h4>
             <div id="logsList" class="logs-list">
               <!-- Logs populated here -->
             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal for Adding Student Referral -->
-    <div id="studentModal" class="modal-overlay hidden">
-      <div class="modal-card">
-        <div class="modal-header">
-          <h3>🎓 Add Student Referral for <span id="studentCenterName">Center</span></h3>
-          <button id="closeStudentModalBtn" class="close-btn">&times;</button>
-        </div>
-        <div class="modal-body">
-          <form id="studentForm" class="add-student-form">
-            <div class="form-row">
-              <div class="col">
-                <label for="stuName" class="form-label">Student Full Name *</label>
-                <input type="text" id="stuName" class="form-input" required placeholder="e.g. Tanvir Ahmed">
-              </div>
-              <div class="col">
-                <label for="stuPhone" class="form-label">Student Phone *</label>
-                <input type="tel" id="stuPhone" class="form-input" required placeholder="+88017...">
-              </div>
-            </div>
-
-            <div class="form-row mt-2">
-              <div class="col">
-                <label for="stuCountry" class="form-label">Target Country</label>
-                <select id="stuCountry" class="form-select">
-                  <option value="South Korea">🇰🇷 South Korea (Primary)</option>
-                  <option value="Malaysia">🇲🇾 Malaysia</option>
-                  <option value="Japan">🇯🇵 Japan</option>
-                  <option value="Germany">🇩🇪 Germany</option>
-                  <option value="UK">🇬🇧 United Kingdom</option>
-                </select>
-              </div>
-              <div class="col">
-                <label for="stuProgram" class="form-label">Program / Major</label>
-                <input type="text" id="stuProgram" class="form-input" placeholder="e.g. Computer Science / EAP">
-              </div>
-            </div>
-
-            <div class="form-row mt-2">
-              <div class="col">
-                <label for="stuIelts" class="form-label">IELTS Score</label>
-                <input type="text" id="stuIelts" class="form-input" placeholder="e.g. 6.5 or No IELTS">
-              </div>
-              <div class="col">
-                <label for="stuCommission" class="form-label">Commission (BDT)</label>
-                <input type="number" id="stuCommission" class="form-input" value="5000">
-              </div>
-            </div>
-
-            <div class="form-row mt-2">
-              <div class="col">
-                <label for="stuStage" class="form-label">Application Stage</label>
-                <select id="stuStage" class="form-select">
-                  <option value="Inquiry">Inquiry</option>
-                  <option value="Documents Collected">Documents Collected</option>
-                  <option value="Offer Received">Offer Received</option>
-                  <option value="Visa Issued">Visa Issued</option>
-                  <option value="Enrolled">Enrolled</option>
-                </select>
-              </div>
-              <div class="col">
-                <label for="stuCommissionStatus" class="form-label">Commission Payout</label>
-                <select id="stuCommissionStatus" class="form-select">
-                  <option value="Pending">Pending (৳5,000)</option>
-                  <option value="Paid">Paid</option>
-                  <option value="Unearned">Unearned</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-row mt-4">
-              <button type="submit" id="saveStudentBtn" class="btn btn-primary" style="width: 100%">💾 Save Student Referral</button>
-            </div>
-          </form>
-
-          <div class="mt-4">
-            <h4>📋 Existing Student Referrals for this Center</h4>
-            <div id="studentReferralsList" class="logs-list">
-              <!-- Rendered referrals -->
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Modal for 1-Click WhatsApp Scripts -->
-    <div id="templatesModal" class="modal-overlay hidden">
-      <div class="modal-card">
-        <div class="modal-header">
-          <h3>💬 1-Click WhatsApp & Call Outreach Templates</h3>
-          <button id="closeTemplatesModalBtn" class="close-btn">&times;</button>
-        </div>
-        <div class="modal-body">
-          <div class="template-item">
-            <div class="template-header">
-              <h4>1. South Korea Student Referral Partnership (Bangla Pitch)</h4>
-              <button class="btn btn-sm btn-primary copy-tpl-btn" data-template="tpl1">📋 Copy Text</button>
-            </div>
-            <textarea id="tpl1" class="form-textarea" rows="5" readonly>আসসালামু আলাইকুম। আমি হাসিবুল মুনিম, ফাউন্ডার - কীস্টোন এডুকেশন কনসালটেন্সি থেকে বলছি।
-
-আপনার কোচিং সেন্টারের যেসব ছাত্র-ছাত্রী সাউথ কোরিয়ায় অনার্স বা ইএপি স্কলারশিপে যেতে চায়, তাদের স্পেশাল এডমিশন সাপোর্ট ও প্রসেসিংয়ের জন্য আমরা বিটুবি পার্টনারশিপ নিচ্ছি। 
-
-প্রতি সফল এডমিশনে কোচিং সেন্টারের জন্য ৳৫,০০০+ আকর্ষণীয় কমিশন ও ফ্রি গাইডলাইন থাকবে। আপনি কি এই সপ্তাহে একটি সংক্ষিপ্ত ফ্রি সেমিনার অথবা মিটিংয়ের আয়োজন করতে আগ্রহী?</textarea>
-          </div>
-
-          <div class="template-item mt-3">
-            <div class="template-header">
-              <h4>2. Follow-Up Script for Eager Centers (Bangla)</h4>
-              <button class="btn btn-sm btn-primary copy-tpl-btn" data-template="tpl2">📋 Copy Text</button>
-            </div>
-            <textarea id="tpl2" class="form-textarea" rows="4" readonly>আসসালামু আলাইকুম স্যার, গত মিটিংয়ের কথানুযায়ী সাউথ কোরিয়ার মার্চ ২০২৭ সেশনের জন্য স্টুডেন্টদের তালিকা ও ডক্যুমেন্ট সাবমিট করার লিংক নিচে দেওয়া হলো। আপনার ২/৩ জন আগ্রহীর তথ্য পাঠালে আমরা ফ্রিতে অ্যাসেসমেন্ট করে দেব। ধন্যবাদ!</textarea>
-          </div>
-
-          <div class="template-item mt-3">
-            <div class="template-header">
-              <h4>3. B2B Outreach Proposal (English Summary)</h4>
-              <button class="btn btn-sm btn-primary copy-tpl-btn" data-template="tpl3">📋 Copy Text</button>
-            </div>
-            <textarea id="tpl3" class="form-textarea" rows="4" readonly>Dear Director, Keystone Education Consultancy offers lucrative B2B partnership programs for language & IELTS centers. Earn BDT 5,000 per student enrollment for South Korea, Malaysia, and European universities with 100% processing support. Let's schedule a brief 5-min call today.</textarea>
           </div>
         </div>
       </div>
