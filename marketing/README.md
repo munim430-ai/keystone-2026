@@ -29,7 +29,6 @@ marketing/
 ```
 Plus, at repo root:
 - `bots/followup_scheduler.js` — **Fix B**, the real day0/2/5/7 sender (Evolution API). Verified end-to-end.
-- `bots/wa_bot_marina.js` — now enqueues follow-ups instead of the old `console.log` stub.
 - `bots/fb_poster.py` — **Fix A**: set `HF_API_TOKEN` + `FB_PAGE_TOKEN` and it posts.
 
 ## Start here
