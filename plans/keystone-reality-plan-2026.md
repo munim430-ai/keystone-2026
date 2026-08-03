@@ -1,5 +1,5 @@
 # 🔴 KEYSTONE EDUCATION — REALITY-ADJUSTED PLAN 2026
-**Founder:** Hasibul Munim | **Date:** 18 July 2026 | **Status:** SURVIVAL MODE
+**Founder:** Hasibul Munim | **Date:** 18 July 2026 | **Status:** SURVIVAL MODE (Founder Self-Outreach)
 
 > ⚠️ **FOUNDER, THIS IS WRONG:** You want "every corridor, every country." With 1 student in 4 months and scraping for cash, you cannot be everything to everyone. You will be nothing to no one. This plan forces Korea-first. Everything else is Phase 2.
 
@@ -13,7 +13,7 @@
 - You are operating at **12.5% of survival capacity**
 - Cash: scraping (means near-zero)
 - Legal entity: union parishad sole prop (not investor-ready)
-- Team: you + Fahim + Marina (starting Aug 1)
+- Team: Founder (Hasibul) + Fahim
 
 **The multi-corridor fantasy:**
 You said: *"I want to focus on every corridor. Every foreign nation. That's why I have ApplyBoard."*
@@ -46,9 +46,8 @@ This means:
 - No buffer for mistakes
 
 **The plan assumes ৳0 marketing spend.** Every taka goes to:
-1. Marina's base salary (৳10k/month)
-2. Variable costs per student (DHL, embassy, etc. ~৳40k)
-3. Your survival (৳50k/month)
+1. Variable costs per student (DHL, embassy, etc. ~৳40k)
+2. Your survival (৳50k/month)
 
 **You need 1 student in August to survive September.**
 **You need 2 students/month by October to breathe.**
@@ -73,13 +72,13 @@ You don't have cash. So:
 **You placed 1 student in 4 months. Why?**
 
 Possible reasons (be honest with yourself):
-1. **Not enough leads?** → Fix marketing (Marina's job)
+1. **Not enough leads?** → Fix marketing & B2B outreach (Founder's job)
 2. **Leads not converting?** → Fix sales script/pricing/trust
 3. **Files getting rejected?** → Fix quality control
 4. **Pricing too high?** → You already charge ৳120k vs industry ৳250k. Not the problem.
 5. **Not enough time selling?** → You are building software instead of selling. **THIS IS THE PROBLEM.**
 
-**The diagnosis:** You are a builder, not a seller. Fahim is a builder, not a seller. Marina MUST be a seller. If she is not, fire her and find one who is.
+**The diagnosis:** You are a builder, not a seller. But now you MUST be the main seller.
 
 ---
 
@@ -90,17 +89,15 @@ Possible reasons (be honest with yourself):
 **If this fails, the business is a hobby. Pivot or shut down.**
 
 **Week 1 (Aug 1–7):**
-- [ ] Marina onboarded, trained, making calls DAY 1
-- [ ] Founder stops ALL coding. ALL building. ALL product work.
+- [ ] Founder stops ALL non-essential coding and product work.
 - [ ] Founder makes 10 sales calls/day personally (lead by example)
-- [ ] Deploy IELTS scraper (manual fallback if no API key)
+- [ ] Deploy IELTS scraper and CRM system
 - [ ] Fix Facebook auto-poster (Hugging Face token — get it TONIGHT)
-- [ ] Claim Google Business Profile Narsingdi
-- [ ] Post "Keystone Narsingdi is open" on ALL channels
+- [ ] Post "Keystone Education is open for admissions" on ALL channels
 - [ ] Submit Adventus 9 onboarding items (use existing docs)
 
 **Week 2 (Aug 8–14):**
-- [ ] Marina: 50 IELTS institute calls
+- [ ] Founder: 50 IELTS institute calls across districts
 - [ ] Founder: 10 sales calls/day to old leads, Facebook inquiries, referrals
 - [ ] Book 3 college seminars for August
 - [ ] Post "5 Questions to Ask Your Agency" series (whistleblower play)
@@ -108,16 +105,16 @@ Possible reasons (be honest with yourself):
 - [ ] File trade licence scope upgrade (৳5k–10k)
 
 **Week 3 (Aug 15–21):**
-- [ ] Marina delivers first college seminar
-- [ ] Founder joins ALL sales calls (listen, coach, close)
+- [ ] Founder delivers first college seminar
+- [ ] Founder handles ALL sales calls (listen, coach, close)
 - [ ] Launch "Document Audit" service (৳2,000 — steal competitors' customers)
 - [ ] First ApplyBoard application submission
 - [ ] Post daily. No excuses.
 
 **Week 4 (Aug 22–31):**
-- [ ] Marina delivers second college seminar
-- [ ] First B2B IELTS partnership signed (even if informal)
-- [ ] **EMERGENCY:** If zero leads by Aug 20, founder personally visits 10 colleges
+- [ ] Founder delivers second college seminar
+- [ ] First B2B IELTS partnership signed
+- [ ] **EMERGENCY:** If zero leads by Aug 20, founder personally visits 10 colleges & IELTS centers
 - [ ] Financial review: Can we survive September?
 - [ ] **TARGET: 1 student enrolled OR 3 qualified leads with milestone payments**
 
@@ -128,9 +125,8 @@ Possible reasons (be honest with yourself):
 - [ ] Scale what worked in August. Kill what didn't.
 - [ ] Launch "Fraud Victim Recovery" campaign
 - [ ] First video testimonial (from the 1 student you placed, or current applicant)
-- [ ] Recruit 1 campus rep from top Narsingdi college
-- [ ] If 1+ student enrolled: raise Marina base to ৳12k
-- [ ] If 0 students enrolled: EMERGENCY — founder takes over ALL sales
+- [ ] Recruit 1 campus rep from top college
+- [ ] If 0 students enrolled: EMERGENCY — founder takes over ALL sales personally
 
 ### OCTOBER 2026 — BREATHE OR DIE
 **Goal: 2 enrolled students. Revenue: ৳240k.**
@@ -162,11 +158,11 @@ Possible reasons (be honest with yourself):
 
 ---
 
-## THE FOUNDER'S WEEKLY SCHEDULE (From Aug 1)
+## THE FOUNDER'S WEEKLY SCHEDULE
 
 | Day | Morning (10–14) | Afternoon (15–18) | Evening (19–21) |
 |---|---|---|---|
-| **Saturday** | Sales calls (10) | College visit with Marina | Review week, plan next |
+| **Saturday** | Sales calls (10) | College & center visits | Review week, plan next |
 | **Sunday** | Sales calls (10) | Facebook content creation | Post scheduling |
 | **Monday** | Sales calls (10) | IELTS institute visit | Lead tracker review |
 | **Tuesday** | Sales calls (10) | College seminar delivery | Follow-up calls |
@@ -174,47 +170,14 @@ Possible reasons (be honest with yourself):
 | **Thursday** | Sales calls (10) | College visit | B2B partnership calls |
 | **Friday** | OFF (rest) | OFF | Weekly report to self |
 
-**10 sales calls/day × 6 days = 60 calls/week = 240 calls/month**
-**At 5% conversion = 12 qualified leads/month**
-**At 25% close rate = 3 enrolled students/month**
-
-**This is the math. There is no shortcut.**
-
 ---
 
 ## KILL CRITERIA (Updated)
 
-1. **By 31 August 2026:** Zero enrolled students. → **Shut down or pivot to pure B2B (sell DocuMetrix/Folio to other agencies).**
+1. **By 31 August 2026:** Zero enrolled students. → **Shut down or pivot to pure B2B SaaS.**
 2. **By 30 September 2026:** Fewer than 2 total enrolled students in 2026. → **Shut down. The market doesn't want what you're selling.**
 3. **By 31 December 2026:** Fewer than 6 total enrolled students. → **Shut down. This is a hobby, not a business.**
 4. **Any month with zero leads generated:** → **Founder takes over ALL sales personally. No more delegation.**
-5. **Marina quits or underperforms by Aug 31:** → **Hire a sales-first person, not an English major.**
-
----
-
-## THE MULTI-CORRIDOR VISION (Phase 2, Not Now)
-
-You want every country. I get it. Here's the honest path:
-
-**Year 1 (2026):** Korea ONLY. 24 students. ৳2.88M revenue. Prove the model.
-**Year 2 Q1 (2027):** Add Malaysia via Adventus. Same Asian corridor. Same document logic. 10 students.
-**Year 2 Q2 (2027):** Add Canada via ApplyBoard. PASSIVE ONLY. No marketing. When student asks, you can process. 5 students.
-**Year 2 Q3 (2027):** Add UK/Europe via ApplyBoard. PASSIVE ONLY. 3 students.
-**Year 3 (2028):** If Korea is humming at 3+/month, hire a Malaysia specialist. Then a Canada specialist. Then you become the platform.
-
-**You do NOT get to be a platform before you are a profitable consultancy.**
-
-ApplyBoard is your BACKUP. Not your PRIMARY. Your primary is your 9 years in Korea. That is the asset. Everything else is a distraction until Korea prints cash.
-
----
-
-## WHAT I NEED FROM YOU TO SHARPEN THIS
-
-1. **Why only 1 student in 4 months?** Be brutally honest. Was it leads, conversion, quality, or time?
-2. **How many old leads do you have** that never converted? (Call them NOW.)
-3. **What is your EXACT cash position** right now? (How many months can you survive with zero revenue?)
-4. **Will you commit to 10 sales calls/day** starting August 1? (Yes/No. If No, this plan is invalid.)
-5. **Can Marina commit to 5 calls/day + 1 post/day?** (If No, find someone who can.)
 
 ---
 
