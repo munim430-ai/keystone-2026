@@ -1,4 +1,4 @@
-// KEYSTONE B2B OUTREACH CRM - STANDALONE APP LOGIC
+// KEYSTONE B2B OUTREACH CRM - STANDALONE APP LOGIC (PHONE DIALER ONLY)
 const STORAGE_KEY = 'KEYSTONE_B2B_CRM_CENTERS_V2';
 
 const STATE = {
@@ -335,11 +335,9 @@ function renderApp() {
   attachCardEvents();
 }
 
+// Strictly Native Phone Dialer Button (tel: scheme)
 function renderCenterCardHTML(center) {
   const cleanPhone = center.phone ? center.phone.replace(/[^0-9+]/g, '') : '';
-  const hasWhatsapp = cleanPhone.startsWith('+8801') || cleanPhone.startsWith('01');
-  const waUrl = hasWhatsapp ? `https://wa.me/${cleanPhone.replace('+', '')}?text=Hello%20${encodeURIComponent(center.name)},%20this%20is%20${encodeURIComponent(STATE.currentEmployee)}%20from%20Keystone%20Education%20Consultancy.` : '#';
-
   const statusClass = `status-${center.status}`;
   const badgeClass = `badge-${center.status}`;
 
@@ -365,12 +363,13 @@ function renderCenterCardHTML(center) {
         ${studentCount > 0 ? `<div class="contact-item"><span>🎓 Referrals:</span> <strong style="color:var(--color-teal)">${studentCount} Students</strong></div>` : ''}
       </div>
 
+      <!-- Action Buttons: Native Phone Dialer Link (tel:) only -->
       <div class="action-buttons-row">
-        ${cleanPhone ? `<a href="tel:${cleanPhone}" class="btn-contact btn-call" title="Call directly">📞 Call</a>` : ''}
-        ${hasWhatsapp ? `<a href="${waUrl}" target="_blank" class="btn-contact btn-whatsapp" title="Open WhatsApp">💬 WhatsApp</a>` : ''}
+        ${cleanPhone ? `<a href="tel:${cleanPhone}" class="btn-contact btn-call" title="Open Phone Dialer">📞 Call Phone Dialer</a>` : ''}
         ${center.url ? `<a href="${center.url}" target="_blank" class="btn-contact btn-source" title="Open Facebook / Google Maps">🔗 Link</a>` : ''}
       </div>
 
+      <!-- EMPLOYEE DECISION ACTION BAR (CORE) -->
       <div class="decision-bar">
         <span class="decision-label">Employee Call Decision:</span>
         <div class="decision-options">
