@@ -13,7 +13,7 @@ Replaces the Google Sheets CRM (Strategy §5, §9). Create one NocoDB **base** =
 | IELTS | SingleLineText | score or "নেই" |
 | HSC_Year | Number | |
 | Stage | SingleSelect | **Lead → Qualified → Counselling → Docs → AuditGate → Submitted → Visa → Enrolled → Departed** |
-| Assigned_To | SingleSelect | Marina, Hasibul, Fahim |
+| Assigned_To | SingleSelect | Hasibul, Fahim |
 | University | SingleLineText | from Korea_Master_University_List |
 | Referred_By | LinkToRecord → Students | for the ৳10k referral payout |
 | Next_Action | SingleLineText | |
@@ -23,17 +23,10 @@ Replaces the Google Sheets CRM (Strategy §5, §9). Create one NocoDB **base** =
 The **Stage** field is the Kanban view and the funnel KPI source (§9). `AuditGate`
 links to the existing `audit-system/` — nothing is submitted on a red verdict.
 
-## 2. `B2B_Partners` (the 859-center engine, §6)
+## 2. `B2B_Partners` (the 856+ center engine, §6)
 Columns match `seed_b2b_from_csv.py`: `Center_Name, District, WhatsApp_Mobile,
 Source_URL, Priority (1-3), Status (new/contacted/interested/signed/dead), Owner,
 Last_contact (Date), Referrals (Number), Commission_due_bdt (Number)`.
-Seed it with `python3 seed_b2b_from_csv.py --base-url … --table-id … --token …`.
-
-> ⚑ **Coverage gap found in the CSV:** it contains **0 centers in Narsingdi or
-> Gazipur** (the home offices), and is strongest in Mymensingh (33), Kishoreganj
-> (27), Tangail (13) + nationwide. **Build the home-district list separately** with
-> `gosom/google-maps-scraper` (query "IELTS center Narsingdi", "study abroad Gazipur")
-> and import it at Priority 1. The national rows are best worked by WhatsApp/phone.
 
 ## 3. `Content` (the posting calendar, §3–4)
 | Column | Type | Notes |
