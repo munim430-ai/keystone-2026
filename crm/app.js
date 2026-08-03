@@ -3,7 +3,7 @@
 let centers = [];
 let students = [];
 let selectedId = null; // selected center ID
-let currentView = 'table'; // 'table' | 'students' | 'kanban' | 'ledger'
+let currentView = 'mobile'; // 'mobile' | 'table' | 'students' | 'kanban' | 'ledger'
 let currentScriptTab = 'call';
 
 const STORAGE_KEY_CENTERS = 'keystone_bd_b2b_crm_v3_centers';
@@ -280,7 +280,11 @@ function populateStudentCenterSelect() {
 function switchView(view) {
   currentView = view;
   document.querySelectorAll('.nav-tab-btn').forEach(btn => btn.classList.remove('active'));
-  document.getElementById(`tab-btn-${view}`).classList.add('active');
+  const activeBtn = document.getElementById(`tab-btn-${view}`);
+  if (activeBtn) activeBtn.classList.add('active');
+
+  const mobileContainer = document.getElementById('view-mobile');
+  if (mobileContainer) mobileContainer.style.display = view === 'mobile' ? 'flex' : 'none';
 
   document.getElementById('view-table').style.display = view === 'table' ? 'flex' : 'none';
   document.getElementById('view-students').style.display = view === 'students' ? 'flex' : 'none';
@@ -332,7 +336,9 @@ function renderApp() {
   const filteredCenters = getFilteredCenters();
   document.getElementById('filtered-count').textContent = filteredCenters.length;
 
-  if (currentView === 'table') {
+  if (currentView === 'mobile') {
+    renderMobileView(filteredCenters);
+  } else if (currentView === 'table') {
     renderTableView(filteredCenters);
   } else if (currentView === 'students') {
     renderStudentsView();
@@ -341,6 +347,101 @@ function renderApp() {
   } else if (currentView === 'ledger') {
     renderLedgerView(filteredCenters);
   }
+}
+
+// Render 0. Mobile Outreach Card Mode for Employees
+function renderMobileView(filtered) {
+  const container = document.getElementById('mobile-cards-container');
+  if (!container) return;
+  container.innerHTML = '';
+
+  if (filtered.length === 0) {
+    container.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 2rem; background: var(--bg-card); border-radius: var(--radius-md);">No coaching centers found matching your filter. Try selecting "All Districts" or clearing search.</div>`;
+    return;
+  }
+
+  const displayList = filtered.slice(0, 100);
+
+  displayList.forEach(c => {
+    const primaryClean = c.phone ? c.phone.replace(/[^0-9+]/g, '') : '';
+    const primaryWA = primaryClean.startsWith('+88') ? primaryClean.replace('+', '') : (primaryClean.startsWith('0') ? '88' + primaryClean : primaryClean);
+
+    const altClean = c.altPhone ? c.altPhone.replace(/[^0-9+]/g, '') : '';
+    const altWA = altClean.startsWith('+88') ? altClean.replace('+', '') : (altClean.startsWith('0') ? '88' + altClean : altClean);
+
+    const card = document.createElement('div');
+    card.className = `mobile-outreach-card ${c.id === selectedId ? 'selected' : ''}`;
+    card.style.cssText = 'background: rgba(15, 23, 42, 0.95); border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 1rem; position: relative; box-shadow: 0 4px 15px rgba(0,0,0,0.3);';
+
+    card.innerHTML = `
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem;">
+        <div>
+          <span class="badge badge-district" style="font-size: 0.8rem; margin-bottom: 0.25rem;">📍 ${escapeHtml(c.district)} District</span>
+          <h3 style="font-size: 1.1rem; font-weight: 700; color: white; margin-top: 0.25rem; line-height: 1.3;">${escapeHtml(c.name)}</h3>
+          ${c.contactPerson ? `<div style="font-size: 0.85rem; color: #cbd5e1; margin-top: 0.2rem;">👤 Contact: <strong>${escapeHtml(c.contactPerson)}</strong> ${c.designation ? `(${escapeHtml(c.designation)})` : ''}</div>` : ''}
+        </div>
+        <span class="badge ${getStatusBadgeClass(c.status)}" style="font-size: 0.85rem; padding: 0.3rem 0.6rem;">${c.status}</span>
+      </div>
+
+      <!-- GIANT EASY-TAP CALL & WHATSAPP BUTTONS -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; margin: 0.85rem 0;">
+        ${c.phone ? `
+          <a href="tel:${primaryClean}" class="btn btn-primary" style="justify-content: center; padding: 0.75rem; font-size: 0.95rem; font-weight: 700; text-decoration: none; border-radius: 8px;">
+            <i class="fa-solid fa-phone" style="font-size: 1.1rem;"></i> 📞 CALL NOW
+          </a>
+          <a href="https://wa.me/${primaryWA}?text=${encodeURIComponent('আসসালামু আলাইকুম! কিস্টোন এডুকেশন থেকে B2B রেফারেল পার্টনারশিপ নিয়ে কথা বলতে চাচ্ছি।')}" target="_blank" class="btn btn-emerald" style="justify-content: center; padding: 0.75rem; font-size: 0.95rem; font-weight: 700; text-decoration: none; border-radius: 8px; background: #16a34a; color: white;">
+            <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> 💬 WHATSAPP
+          </a>
+        ` : `<div style="grid-column: span 2; color: #94a3b8; font-style: italic; text-align: center;">No phone listed for this center</div>`}
+      </div>
+
+      ${c.altPhone ? `
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 0.85rem;">
+          <a href="tel:${altClean}" class="btn btn-secondary btn-sm" style="flex: 1; justify-content: center; padding: 0.5rem;">
+            <i class="fa-solid fa-phone-flip"></i> Call Alt: ${escapeHtml(c.altPhone)}
+          </a>
+          <a href="https://wa.me/${altWA}" target="_blank" class="btn btn-emerald btn-sm" style="flex: 1; justify-content: center; padding: 0.5rem;">
+            <i class="fa-brands fa-whatsapp"></i> WA Alt Number
+          </a>
+        </div>
+      ` : ''}
+
+      <!-- 1-TAP QUICK STATUS ACTION BUTTONS -->
+      <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; background: rgba(30, 41, 59, 0.7); padding: 0.65rem; border-radius: 8px; margin-top: 0.5rem;">
+        <button class="btn btn-emerald btn-sm" onclick="quickUpdateStatus('${c.id}', 'Contacted')" style="flex: 1; min-width: 120px; justify-content: center; font-weight: 600;">
+          <i class="fa-solid fa-circle-check"></i> ✅ Mark Contacted
+        </button>
+        <button class="btn btn-amber btn-sm" onclick="quickUpdateStatus('${c.id}', 'Interested')" style="flex: 1; min-width: 120px; justify-content: center; font-weight: 600;">
+          <i class="fa-solid fa-star"></i> ⭐ Interested
+        </button>
+        <button class="btn btn-secondary btn-sm" onclick="selectCenter('${c.id}')" style="justify-content: center;">
+          <i class="fa-solid fa-message"></i> Notes (${Array.isArray(c.notes) ? c.notes.length : 0})
+        </button>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+
+function quickUpdateStatus(id, newStatus) {
+  const c = centers.find(item => item.id === id);
+  if (!c) return;
+
+  const today = new Date().toISOString().split('T')[0];
+  c.status = newStatus;
+  c.lastContact = today;
+
+  if (!Array.isArray(c.notes)) c.notes = [];
+  c.notes.unshift({
+    date: new Date().toLocaleString(),
+    text: `📱 Employee marked status as ${newStatus} on ${today}`
+  });
+
+  saveToStorage();
+  syncSingleCenterToCloud(c);
+  renderApp();
+  showToast(`Updated status of ${c.name} to ${newStatus}`);
 }
 
 // Update Top KPI Counters
@@ -978,11 +1079,11 @@ function renderScript() {
   let text = '';
 
   if (currentScriptTab === 'call') {
-    text = `📞 FOUNDER COLD CALL PITCH (To ${centerName}, ${district}):
+    text = `📞 OUTREACH CALL PITCH (To ${centerName}, ${district}):
 
-"আসসালামু আলাইকুম! আমি হাসিবুল, কিস্টোন এডুকেশন থেকে সরাসরি ফাউন্ডার হিসেবে বলছি। আমরা ${district} জেলায় আপনার সেন্টারের সাথে একটি এক্সক্লুসিভ B2B রেফারেল পার্টনারশিপের জন্য নক করেছি। আপনার সেন্টারের ${person}-এর সাথে একটু কথা বলতে চাই।
+"আসসালামু আলাইকুম! আমি কিস্টোন এডুকেশন থেকে বলছি। আমরা ${district} জেলায় আপনার সেন্টারের সাথে একটি এক্সক্লুসিভ B2B রেফারেল পার্টনারশিপের জন্য নক করেছি। আপনার সেন্টারের ${person}-এর সাথে একটু কথা বলতে চাই।
 
-আমরা দেখেছি আপনারা ${district}-এ IELTS ও ল্যাঙ্গুয়েজ কোচিং করাচ্ছেন। আপনাদের অনেক স্টুডেন্ট সাউথ কোরিয়া, মালয়েশিয়া বা কানাডায় উচ্চশিক্ষার জন্য যেতে চায়। আমি নিজে কোরিয়াতে ৯ বছর কাটিয়েছি এবং বিশ্ববিদ্যালয় ভর্তি সরাসরি পরিচালনা করি।
+আমরা দেখেছি আপনারা ${district}-এ IELTS ও ল্যাঙ্গুয়েজ কোচিং করাচ্ছেন। আপনাদের অনেক স্টুডেন্ট সাউথ কোরিয়া, মালয়েশিয়া বা কানাডায় উচ্চশিক্ষার জন্য যেতে চায়। 
 
 আমরা অফার করছি:
 আপনার সেন্টার থেকে যেকোনো স্টুডেন্ট আমাদের কাছে রেফার করলে এবং তাদের ভর্তি/ভিসা সম্পন্ন হলে, আমরা আপনাকে প্রতি ভর্তি স্টুডেন্টে ৳৫,০০০ – ৳১০,০০০ স্পট কমিশন দিব। 
@@ -996,7 +1097,7 @@ function renderScript() {
 
 আসসালামু আলাইকুম ${person}! 
 
-আমি হাসিবুল, ফাউন্ডার - কিস্টোন এডুকেশন। 
+আমি কিস্টোন এডুকেশন থেকে বলছি। 
 
 ${district} জেলার অন্যতম শীর্ষ কোচিং সেন্টারের সাথে B2B রেফারেল পার্টনারশিপের জন্য আপনাকে নক করেছি।
 
@@ -1018,7 +1119,7 @@ ${district} জেলার অন্যতম শীর্ষ কোচিং �
 
 আসসালামু আলাইকুম ${person}! 
 
-আশা করি ভালো আছেন। হাসিবুল বলছি, কিস্টোন এডুকেশন থেকে। 
+আশা করি ভালো আছেন। কিস্টোন এডুকেশন থেকে বলছি। 
 
 একটি কুইক ফলো-আপ — আপনার ${centerName} থেকে যদি মাসে মাত্র ২ জন স্টুডেন্টও আমাদের কাছে কোরিয়া বা মালয়েশিয়ার জন্য রেফার হয়, আপনার সেন্টারের অতিরিক্ত বোনাস ইনকাম ৳১০,০০০ - ৳২০,০০০/মাস!
 
@@ -1029,10 +1130,10 @@ ${district} জেলার অন্যতম শীর্ষ কোচিং �
 📞 সরাসরি ফোন: 01328-224600`;
 
   } else if (currentScriptTab === 'objection') {
-    text = `🛡️ FOUNDER OBJECTION HANDLERS:
+    text = `🛡️ OUTREACH OBJECTION HANDLERS:
 
 1️⃣ Objection: "আপনাদের কেন বিশ্বাস করবো?"
-👉 "আমি নিজে সাউথ কোরিয়াতে ৯ বছর কাটিয়েছি এবং বিশ্ববিদ্যালয়ের সাথে আমাদের সরাসরি নেটওয়ার্ক রয়েছে। আমরা কোনো অগ্রিম ফি নিই না — ভিসা না হলে কোনো টাকা দিতে হয় না। আপনি নিজে studyinkorea.go.kr থেকে সব তথ্য যাচাই করতে পারবেন।"
+👉 "আমাদের ফাউন্ডার সাউথ কোরিয়াতে ৯ বছর কাটিয়েছেন এবং বিশ্ববিদ্যালয়ের সাথে আমাদের সরাসরি নেটওয়ার্ক রয়েছে। আমরা কোনো অগ্রিম ফি নিই না — ভিসা না হলে কোনো টাকা দিতে হয় না। আপনি নিজে studyinkorea.go.kr থেকে সব তথ্য যাচাই করতে পারবেন।"
 
 2️⃣ Objection: "আমরা তো অন্য এজেন্সির সাথে অলরেডি কাজ করি।"
 👉 "আমরা আপনার বর্তমান এজেন্সির বিকল্প হতে চাই না, বরং আপনার স্টুডেন্টদের জন্য একটা বিশ্বস্ত অতিরিক্ত অপশন তৈরি করতে চাই। বিশেষ করে সাউথ কোরিয়ার EAP প্রোগ্রাম এবং IELTS স্কলারশিপ লেডারে আমরা সবচেয়ে দ্রুততম প্লেসমেন্ট দিই।"
@@ -1047,7 +1148,7 @@ ${district} জেলার অন্যতম শীর্ষ কোচিং �
 function copyCurrentScript() {
   const container = document.getElementById('script-container');
   navigator.clipboard.writeText(container.textContent).then(() => {
-    showToast('Founder outreach script copied!');
+    showToast('Outreach script copied!');
   });
 }
 
