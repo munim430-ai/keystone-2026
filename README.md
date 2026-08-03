@@ -14,16 +14,12 @@
 | `competitor-intel-report.md` | Full competitor teardown + 8 attack vectors + 8 zero-spend marketing tactics | Founder |
 | `keystone-master-plan-2026.md` | The 15-part master business plan (comprehensive) | Founder |
 | `keystone-reality-plan-2026.md` | **Survival edition** — forces Korea-first, stops all product builds | Founder |
-| `60-day-war-plan.md` | The execution plan. Daily calendar. Laziness antidote. Accountability system. | Founder + Marina |
+| `60-day-war-plan.md` | The execution plan. Daily calendar. Laziness antidote. Accountability system. | Founder |
 | `founder-daily-checklist.md` | **Printable daily checklist** — tape to your wall | Founder |
-| `marina-daily-checklist.md` | **Printable daily checklist** — Marina's first 30 days | Marina |
 | `scripts/ielts_scraper.py` | Scrape IELTS institutes across 64 Bangladesh districts | Founder/Fahim |
 | `scripts/fb_poster.py` | AI-powered Facebook auto-poster (Hugging Face SDXL) | Founder/Fahim |
-| `scripts/marina_dashboard.gs` | Google Apps Script — Marina's dashboard in Google Sheets | Founder |
-| `scripts/lead_tracker_template.csv` | Ready-to-use lead tracker | Founder + Marina |
-| `scripts/b2b_outreach_templates.md` | Phone scripts, SMS, college seminar pitch (Bangla + English) | Marina |
-| `scripts/marina_first_week_checklist.md` | Day-by-day first week guide for Marina | Marina |
-| `bots/wa_bot_marina.js` | WhatsApp bot enhancement for Marina branch | Fahim |
+| `scripts/lead_tracker_template.csv` | Ready-to-use lead tracker | Founder |
+| `scripts/b2b_outreach_templates.md` | Phone scripts, SMS, college seminar pitch (Bangla + English) | Founder |
 
 ---
 
@@ -33,14 +29,10 @@
 **Start here:** `keystone-reality-plan-2026.md` — this is the only plan that matters right now.
 
 ### 2. Print Your Checklist
-**Founder:** Print `founder-daily-checklist.md` — tape it to your phone/computer.  
-**Marina:** Print `marina-daily-checklist.md` — keep it on her desk.
+**Founder:** Print `founder-daily-checklist.md` — tape it to your phone/computer.
 
 ### 3. Set Up the Dashboard
-1. Create new Google Sheet: "Keystone — Marina Dashboard"
-2. Extensions → Apps Script
-3. Paste `scripts/marina_dashboard.gs`
-4. Run `initializeDashboard()`
+Use the interactive Nationwide B2B & Student Management CRM dashboard to track lead follow-ups and student applications.
 
 ### 4. Get Your Tokens (Tonight)
 - **Hugging Face:** https://huggingface.co/settings/tokens (free, no credit card)
@@ -79,7 +71,6 @@ Every hour spent on software is an hour stolen from sales. Sales = survival. Sof
 ## 📞 Accountability
 
 - **Founder:** 10 calls/day, Saturday–Thursday
-- **Marina:** 5 calls/day + 1 post/day, starting Aug 1
 - **Kill Criteria:** See `60-day-war-plan.md` → Kill Criteria section
 
 ---
