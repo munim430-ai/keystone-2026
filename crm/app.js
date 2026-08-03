@@ -25,6 +25,68 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 });
 
+// Load Centers & Students Datasets
+async function loadData() {
+  if (supabaseClient) {
+    await loadDataFromSupabase();
+  } else {
+    const savedCenters = localStorage.getItem(STORAGE_KEY_CENTERS);
+    const savedStudents = localStorage.getItem(STORAGE_KEY_STUDENTS);
+
+    if (savedCenters) {
+      try {
+        const parsed = JSON.parse(savedCenters);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          centers = parsed;
+        }
+      } catch (e) { console.error(e); }
+    }
+
+    if (savedStudents) {
+      try {
+        const parsed = JSON.parse(savedStudents);
+        if (Array.isArray(parsed)) {
+          students = parsed;
+        }
+      } catch (e) { console.error(e); }
+    }
+  }
+
+  // If centers is empty, fetch dataset from JSON file or GitHub Raw fallback
+  if (!centers || centers.length === 0) {
+    try {
+      const res = await fetch('all_bangladesh_centers.json');
+      if (res.ok) {
+        centers = await res.json();
+      } else {
+        throw new Error('Local JSON 404');
+      }
+    } catch (e) {
+      console.warn('Local dataset fetch failed, fetching GitHub raw fallback...', e);
+      try {
+        const rawRes = await fetch('https://raw.githubusercontent.com/munim430-ai/keystone-2026/main/crm/all_bangladesh_centers.json');
+        centers = await rawRes.json();
+      } catch (err) {
+        console.error('Failed to load raw fallback centers:', err);
+      }
+    }
+  }
+
+  if (!students || students.length === 0) {
+    try {
+      const res = await fetch('initial_students.json');
+      if (res.ok) students = await res.json();
+    } catch (e) { students = []; }
+  }
+
+  saveToStorage();
+}
+
+function saveToStorage() {
+  localStorage.setItem(STORAGE_KEY_CENTERS, JSON.stringify(centers));
+  localStorage.setItem(STORAGE_KEY_STUDENTS, JSON.stringify(students));
+}
+
 // Auto-switch View based on Device Screen Width (Mobile Outreach vs Desktop Full Dashboard)
 function autoDetectView() {
   const isMobile = window.innerWidth <= 768;
@@ -40,44 +102,6 @@ window.addEventListener('resize', () => {
     switchView('table');
   }
 });
-
-// Load Centers & Students Datasets
-async function loadData() {
-  if (supabaseClient) {
-    await loadDataFromSupabase();
-  } else {
-    const savedCenters = localStorage.getItem(STORAGE_KEY_CENTERS);
-    const savedStudents = localStorage.getItem(STORAGE_KEY_STUDENTS);
-
-    if (savedCenters) {
-      try { centers = JSON.parse(savedCenters); } catch (e) { console.error(e); }
-    }
-    if (savedStudents) {
-      try { students = JSON.parse(savedStudents); } catch (e) { console.error(e); }
-    }
-  }
-
-  if (centers.length === 0) {
-    try {
-      const res = await fetch('all_bangladesh_centers.json');
-      centers = await res.json();
-    } catch (e) { showToast('Failed to load centers dataset', 'error'); }
-  }
-
-  if (students.length === 0) {
-    try {
-      const res = await fetch('initial_students.json');
-      students = await res.json();
-    } catch (e) { students = []; }
-  }
-
-  saveToStorage();
-}
-
-function saveToStorage() {
-  localStorage.setItem(STORAGE_KEY_CENTERS, JSON.stringify(centers));
-  localStorage.setItem(STORAGE_KEY_STUDENTS, JSON.stringify(students));
-}
 
 // Supabase Cloud Synchronization & Settings
 function initSupabase() {
