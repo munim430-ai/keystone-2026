@@ -828,3 +828,38 @@ body {
   font-size: 0.75rem;
   margin-bottom: 0.2rem;
 }
+
+/* BOTTOM MOBILE PAGINATION BAR */
+.pagination-bottom-bar {
+  background: var(--bg-card);
+  border: 1px solid var(--border-highlight);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1.25rem;
+  margin-top: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-nav-mobile {
+  padding: 0.65rem 1.15rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+@media (max-width: 768px) {
+  .pagination-bottom-bar {
+    position: sticky;
+    bottom: 12px;
+    z-index: 90;
+    backdrop-filter: blur(16px);
+    background: rgba(19, 27, 46, 0.95);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  }
+}
+
