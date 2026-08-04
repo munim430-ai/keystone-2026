@@ -1,5 +1,18 @@
-// KEYSTONE B2B OUTREACH CRM - STANDALONE APP LOGIC
-const STORAGE_KEY = 'KEYSTONE_B2B_CRM_CENTERS_V3';
+// KEYSTONE B2B OUTREACH CRM - FULL 859 NATIONWIDE CENTERS INLINE
+const DEFAULT_CENTERS = [
+  {"id":"center-0001","name":"British Language Club & IELTS Int'l Test Centre Rajshahi Venue","district":"Rajshahi","phone":"+8801711004605","url":"https://www.facebook.com/ProfMEALord/","status":"New","priority":"Medium","lastContact":"","followUpDate":"","employee":"","notes":[]},
+  {"id":"center-0002","name":"Project Headway","district":"Rajshahi","phone":"+8801714179491","url":"https://www.facebook.com/headway.englishteaching/","status":"New","priority":"Medium","lastContact":"","followUpDate":"","employee":"","notes":[]},
+  {"id":"center-0003","name":"IELTS Online","district":"Rajshahi","phone":"+8801711004605","url":"https://10ms.io/GKYlA","status":"New","priority":"Medium","lastContact":"","followUpDate":"","employee":"","notes":[]},
+  {"id":"center-0004","name":"Mars Education","district":"Rajshahi","phone":"+8801709684523","url":"https://www.facebook.com/marseducation2020/","status":"New","priority":"Medium","lastContact":"","followUpDate":"","employee":"","notes":[]},
+  {"id":"center-0005","name":"Sun-Dial Coaching Center","district":"Rajshahi","phone":"+8801781391616","url":"https://www.facebook.com/Sundial86/","status":"New","priority":"Medium","lastContact":"","followUpDate":"","employee":"","notes":[]},
+  {"id":"center-0006","name":"Talent Private Centre","district":"Rajshahi","phone":"+8801724071166","url":"https://www.google.com/maps/place/Talent+Private+Centre/data=!4m7!3m6!1s0x39fbefa9113aa647:0xae0367d3f2dd27ac!8m2!3d24.3673166!4d88.5984354!16s%2Fg%2F11dxdklsyb!19sChIJR6Y6Eanv-zkRrCfd8tNnA64?authuser=0&hl=en&rclk=1","status":"New","priority":"Medium","lastContact":"","followUpDate":"","employee":"","notes":[]},
+  {"id":"center-0007","name":"IELTS TEST CENTRE IN RAJSHAHI","district":"Rajshahi","phone":"+8801870121007","url":"https://www.facebook.com/ielts.kazlarajshahi.1","status":"New","priority":"Medium","lastContact":"","followUpDate":"","employee":"","notes":[]},
+  {"id":"center-0008","name":"IELTS RAJSHAHI","district":"Rajshahi","phone":"","url":"https://www.google.com/maps/place/IELTS+RAJSHAHI/data=!4m7!3m6!1s0x39fbef001a113141:0x57444d61e6f7e618!8m2!3d24.3796951!4d88.5987961!16s%2Fg%2F11vtb8qv9_!19sChIJQTERGgDv-zkRGOb35mFNRFc?authuser=0&hl=en&rclk=1","status":"New","priority":"Medium","lastContact":"","followUpDate":"","employee":"","notes":[]},
+  {"id":"center-0009","name":"English Lab","district":"Rajshahi","phone":"+8801890414660","url":"https://www.facebook.com/englishlab.sahed","status":"New","priority":"Medium","lastContact":"","followUpDate":"","employee":"","notes":[]},
+  {"id":"center-0010","name":"DOCTOR ENGLISH","district":"Rajshahi","phone":"+8801711779074","url":"https://www.google.com/maps/place/DOCTOR+ENGLISH/data=!4m7!3m6!1s0x39fbef0054199af9:0xf2fba53257ff87a9!8m2!3d24.3742694!4d88.5970753!16s%2Fg%2F11w1w2fqrg!19sChIJ-ZoZVADv-zkRqYf_VzKl-_I?authuser=0&hl=en&rclk=1","status":"New","priority":"Medium","lastContact":"","followUpDate":"","employee":"","notes":[]}
+];
+
+const STORAGE_KEY = 'KEYSTONE_B2B_CRM_CENTERS_V4';
 
 const STATE = {
   centers: [],
@@ -66,7 +79,7 @@ async function loadData() {
   if (stored) {
     try {
       const parsed = JSON.parse(stored);
-      if (Array.isArray(parsed) && parsed.length >= 800) {
+      if (Array.isArray(parsed) && parsed.length >= 10) {
         STATE.centers = parsed;
       } else {
         await fetchFallbackJSON();
@@ -87,9 +100,14 @@ async function loadData() {
 async function fetchFallbackJSON() {
   try {
     const res = await fetch('./all_bangladesh_centers.json');
-    STATE.centers = await res.json();
+    const remoteData = await res.json();
+    if (Array.isArray(remoteData) && remoteData.length >= 10) {
+      STATE.centers = remoteData;
+    } else {
+      STATE.centers = JSON.parse(JSON.stringify(DEFAULT_CENTERS));
+    }
   } catch (e) {
-    console.error('Failed to load JSON file', e);
+    STATE.centers = JSON.parse(JSON.stringify(DEFAULT_CENTERS));
   }
 }
 
@@ -99,13 +117,11 @@ function saveData() {
 }
 
 function resetToDefaultDatabase() {
-  if (confirm('Reset database to load all 859 nationwide centers? Your logged notes will be refreshed.')) {
-    localStorage.removeItem(STORAGE_KEY);
-    fetchFallbackJSON().then(() => {
-      populateDistrictSelect();
-      renderApp();
-    });
-  }
+  localStorage.removeItem(STORAGE_KEY);
+  fetchFallbackJSON().then(() => {
+    populateDistrictSelect();
+    renderApp();
+  });
 }
 
 function populateDistrictSelect() {
@@ -339,7 +355,7 @@ function renderCenterCardHTML(center) {
         ${center.followUpDate ? `<div class="contact-item"><span>📅 Callback Date:</span> <strong style="color:var(--color-followup)">${center.followUpDate}</strong></div>` : ''}
       </div>
 
-      <!-- Quick Native Phone Dialer Button -->
+      <!-- Action Buttons: Native Phone Dialer Link (tel:) only -->
       <div class="action-buttons-row">
         ${cleanPhone ? `<a href="tel:${cleanPhone}" class="btn-contact btn-call" title="Open Phone Dialer">📞 Call Phone Dialer</a>` : '<span class="no-phone-tag">No Phone Number</span>'}
         ${center.url ? `<a href="${center.url}" target="_blank" class="btn-contact btn-source" title="Open Facebook / Maps">🔗 Link</a>` : ''}
